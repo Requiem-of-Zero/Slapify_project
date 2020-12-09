@@ -18,19 +18,16 @@ const Homepage = ({ currentUser, logout }) => {
           </Link>
         </div>
       </div>
-      <div className="row-1">
-        
-      </div>
-      <div className="row-items-1">
-        <div className="row-content">
-          <h5>SLAPIFY PREMIUM</h5>
-          <h1>Join the slap army and get exclusive releases on latest music</h1>
-          <h3>Jam out to your favorite music.</h3>
-          <button>JOIN SLAP ARMY NOW</button>
-          <p></p>
-        </div>
-          <div className="photo">
-            <img className="rave-photo" src={window.raveURL}/>
+        <div className="row-items-1">
+          <div className="row-content">
+            <h5>SLAPIFY PREMIUM</h5>
+            <h1>Subscribe to Slap army and get exclusive releases on latest music</h1>
+            <h3>Jam out to your favorite music.</h3>
+            <button className='.apple-btn'>JOIN SLAP ARMY NOW</button>
+            <p></p>
+          </div>
+        <div className="photo">
+          <img className="rave-photo" src={window.raveURL}/>
         </div>
       </div>
     </nav>
