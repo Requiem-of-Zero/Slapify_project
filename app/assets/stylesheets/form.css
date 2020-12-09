@@ -1,0 +1,189 @@
+.session-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrapper {
+  width: 480px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.demo-btn {
+  font-weight: 700;
+  color: white;
+  background-color: #3b5998;
+  letter-spacing: 2px;
+  padding: 15px;
+  border-style: none;
+  border-radius: 40px;
+  margin: 10px;
+}
+
+button:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-labels {
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.email-input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.password-input {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.form-wrapper {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#form-greeting {
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+.divider {
+  text-align: center;
+  position: relative;
+  border-top: 1px solid #d9dadc;
+  display: block;
+  line-height: 1px;
+  margin: 15px 0;
+}
+
+.divider > .divider-title {
+  background: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.submit-btn {
+  font-weight: 700;
+  color: white;
+  background-color: #15883e;
+  letter-spacing: 2px;
+  padding: 15px;
+  border-style: none;
+  border-radius: 40px;
+  margin: 10px 0px 10px 0px;
+  padding: 15px 70px 15px 70px;
+}
+
+.login-sect {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.chkbox {
+  padding-left: 10px;
+}
+
+.chkbox-wrapper {
+  display: flex;
+}
+.remember {
+  float: left;
+
+}
+
+.chkbox input {
+  margin: 5px;
+}
+
+.form-labels input {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.apple-btn {
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  letter-spacing: 2px;
+  padding: 15px;
+  border-style: none;
+  border-radius: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.google-btn {
+  font-weight: 700;
+  color: #616467;
+  background-color: white;
+  letter-spacing: 2px;
+  padding: 15px;
+  border-style: 4px solid #616467;
+  border-radius: 40px;
+  margin: 10px;
+}
+
+/* .form-footer {
+  
+} */
+
+.acc-prompt {
+  text-align: center;
+  font-size: 17px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.link-btn {
+  font-weight: 700;
+  color: #616467;
+  background-color: white;
+  letter-spacing: 2px;
+  padding: 15px;
+  border-style: 4px solid #616467;
+  border-radius: 40px;
+  margin: 10px;
+}
+
+a {
+  color: #616467;
+  font-weight: 700;
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.logo-wrapper {
+  border-bottom: 1px solid #d9dadc;
+}
+
+.rmbr-btn {
+  display: flex;
+  align-items: center;
+}
