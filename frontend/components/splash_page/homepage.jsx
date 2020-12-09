@@ -1,36 +1,26 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Header from '../header/header'
 
 const Homepage = ({ currentUser, logout }) => {
   const notLoggedIn = () => (
-    <nav>
-      <div className="nav-bar">
-        <div className="nav-links-wrapper">
-          <Link to="/premium">Premium</Link>
-          <Link to="/support">Support</Link>
-          <Link to="/download">Download</Link>
-          <Link to="/signup">Sign up</Link>
-          <Link to="/login">Log in</Link>
+    <article>
+      <Header />
+      <div className="row-items-1">
+        <div className="row-content">
+          <h5>SLAPIFY PREMIUM</h5>
+          <h1>Get 1 month of Premium for free</h1>
+          <h3>Enjoy ad-free head-banging music, and much more. Cancel anytime.</h3>
+          <button className='apple-btn'>GET 1 MONTH FREE</button>
+          <p>Individual plan only. Only $5.00/month after.
+            Offer not available to users who already tried Premium.
+            <span><a href='#'>Terms and conditions apply.</a></span> Offer ends Dec 31, 2021.</p>
         </div>
-        <div className="nav-logo">
-          <Link to="/">
-            <img src={window.revLogoURL}/>
-          </Link>
-        </div>
-      </div>
-        <div className="row-items-1">
-          <div className="row-content">
-            <h5>SLAPIFY PREMIUM</h5>
-            <h1>Subscribe to Slap army and get exclusive releases on latest music</h1>
-            <h3>Jam out to your favorite music.</h3>
-            <button className='.apple-btn'>JOIN SLAP ARMY NOW</button>
-            <p></p>
-          </div>
         <div className="photo">
           <img className="rave-photo" src={window.raveURL}/>
         </div>
       </div>
-    </nav>
+    </article>
   );
   const loggedIn = () => (
     <hgroup className="header-group">

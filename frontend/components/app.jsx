@@ -2,8 +2,9 @@ import React from "react";
 import SessionForm from './user_auth/session_form'
 import SignInContainer from './user_auth/signin_form_container';
 import SignUpContainer from './user_auth/signup_form_container';
-import HelloContainer from './splash_page/home_container'
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import HelloContainer from './splash_page/homepage_container';
+import Header from './header/header'
+import { AuthRoute } from '../util/route_util';
 import { Provider } from 'react-redux';
 import {
   Route,
@@ -16,8 +17,9 @@ import {
 
 const App = () => (
   <div>
-    <HelloContainer />
+    {/* <Header /> */}
     <Switch>
+      <Route exact path="/" component={HelloContainer}/>
       <AuthRoute exact path="/login" component={SignInContainer}/>
       <AuthRoute exact path="/signup" component={SignUpContainer}/>
     </Switch>
