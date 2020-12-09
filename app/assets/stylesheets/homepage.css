@@ -36,8 +36,9 @@ nav {
 }
 
 .rave-photo {
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 .row-items-1 {

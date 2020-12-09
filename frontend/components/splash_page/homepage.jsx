@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../header/header'
+import Header from './header'
 
 const Homepage = ({ currentUser, logout }) => {
   const notLoggedIn = () => (
