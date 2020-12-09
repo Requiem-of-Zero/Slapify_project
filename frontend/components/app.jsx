@@ -16,7 +16,6 @@ import {
 
 const App = () => (
   <div>
-    <h1>Slapify</h1>
     <HelloContainer />
     <Switch>
       <AuthRoute exact path="/login" component={SignInContainer}/>
