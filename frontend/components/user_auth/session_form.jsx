@@ -41,7 +41,9 @@ class SessionForm extends React.Component {
     return (
       <div className='form-container'>
           <div className="logo-wrapper">
-            <img className='logo' src={window.slapLogoURL} alt="Slapify logo" width='100' height='80'/>
+            <Link to={'/'}>
+              <img className='logo' src={window.slapLogoURL} alt="Slapify logo" width='100' height='80'/>
+            </Link>
           </div>
         <div className="form-wrapper">
           <form className='session-form'>
@@ -77,8 +79,8 @@ class SessionForm extends React.Component {
             </label>
             <div className='login-sect'>
               <div className='rmbr-btn'>
-                <label htmlFor='remember-me' className='btn'>Remember me</label>
                 <input type="checkbox" name="remember-me" className='remember btn' />
+                <label htmlFor='remember-me' className='btn'>Remember me</label>
               </div>
               <input className='submit-btn btn' type="submit" value={form} onClick={this.handleSubmit}/>
             </div>
