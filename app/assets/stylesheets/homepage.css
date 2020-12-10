@@ -1,6 +1,12 @@
+/* Header CSS */
+
 nav {
     font-family: 'Montserrat',
     sans-serif;
+}
+
+.nav-logo {
+  margin-left: 30px;
 }
 
 .nav-bar {
@@ -17,6 +23,10 @@ nav {
   top: 0;
 }
 
+.nav-links-wrapper {
+  margin-right: 80px;
+}
+
 .nav-links-wrapper > a {
   color: white;
   margin-left: 40px;
@@ -24,10 +34,11 @@ nav {
   font-weight: 700;
   font-family: 'Montserrat',
   sans-serif;
+  z-index: 2;
 }
 
 .nav-links-wrapper > a:hover {
-  color: #1DB954;
+  color: #1DB954
 }
 
 .nav-links-wrapper > a:nth-child(4) {
@@ -46,6 +57,8 @@ nav {
 .nav-links-wrapper > a:nth-child(5) {
   color: #d9dadc;
 }
+
+/* Main content CSS */
 
 .rave-photo {
   height: 450px;
