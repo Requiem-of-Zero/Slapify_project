@@ -1,0 +1,35 @@
+.footer {
+  height: 200px;
+  background: black;
+  font-family: 'Montserrat',
+  sans-serif;
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.redirect-pages img {
+  margin-right: 20px;
+  background: none;
+  padding: 30px;
+}
+
+.redirect-pages img:hover {
+  color: green;
+}
+
+.trademark {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  color: white;
+  align-items: flex-end;
+  font-size: 12px;
+  width: 100%;
+}
+

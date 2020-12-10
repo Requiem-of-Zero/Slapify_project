@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      render api_users
+      render '/api/users/show'
     else
       render json: ['Invalid Credentials'], status: 401
     end
@@ -15,7 +15,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       logout!
-      render api_users
+      render '/api/users/show'
     else
       render json: ['Please sign in first'], status: 404
     end
