@@ -17,6 +17,10 @@
   padding: 20px;
 }
 
+.redirect-pages {
+  z-index: 2;
+}
+
 .redirect-pages img:hover {
   color: green;
 }

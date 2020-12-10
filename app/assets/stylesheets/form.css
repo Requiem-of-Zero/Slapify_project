@@ -23,6 +23,10 @@ a {
   margin: 10px;
 }
 
+.demo-btn:hover {
+  background-color: #4b70c0;
+}
+
 button:focus {
   outline: none;
   cursor: pointer;
@@ -90,6 +94,10 @@ label {
   padding: 15px 70px 15px 70px;
 }
 
+.submit-btn:hover {
+  background-color: #1fb854;
+}
+
 .login-sect {
   display: flex;
   justify-content: space-between;
@@ -131,6 +139,10 @@ label {
   margin-right: 10px;
 }
 
+.apple-btn:hover {
+  background-color: rgb(66, 66, 66);
+}
+
 .google-btn {
   font-weight: 700;
   color: #616467;
@@ -142,6 +154,10 @@ label {
   margin: 10px;
 }
 
+.google-btn:hover {
+  color: white;
+  background-color: #616467;
+}
 /* .form-footer {
   
 } */
@@ -162,6 +178,10 @@ label {
   border-style: 4px solid #616467;
   border-radius: 40px;
   margin: 10px;
+}
+
+.link-btn:hover {
+  background-color: rgb(209, 209, 209);
 }
 
 a {
