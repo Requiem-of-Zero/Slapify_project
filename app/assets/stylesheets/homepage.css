@@ -5,11 +5,6 @@ nav {
     sans-serif;
 }
 
-.nav-logo {
-  margin-left: 100px;
-}
-
-
 .nav-bar {
   display: flex;
   justify-content: space-around;
@@ -22,10 +17,11 @@ nav {
   padding-bottom: 5px;
   padding-top: 5px;
   top: 0;
+  z-index: 2;
 }
 
 .nav-links-wrapper {
-  margin-right: 150px;
+  margin-right: 50px;
 }
 
 .nav-links-wrapper > a {
@@ -39,7 +35,7 @@ nav {
 }
 
 .nav-links-wrapper > a:hover {
-  color: red
+  color: #1DB954
 }
 
 .nav-links-wrapper > a:nth-child(4) {
@@ -47,19 +43,29 @@ nav {
   padding-left: 40px;
   color: #d9dadc;
 }
-.nav-links-wrapper>a:nth-child(4):hover {
+
+
+/* .nav-links-wrapper>a:nth-child(4):hover {
   color: #1DB954;
 }
+
+for when there were 5 links in nav bar
 
 .nav-links-wrapper>a:nth-child(5):hover {
   color: #1DB954;
-}
+} */
 
-.nav-links-wrapper > a:nth-child(5) {
+.nav-links-wrapper > a{
   color: #d9dadc;
 }
 
 /* Main content CSS */
+
+.row-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .rave-photo {
   height: 450px;
@@ -68,7 +74,9 @@ nav {
   box-shadow: 0 10px 6px -6px #777;
 }
 
-
+.row-items {
+  width: 100%;
+}
 
 .row-items-1 {
   display: flex;
@@ -102,24 +110,25 @@ nav {
 .row-items-3 {
   display: flex;
   height: 600px;
+  align-items: center;
+  justify-content: center;
   /* background: rgb(255, 62, 72); */
   background-image: url('https://images.unsplash.com/photo-1598008663765-4b65cb64c0b6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80');
   background-size: cover;
-  align-items: flex-start;
   align-content: center;
   padding-right: 70px;
   padding-left: 70px;
 }
 
 .row-3 {
+  display: flex;
   color: #1DB954;
 }
 
 .row-content-3 {
-  width: 100%;
   display: flex;
-  top: -85px;
   flex-direction: column;
+  width: 100%;
   font-family: 'Montserrat',
   sans-serif;
 }
@@ -142,8 +151,8 @@ nav {
 }
 
 .center {
-  margin-top: 133px;
-  margin-left: 350px;
+  /* margin-top: 133px;
+  margin-left: 350px; */
 }
 
 .row {
@@ -243,7 +252,7 @@ nav {
   border-radius: 40px;
   margin-left: 2px;
   margin-right: 10px;
-  width: 30%;
+  width: 50%;
   text-align: center;
 }
 
@@ -270,7 +279,8 @@ nav {
 .row-1-btn:hover {
   background-color: white;
   color: black;
-  transform: scale(1.1) perspective(0.5px)
+  transform: scale(1.1) perspective(0.2px);
+  z-index: 0;
 }
 
 .row-2-btn {
@@ -291,5 +301,5 @@ nav {
 .row-2-btn:hover {
   background-color: white;
   color: black;
-  transform: scale(1.1) perspective(0.5px)
+  transform: scale(1.1) perspective(0.2px)
 }

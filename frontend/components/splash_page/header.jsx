@@ -6,9 +6,9 @@ class Header extends React.Component {
     return (
       <nav className='nav-bar'>
         <div className="nav-links-wrapper">
-          <Link to="/premium">Premium</Link>
+          {/* <Link to="/premium">Premium</Link>
           <Link to="/support">Support</Link>
-          <Link to="/download">Download</Link>
+          <Link to="/download">Download</Link> */}
           <Link to="/signup">Sign up</Link>
           <Link to="/login">Log in</Link>
         </div>
