@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +22,12 @@ class SessionForm extends React.Component {
     return e => this.setState({ [type]: e.target.value })
   }
 
+  componentWillUnmount(){
+    this.props.clearErrors()
+  }
+
   render() {
-    const { formType, demoLogin } = this.props;
+    const { formType, demoLogin, errors } = this.props;
     const form = formType === 'login' ? 'LOG IN' : 'SIGN UP';
     const demoUser = {
       email: 'demo@demouser.com',
@@ -37,7 +42,7 @@ class SessionForm extends React.Component {
       password: 'hunter12'
     }
     const altFormType = formType === 'login' ? 'signup' : 'login';
-    const formLink = altFormType === 'login' ? 'SIGN IN TO SPOTIFY' : 'SIGN UP FOR SPOTIFY';
+    const formLink = altFormType === 'login' ? 'SIGN IN TO SLAPIFY' : 'SIGN UP FOR SLAPIFY';
     return (
       <div className='form-container'>
           <div className="logo-wrapper">
@@ -63,6 +68,9 @@ class SessionForm extends React.Component {
             <div className='divider'>
               <strong className='divider-title'>OR</strong>
             </div>
+            <ul className='form-error'>
+              {errors.map(err => <li>{err}</li>)}
+            </ul>
             <label className='form-labels'>Email address
               <input className='email-input' 
                     type="text" 

@@ -8,6 +8,11 @@
   margin: 0 auto;
 }
 
+.form-error {
+  color: red;
+  text-align: center;
+}
+
 a {
   text-decoration: none;
 }
@@ -42,6 +47,7 @@ label {
   margin-top: 10px;
   font-size: 15px;
 }
+
 
 .email-input {
   margin-top: 10px;
@@ -92,6 +98,7 @@ label {
   border-radius: 40px;
   margin: 10px 0px 10px 0px;
   padding: 15px 70px 15px 70px;
+  outline: none;
 }
 
 .submit-btn:hover {
