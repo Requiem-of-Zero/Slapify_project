@@ -1,0 +1,20 @@
+.header-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 60px;
+  position: relative;
+  background-color:rgb(15, 14, 14);
+  margin-left: 250px;
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    position: absolute;
+  }
+}
+
+.hidden {
+  display: none;
+}
