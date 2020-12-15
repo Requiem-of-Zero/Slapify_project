@@ -1,11 +1,13 @@
 import React from 'react';
 import Control from './control'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       status: 'paused',
+      currentSong: this.props.song
     }
     console.log(props);
     this.playMusic = this.playMusic.bind(this)
@@ -27,6 +29,17 @@ class MusicPlayer extends React.Component {
     return audio.loop === false ? audio.loop = true : audio.loop = false
   }
 
+  toggleMute() {
+    const audio = document.getElementById('audio')
+    if(audio.muted === true) {
+      audio.muted = false
+      this.volume.value = 0.5
+    } else {
+      audio.muted = true
+      this.volume.value = 0
+    }
+  }
+
   playMusic() {
     let songState = this.state.status;
 
@@ -37,13 +50,17 @@ class MusicPlayer extends React.Component {
     } else {
       songState = 'playing'; 
       audio.play();
+      this.interval = setInterval(() => {
+        this.scrub.value = this.audio.currentTime
+      }, 1000)
     }
-    this.setState({ status: songState })
+    this.setState({ status: songState, currentSong: this.props.song })
   }
 
   render() {
     const { song } = this.props;
-    return (
+    
+    return song ? (
       <div className='music_player-wrapper'>
         <audio
             ref={(audio) => {
@@ -53,15 +70,17 @@ class MusicPlayer extends React.Component {
             id="audio"
         />
         <div className="track-details">
-          <p>{song.songName}</p>
+          <p>{this.state.currentSong.songName}</p>
         </div>
         <div className="controls-seeker">
           <div className="control-btns">
-            {/* <Control songState={this.state.status} playMusic={this.playMusic}/> */}
+            <FontAwesomeIcon icon="faPlay" />
+            <i className="fa fa-pause" aria-hidden="true"></i>
             <button onClick={this.playMusic}>Play</button>
             <button onClick={this.toggleLoop}>Loop</button>
           </div>
           <div className="seeker">
+            {/* <p>{this.audio.currentTime}</p> */}
             <input
                 ref={(scrub) => {
                     this.scrub = scrub;
@@ -71,9 +90,11 @@ class MusicPlayer extends React.Component {
                 max={song.duration}
                 onChange={this.handleScrub.bind(this)}
             />
+            {/* <p>{this.audio.duration}</p> */}
           </div>
         </div>
         <div className="volume-ctrl">
+          <button onClick={this.toggleMute}>Mute</button>
           <input
               ref={(volume) => {
                   this.volume = volume;
@@ -86,7 +107,7 @@ class MusicPlayer extends React.Component {
           />
         </div>
       </div>
-    )
+    ) : null;
   }
 }
 

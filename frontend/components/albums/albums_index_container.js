@@ -1,6 +1,6 @@
 import { getAllAlbums, getAlbum } from '../../actions/album_actions';
-import { connect } from 'react-redux'
-import AlbumIndex from './album_index'
+import { connect } from 'react-redux';
+import AlbumIndex from './album_index';
 
 const mstp = state => ({
   albums: Object.values(state.entities.albums)

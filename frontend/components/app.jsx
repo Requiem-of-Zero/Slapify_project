@@ -4,6 +4,8 @@ import SignInContainer from './user_auth/signin_form_container';
 import SignUpContainer from './user_auth/signup_form_container';
 import HelloContainer from './splash_page/homepage_container';
 import MusicPlayerContainer from './music_player/music_player_container'
+import AlbumShowContainer from './albums/album_show_container'
+import LoggedInNav from '../components/splash_page/logged_in/logged_in_nav_bar'
 import NotFound from '../components/404screen/not_found'
 import Header from './splash_page/logged_out/header'
 import { AuthRoute } from '../util/route_util';
@@ -24,7 +26,9 @@ const App = () => (
       <Route exact path="/" component={HelloContainer}/>
       <AuthRoute exact path="/login" component={SignInContainer}/>
       <AuthRoute exact path="/signup" component={SignUpContainer}/>
-      <Route path="/songs/:songId" component={MusicPlayerContainer}/>
+      {/* <Route path="/songs/:songId" component={MusicPlayerContainer}/> */}
+      <Route path="/albums/:albumId" component={AlbumShowContainer}/>
+      <MusicPlayerContainer />
       <NotFound />
     </Switch>
   </div>

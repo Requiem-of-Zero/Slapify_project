@@ -7,8 +7,21 @@ import { fetchSong, fetchSongs } from './util/song_api_util'
 import { getSong, getAllSongs } from './actions/song_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = configureStore()
+  let store;
   
+  if (window.currentUser) {
+        const preloadedState = {
+            entities: {
+                users: { [window.currentUser.id]: window.currentUser }
+            },
+            session: { id: window.currentUser.id }
+        };
+        store = configureStore(preloadedState);
+        delete window.currentUser;
+    } else {
+        store = configureStore();
+    }
+
   // window.login = SessionAPIUtil.login
   // window.logout = SessionAPIUtil.logout
   // window.signup = SessionAPIUtil.signup

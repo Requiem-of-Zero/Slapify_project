@@ -2,6 +2,7 @@ import React from 'react';
 import LoggedInNav from './logged_in_nav_bar';
 import SongIndexContainer from '../../songs/songs_index_container';
 import MusicPlayerContainer from '../../music_player/music_player_container';
+import AlbumIndexContainer from '../../albums/albums_index_container';
 
 
 class LoggedInHomepage extends React.Component {
@@ -16,6 +17,7 @@ class LoggedInHomepage extends React.Component {
         <LoggedInNav currentUser={currentUser} logout={logout} />
         <div className="album-container">
           <SongIndexContainer />
+          <AlbumIndexContainer/>
         </div>
         <MusicPlayerContainer />
       </div>

@@ -20,8 +20,10 @@ googleUser = User.create!(email: 'google@gmail.com', password: 'hunter12')
 artist1 = Artist.create!(name: 'Disney Channel')
 
 hsm = Album.create!(album_name: 'High School Musical', year: 2004, artist_id: artist1.id)
+hsm2 = Album.create!(album_name: 'High School Musical 2', year: 2007, artist_id: artist1.id)
 
-song1 = Song.create!(album_id: 1, song_name: "Breakin Free")
-song2 = Song.create!(album_id: 1, song_name: "Now or Never")
-song3 = Song.create!(album_id: 1, song_name: "Get'cha Head In the Game")
+song1 = Song.create!(album_id: hsm.id, song_name: "Breaking free")
+song2 = Song.create!(album_id: hsm.id, song_name: "Now or never")
+song3 = Song.create!(album_id: hsm.id, song_name: "Get'cha head In the game")
+song4 = Song.create!(album_id: hsm2.id, song_name: "Gotta go my own way")
 
