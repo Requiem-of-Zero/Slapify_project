@@ -12,14 +12,17 @@
 
 .indiv-songs:hover {
   border-radius: 3px;
-  background: rgb(83, 83, 83);
-  opacity: 0.7;
+  background-color: rgb(83, 83, 83);
+  opacity: 0.9;
   padding-left: -20px;
   padding-right: -20px;
 }
 
 .hovering {
-  color: white;
+  > .FaPlay {
+    color: white;
+    z-index: 2;
+  }
 }
 
 .song-labels {

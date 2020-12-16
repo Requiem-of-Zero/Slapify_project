@@ -13,9 +13,11 @@ class AlbumIndex extends Component {
     return (
       <div>
         <h1 className='featured'>Featured</h1>
-        <ul className='albums'>
-          {albums.map(album => <AlbumIndexItem album={album} id={album.id} imgUrl={album.imgUrl}/> )}
-        </ul>
+        <div className='albums-border'>
+          <ul className='albums'>
+            {albums.map(album => <AlbumIndexItem album={album} id={album.id} imgUrl={album.imgUrl}/> )}
+          </ul>
+        </div>
       </div>
     )
   }

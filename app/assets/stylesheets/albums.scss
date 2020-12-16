@@ -54,7 +54,7 @@
 
 .album-content {
   margin-top: 10px;
-  background-color: black;
+  background-color: rgb(20, 20, 20);
   opacity: 0.8;
   padding-top: 1px;
 }
@@ -62,10 +62,17 @@
 .album-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Montserrat',
   sans-serif;
   margin-left: 40px;
   margin-top: 40px;
+  min-height: 320px;
+  min-width: 280px;
+  background-color: rgb(26, 25, 25);
+  border-radius: 8px;
+  opacity: 0.9;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11),
               0 2px 2px rgba(0, 0, 0, 0.11),
               0 4px 4px rgba(0, 0, 0, 0.11),
@@ -77,9 +84,21 @@
   }
 }
 
+.album-wrapper:hover {
+  background-color: rgb(59, 59, 59)
+}
+
 .album-idx {
   width: 225px;
   height: 225px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11),
+              0 2px 2px rgba(0, 0, 0, 0.11),
+              0 4px 4px rgba(0, 0, 0, 0.11),
+              0 8px 8px rgba(0, 0, 0, 0.11),
+              0 16px 16px rgba(0, 0, 0, 0.11),
+              0 32px 32px rgba(0, 0, 0, 0.11);
 }
 
 .albums {
@@ -92,5 +111,6 @@
   margin-top: 30px;
   text-align: center;
   color: rgb(255, 255, 255);
-  font-size: 30px;
+  font-size: 28px;
 }
+

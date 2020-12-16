@@ -104,7 +104,7 @@ class MusicPlayer extends React.Component {
               <TiArrowRepeat />
             </a>
           </div>
-          <div className="seeker">
+          <div className="seeker bars">
             {/* <p>{this.audio.currentTime}</p> */}
             <input
                 ref={(scrub) => {
@@ -114,11 +114,12 @@ class MusicPlayer extends React.Component {
                 min="0"
                 max={song.duration}
                 onChange={this.handleScrub.bind(this)}
+                className='bars'
             />
             {/* <p>{this.audio.duration}</p> */}
           </div>
         </div>
-        <div className="volume-ctrl">
+        <div className="volume-ctrl bars">
           <a onClick={this.toggleMute} className="ctrl-btns">
             {this.state.mute === 'muted' ? <BsVolumeMute/> : <FiVolume2/>}
           </a>
@@ -131,7 +132,7 @@ class MusicPlayer extends React.Component {
               max="1"
               step="0.02"
               onChange={this.handleVolume.bind(this)}
-              className="volume-slider"
+              className="bars"
           />
         </div>
       </div>

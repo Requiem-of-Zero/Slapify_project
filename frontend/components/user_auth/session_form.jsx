@@ -14,8 +14,7 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(){
-    this.props.action(this.state)
-    //redirects
+    this.props.action(this.state);
   }
 
   update(type){

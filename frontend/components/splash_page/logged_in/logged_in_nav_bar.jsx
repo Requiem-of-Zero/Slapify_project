@@ -22,7 +22,10 @@ class LoggedInNav extends React.Component {
     return (
       <hgroup className="header-group">
         <div className="profile">
-          <button onClick={this.toggleDropdown} className="header-name"><AiOutlineSmile />{currentUser.email}</button>
+          <button onClick={this.toggleDropdown} className="header-name">
+            <span className="smile"><AiOutlineSmile /></span>
+            {currentUser.email}
+          </button>
           <div className={`dropdown ${this.state.showDropdown}`}>
             <button onClick={logout} className="logout-btn">Log Out</button>
           </div>
