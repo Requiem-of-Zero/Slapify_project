@@ -1,0 +1,55 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 800px;
+  margin-right: 250px;
+  position: absolute;
+  background-color: black;
+
+  :first-child {
+    
+  }
+
+  > a {
+    font-family: 'Montserrat',
+    sans-serif;
+    color: #b3b3b3;
+  }
+}
+
+.sidebar-logo {
+  position: absolute;
+  top: -40px;
+}
+
+.filler {
+  height: 50px;
+  width: 250px;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  font-family: 'Montserrat',
+  sans-serif;
+  color: #b3b3b3;
+  font-size: 15px;
+  font-weight: 700;
+
+  > a {
+    margin-bottom: 10px;
+    color: #b3b3b3;
+  }
+}
+
+.nav-icon {
+  font-size: 25px;
+  margin-right: 20px;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+}

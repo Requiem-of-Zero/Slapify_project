@@ -8,11 +8,10 @@ const mstp = (state, ownProps) => ({
   album: state.entities.albums[ownProps.match.params.albumId],
   songs: getSongsByAlbumId(state, +ownProps.match.params.albumId),
   currentUser: state.entities.users[state.session.id],
-  imgUrl: state.entities.albums[ownProps.match.params.albumId].imgUrl
 });
 
 const mdtp = dispatch => ({
-  getAlbum: id => dispatch(getAlbum(id)),
+  getAlbum: payload => dispatch(getAlbum(payload)),
   updateCurrentSong: song => dispatch(updateCurrentSong(song))
 });
 

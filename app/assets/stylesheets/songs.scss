@@ -1,3 +1,82 @@
 // Place all the styles related to the Songs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.indiv-songs {
+  color: white;
+  font-family: 'Montserrat',
+  sans-serif;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.indiv-songs:hover {
+  border-radius: 3px;
+  background: rgb(83, 83, 83);
+  opacity: 0.7;
+  padding-left: -20px;
+  padding-right: -20px;
+}
+
+.hovering {
+  color: white;
+}
+
+.song-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+  margin-top: 30px;
+
+  .song-id {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+    font-size: 13px;
+    margin-left: 30px;
+  }
+
+  div > p {
+    color: #b3b3b3;
+  }
+
+}
+
+
+.song-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  color: #b3b3b3;
+  
+  > a {
+    color: #b3b3b3;
+    width: 36px;
+  }
+}
+
+.song-title {
+  color: white;
+  cursor: default;
+}
+
+.song-details-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: 0 auto;
+  font-size: 16px;
+  z-index: 2;
+}
+
+.song-duration {
+  color: #b3b3b3;
+}
+
+.duration-label {
+  margin-right: 30px;
+}

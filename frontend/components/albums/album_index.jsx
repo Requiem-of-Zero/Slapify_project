@@ -12,7 +12,8 @@ class AlbumIndex extends Component {
     if (!albums.length) return null;
     return (
       <div>
-        <ul>
+        <h1 className='featured'>Featured</h1>
+        <ul className='albums'>
           {albums.map(album => <AlbumIndexItem album={album} id={album.id} imgUrl={album.imgUrl}/> )}
         </ul>
       </div>

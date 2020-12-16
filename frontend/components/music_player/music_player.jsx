@@ -1,42 +1,56 @@
 import React from 'react';
 import Control from './control'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaPause, FaPlay } from 'react-icons/fa'
+import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai'
+import { TiArrowRepeat} from 'react-icons/ti'
+import { BsShuffle, BsVolumeMute} from 'react-icons/bs'
+import { FiVolume2 } from 'react-icons/fi'
+
 
 class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       status: 'paused',
-      currentSong: this.props.song
+      currentSong: this.props.song,
+      loop: '',
+      mute: '',
     }
-    console.log(props);
+
+    this.toggleLoop = this.toggleLoop.bind(this)
+    this.toggleMute = this.toggleMute.bind(this)
     this.playMusic = this.playMusic.bind(this)
   }
   
   handleScrub(e) {
-    e.preventDefault();
     this.audio.currentTime = e.target.value
   }
 
   handleVolume(e) {
-    e.preventDefault();
     this.audio.volume = e.target.value
   }
 
   toggleLoop() {
     const audio = document.getElementById('audio')
     console.log(audio.loop);
-    return audio.loop === false ? audio.loop = true : audio.loop = false
+    if(audio.loop === true) {
+      audio.loop = false
+      this.setState({mute: ''})
+    } else {
+      audio.loop = true
+      this.setState({mute: 'loop'})
+    }
   }
 
   toggleMute() {
     const audio = document.getElementById('audio')
+    console.log(audio.muted);
     if(audio.muted === true) {
       audio.muted = false
-      this.volume.value = 0.5
+      this.setState({mute: ''})
     } else {
       audio.muted = true
-      this.volume.value = 0
+      this.setState({mute: 'muted'})
     }
   }
 
@@ -52,32 +66,43 @@ class MusicPlayer extends React.Component {
       audio.play();
       this.interval = setInterval(() => {
         this.scrub.value = this.audio.currentTime
-      }, 1000)
+      }, 2000)
     }
     this.setState({ status: songState, currentSong: this.props.song })
   }
 
   render() {
-    const { song } = this.props;
-    
+    const { song, album } = this.props;
+    // debugger
     return song ? (
       <div className='music_player-wrapper'>
-        <audio
+        <audio 
             ref={(audio) => {
                 this.audio = audio;
             }}
           src={song.url}
             id="audio"
         />
-        <div className="track-details">
-          <p>{this.state.currentSong.songName}</p>
+        <div className="details-wrapper">
+          <div className="cover">
+            { album ? <img src={album.imgUrl} className="current-cover"/> : null }
+          </div>
+          <div className="track-details">
+            <p>{song.songName}</p>
+          </div>
         </div>
         <div className="controls-seeker">
           <div className="control-btns">
-            <FontAwesomeIcon icon="faPlay" />
-            <i className="fa fa-pause" aria-hidden="true"></i>
-            <button onClick={this.playMusic}>Play</button>
-            <button onClick={this.toggleLoop}>Loop</button>
+            <a className="btn ctrl-btns"><BsShuffle /></a>
+            <a className="btn ctrl-btns"><AiFillStepBackward /></a>
+            <a onClick={this.playMusic} className="btn play-btn">
+              {this.state.status === 'paused' ? <FaPlay /> : <FaPause />}</a>
+            <a className={this.state.loop}>
+              <AiFillStepForward />
+            </a>
+            <a className="btn ctrl-btns" onClick={this.toggleLoop}>
+              <TiArrowRepeat />
+            </a>
           </div>
           <div className="seeker">
             {/* <p>{this.audio.currentTime}</p> */}
@@ -94,7 +119,9 @@ class MusicPlayer extends React.Component {
           </div>
         </div>
         <div className="volume-ctrl">
-          <button onClick={this.toggleMute}>Mute</button>
+          <a onClick={this.toggleMute} className="ctrl-btns">
+            {this.state.mute === 'muted' ? <BsVolumeMute/> : <FiVolume2/>}
+          </a>
           <input
               ref={(volume) => {
                   this.volume = volume;
@@ -104,6 +131,7 @@ class MusicPlayer extends React.Component {
               max="1"
               step="0.02"
               onChange={this.handleVolume.bind(this)}
+              className="volume-slider"
           />
         </div>
       </div>

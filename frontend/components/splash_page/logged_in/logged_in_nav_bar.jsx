@@ -1,26 +1,29 @@
 import React from 'react';
+import { AiOutlineSmile } from 'react-icons/ai';
 
 class LoggedInNav extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showDropdown: false
+      showDropdown: 'hidden'
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.toggleDropdown = this.toggleDropdown.bind(this)
   }
 
-  handleClick(e) {
-    this.setState({showDropdown: !e.target.value})
+  toggleDropdown(){
+    const { showDropdown } = this.state;
+    showDropdown === 'show' 
+    ? this.setState({showDropdown: 'hidden'}) 
+    : this.setState({showDropdown: 'show'})
   }
 
   render() {
     const { currentUser, logout } = this.props;
-    let hidden = (this.state.showDropdown) ? "" : "hidden";
     return (
       <hgroup className="header-group">
         <div className="profile">
-          <button onClick={this.handleClick} className="header-name">{currentUser.email}!</button>
-          <div className={`dropdown ${hidden}`}>
+          <button onClick={this.toggleDropdown} className="header-name"><AiOutlineSmile />{currentUser.email}</button>
+          <div className={`dropdown ${this.state.showDropdown}`}>
             <button onClick={logout} className="logout-btn">Log Out</button>
           </div>
         </div>

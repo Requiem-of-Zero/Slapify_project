@@ -6,9 +6,10 @@ class AlbumIndexItem extends Component {
     const { album, id } = this.props;
     console.log(album, "album");
     return (
-      <li>
-        <Link to={`/albums/${id}`}>{album.albumName}
-          <img className="album" src={album.imgUrl} />
+      <li className="album-wrapper">
+        <Link to={`/albums/${id}`}>
+          <img className="album-idx" src={album.imgUrl} />
+          <h3>{album.albumName}</h3>
         </Link>
       </li>
     )

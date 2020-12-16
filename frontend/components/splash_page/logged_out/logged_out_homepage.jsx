@@ -7,7 +7,6 @@ class LoggedOutHomepage extends React.Component {
   render() {
     return(
       <article>
-      <Header />
       <div className="row-container">
         <div className="row-items-1 row-items">
           <div className="row-1 row">
