@@ -6,9 +6,9 @@ export const PAUSE_SONG = 'PAUSE_SONG';
 export const PLAY_SONG = 'PLAY_SONG';
 export const RECEIVE_SHUFFLE = 'RECEIVE_SHUFFLE';
 
-export const receiveCurrentSong = songId => ({
+export const receiveCurrentSong = currentSong => ({
   type: RECEIVE_CURRENT_SONG,
-  songId
+  currentSong
 });
 
 export const receiveQueue = queue => ({

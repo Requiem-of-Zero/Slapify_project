@@ -1,5 +1,4 @@
 import React from 'react';
-import Control from './control';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai';
 import { TiArrowRepeat} from 'react-icons/ti';
@@ -12,8 +11,8 @@ class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      duration: '',
-      currentTime: 0,
+      status: 'paused',
+      currentSong: this.props.song,
       loop: '',
       mute: '',
       playIdx: 0,
@@ -27,13 +26,16 @@ class MusicPlayer extends React.Component {
   }
 
   componentDidMount() {
-    this.scrub.value = 0;
-    this.volume.value = 0.5;
-    this.scrub.style.background = 
-      'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
-      ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + 
-      ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-    this.props.getSongs();
+    if(this.scrub && this.volume){
+      this.scrub.value = 0;
+      this.volume.value = 0.5;
+      this.scrub.style.background = 
+        'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
+        ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + 
+        ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
+    }
+    this.props.getAllSongs();
+    this.props.getAllAlbums();
   }
 
   componentDidUpdate() {
@@ -64,10 +66,10 @@ class MusicPlayer extends React.Component {
       '%, #4e4e4e 100%)'
   }
 
-  handleMetadata() {
-    const audio = document.getElementById('audio');
-    this.setState({ duration: audio.duration })
-  }
+  // handleMetadata() {
+  //   const audio = document.getElementById('audio');
+  //   this.setState({ duration: audio.duration })
+  // }
 
   toggleLoop() {
     const audio = document.getElementById('audio')
@@ -97,6 +99,17 @@ class MusicPlayer extends React.Component {
       this.setState({mute: 'muted'});
     }
   }
+
+  // handlePlay() {
+  //   const audio = document.getElementById('audio');
+  //   if(this.props.playing) {
+  //     this.props.pauseSong();
+  //     audio.pause();
+  //   } else {
+  //     this.props.playSong();
+  //     player.play();
+  //   }
+  // }
 
   playMusic() {
     let songState = this.state.status;
@@ -142,6 +155,7 @@ class MusicPlayer extends React.Component {
   };
 
   render() {
+    // const { song, album, artist } = this.props;
     const { song, album, artist } = this.props;
 
     return song ? (
@@ -172,7 +186,7 @@ class MusicPlayer extends React.Component {
               <AiFillStepForward />
             </a>
             <a className={`toggle-btn`} 
-                onClick={this.toggleLoop}>
+                onClick={this.toggleLoop.bind(this)}>
               {this.state.loop === 'loop' ? <span id="toggled-on"><TiArrowRepeat/></span> : <TiArrowRepeat />}
             </a>
           </div>
@@ -193,7 +207,7 @@ class MusicPlayer extends React.Component {
           </div>
         </div>
         <div className="volume-ctrl bars">
-          <a onClick={this.toggleMute} className="ctrl-btns">
+          <a onClick={() => this.toggleMute} className="ctrl-btns">
             {this.state.mute === 'muted' ? <BsVolumeMute/> : <FiVolume2/>}
           </a>
           <input

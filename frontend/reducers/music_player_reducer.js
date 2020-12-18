@@ -10,22 +10,22 @@ import
 } 
 from '../actions/music_player_actions';
 
-const defaultState = {
-  queue: [],
-  previousTrack: [],
-  shuffled:[],
-  currentSongId: null,
-  playing: false
-}
+// const defaultState = {
+//   queue: [],
+//   previousTrack: [],
+//   shuffled:[],
+//   currentSongId: 17,
+//   playing: false
+// }
 
-const MusicPlayerReducer = (oldState=defaultState, action) => {
+const MusicPlayerReducer = (oldState={}, action) => {
   Object.freeze(oldState);
   let newState = Object.assign({}, oldState)
 
   switch (action.type) {
     case RECEIVE_CURRENT_SONG:
-      newState.currentSongId = action.songId;
-      return newState
+      // newState.currentSongId = action.songId;
+      return action.currentSong
     case RECEIVE_QUEUE:
       newState.queue = Object.keys(action.queue)
       return newState
@@ -47,7 +47,7 @@ const MusicPlayerReducer = (oldState=defaultState, action) => {
         let randomNum = Math.floor(Math.random() * (i + 1));
         [songs[i], songs[randomNum]] = [songs[randomNum], songs[i]];
       }
-      
+
       songs.forEach( song => newState.shuffled.push(song.id));
       return newState
     default:
