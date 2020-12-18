@@ -30,6 +30,7 @@
   sans-serif;
   border-radius: 18px;
   z-index: 2;
+  cursor: pointer;
 }
 .smile {
   font-size: 18px;
@@ -40,13 +41,9 @@
   sans-serif;
   color: white;
   background-color: grey;
-  position: absolute;
-  top: 35px;
-  left: 19px;
-  padding-left: 50px;
-  padding-right: 50px;
-  border-radius: 0px 0px 10px 10px;
   z-index: 1;
+  opacity: 0.8;
+  border-style: none;
 }
 
 .header-name:hover {

@@ -12,10 +12,11 @@ class AlbumShow extends Component {
 
   componentDidMount() {
     this.props.getAlbum(this.props.match.params.albumId)
+    this.props.getAllArtists()
   }
 
   render() {
-    const { songs, updateCurrentSong, album } = this.props;
+    const { songs, updateCurrentSong, album, artists } = this.props;
     return this.props.album ? (
       <div>
         <div className="album-show-wrapper">
@@ -24,7 +25,8 @@ class AlbumShow extends Component {
             <div className="detail-content">
               <p>ALBUM</p>
               <h1>{album.albumName}</h1>
-              <p>{album.year}, {songs.length} songs </p>
+              <p><span className="album-artist">{(artists[album.artistId]).name}</span>
+                                                  {album.year}, {songs.length} songs </p>
             </div>
           </div>
           <div className="album-content">
@@ -40,7 +42,9 @@ class AlbumShow extends Component {
                 </div>
               </div>
               <ul className='album-show' >
-                {songs.map((song, i) => <SongIndexItem song={song} updateCurrentSong={updateCurrentSong} id={i} />)}
+                {songs.map((song, i) => <SongIndexItem song={song} updateCurrentSong={updateCurrentSong} 
+                                                        key={song.id} id={i} 
+                                                        artists={artists} album={album}/>)}
               </ul>
             </div>
           </div>

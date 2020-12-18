@@ -20,7 +20,10 @@ class SongIndex extends React.Component {
       // </audio>
       <div>
         <ul>
-          {songs.map(song => <SongIndexItem url={song.url} song={song} key={song.id} updateCurrentSong={updateCurrentSong}/>)}
+          {songs.map(song => <SongIndexItem songs={songs} url={song.url} 
+                                            song={song} 
+                                            key={song.id} 
+                                            updateCurrentSong={updateCurrentSong}/>)}
         </ul>
       </div>
     )

@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class AlbumIndexItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { album, id } = this.props;
-    console.log(album, "album");
+    const { album, id, artists } = this.props;
     return (
       <li className="album-wrapper">
         <Link to={`/albums/${id}`}>
           <img className="album-idx" src={album.imgUrl} />
-          <h3>{album.albumName}</h3>
+          <h3 className="album-name">{album.albumName}</h3>
+          <h2>{(artists[album.artistId]).name}</h2>
         </Link>
       </li>
     )

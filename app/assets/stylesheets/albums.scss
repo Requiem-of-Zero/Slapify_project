@@ -39,6 +39,13 @@
   p {
     font-size: 13px;
     color: #b3b3b3;
+
+    .album-artist {
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      margin-right: 10px;
+    }
   }
 
   :first-child {
@@ -54,8 +61,8 @@
 
 .album-content {
   margin-top: 10px;
-  background-color: rgb(20, 20, 20);
-  opacity: 0.8;
+  // background-color: rgb(83, 83, 83);
+  // opacity: 0.8;
   padding-top: 1px;
 }
 
@@ -68,7 +75,7 @@
   sans-serif;
   margin-left: 40px;
   margin-top: 40px;
-  min-height: 320px;
+  min-height: 350px;
   min-width: 280px;
   background-color: rgb(26, 25, 25);
   border-radius: 8px;
@@ -85,7 +92,13 @@
 }
 
 .album-wrapper:hover {
-  background-color: rgb(59, 59, 59)
+  -webkit-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-duration: .2s;
+  transition-duration: .2s;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+  background-color: rgb(59, 59, 59);
 }
 
 .album-idx {
@@ -114,3 +127,6 @@
   font-size: 28px;
 }
 
+.album-name {
+  margin-bottom: 10px;
+}

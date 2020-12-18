@@ -17,16 +17,26 @@
 }
 
 .seeker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 
   input {
-    width: 100%;
     min-width: 400px;
+  }
+
+  > p {
+    color: #b3b3b3;
+    font-size: 10px;
+    font-family: 'Montserrat',
+    sans-serif;
   }
 }
 
 .details-wrapper {
   display: flex;
+  align-items: center;
   width: 400px;
   color: white;
   margin-left: 20px;
@@ -76,11 +86,13 @@
 .play-btn:hover {
   color: white;
   border-color: white;
+  transform: scale(1.1) perspective(0.2px);
 }
 
 
 ctrl-btns {
   font-size: 16px;
+  cursor: pointer;
 }
 
 .ctrl-btns:hover {
@@ -107,7 +119,9 @@ ctrl-btns {
   -moz-appearance: none;
   border-radius: 26px;
   height: 4px;
-  width: 100%;
+  width: 80%;
+  margin-right: 15px;
+  margin-left: 15px;
   background-color: rgb(184, 183, 183);
   outline: none;
 }
@@ -140,4 +154,29 @@ input[type=range]::-webkit-slider-thumb {
 
 .track-details {
   margin-left: 10px;
+}
+
+#bars {
+  background: linear-gradient(to right, #1DB954 0%, #1DB954 50%, #4e4e4e 50%, #4e4e4e 100%);
+  border: solid 1px #4e4e4e;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+#vol {
+  background: linear-gradient(to right, #1DB954 0%, #1DB954 50%, #4e4e4e 50%, #4e4e4e 100%);
+  border: solid 1px #4e4e4e;
+  outline: none;
+  width: 100px;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+.toggle-btn:hover {
+  color: white;
+}
+
+#toggled-on {
+  color:#1DB954;
 }

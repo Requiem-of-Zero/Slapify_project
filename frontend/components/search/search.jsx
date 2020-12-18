@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SongIndexItem from '../songs/song_index_item';
+import SearchSongIndexItem from './search_song_index_item';
+import { BiSearch, BiTime } from 'react-icons/bi'
 
 class Search extends Component {
   constructor(props) {
@@ -14,27 +15,47 @@ class Search extends Component {
   
   componentDidMount() {
     this.props.getAllSongs()
+    this.props.getAllAlbums()
+    this.props.getAllArtists()
   }
 
   handleChange(e) {
     const newSongs = this.props.songs.filter(song => 
-        song.songName.toLowerCase().startsWith(e.target.value.toLowerCase())
+        song.songName.toLowerCase().includes(e.target.value.toLowerCase())
       )
     this.setState({songs: newSongs})
   }
 
   render() {
-    const { updateCurrentSong, getAllAlbums } = this.props
+    const { updateCurrentSong, albums, artists } = this.props
     const { songs } = this.state
     return songs ? (
       <div>
-        <h1 className="search-txt">Search</h1>
-        <input type="text" onChange={this.handleChange}/>
+        <div className="search">
+          <h2 className="search-icon"><BiSearch /></h2>
+          <input type="text" onChange={this.handleChange} className="search-bar" placeholder='Search for a song'/>
+        </div>
+        <div className="search-labels">
+          <div className="search-id">
+            <p>#</p>
+            <p>SONG</p>
+            <p>ALBUM</p>
+          </div>
+          <div className="search-duration-label">
+            <p>
+              <BiTime />
+            </p>
+          </div>
+        </div>
         <ul>
           {songs.map((song, i )=> 
-          <SongIndexItem url={song.url} song={song} id={i}
+          <SearchSongIndexItem url={song.url} song={song} id={i}
                                 updateCurrentSong={updateCurrentSong}
-                                getAllAlbums={getAllAlbums}/>)}
+                                imgUrl={(albums[song.albumId]).imgUrl}
+                                albumName={(albums[song.albumId]).albumName}
+                                albumId={song.albumId}
+                                artists={artists}
+                                album={albums[song.albumId]}/>)}
         </ul>
       </div>
     ) : null;

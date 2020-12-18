@@ -39,8 +39,14 @@
   font-weight: 700;
 
   > a {
-    margin-bottom: 10px;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
     color: #b3b3b3;
+    margin-bottom: 20px;
   }
 }
 

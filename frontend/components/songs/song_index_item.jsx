@@ -7,17 +7,10 @@ class SongIndexItem extends React.Component {
     this.state = {
       hover: '',
     }
-    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(){
-    const audio = document.getElementById('audio')
-    const { song } = this.props;
-    this.props.updateCurrentSong(song)
-    audio.play()
-  }
   render() {
-    const { song, id } = this.props;
+    const { song, id, songs } = this.props;
     const { hover } = this.state;
     return (
       <li className='indiv-songs'
