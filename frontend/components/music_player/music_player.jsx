@@ -38,9 +38,9 @@ class MusicPlayer extends React.Component {
     this.props.getAllAlbums();
   }
 
-  componentDidUpdate() {
-    this.props.getArtist(this.props.album.artistId)
-  }
+  // componentDidUpdate() {
+  //   this.props.getArtist(this.props.album.artistId)
+  // }
 
   // componentDidUpdate() {
   //   const audio = document.getElementById('audio')
@@ -207,7 +207,7 @@ class MusicPlayer extends React.Component {
           </div>
         </div>
         <div className="volume-ctrl bars">
-          <a onClick={() => this.toggleMute} className="ctrl-btns">
+          <a onClick={this.toggleMute} className="ctrl-btns">
             {this.state.mute === 'muted' ? <BsVolumeMute/> : <FiVolume2/>}
           </a>
           <input

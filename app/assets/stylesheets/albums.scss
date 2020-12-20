@@ -12,7 +12,7 @@
 }
 
 .album-show-wrapper {
-  height: 800px;
+  height: 355px;
   background: #181818;
   font-family: 'Montserrat',
   sans-serif;
@@ -57,6 +57,7 @@
 
 .song-id {
   margin-bottom: 15px;
+  position: sticky;
 }
 
 .album-content {
@@ -116,6 +117,9 @@
 
 .albums {
   display: flex;
+  min-width: 500px;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
 }
 
 .featured {

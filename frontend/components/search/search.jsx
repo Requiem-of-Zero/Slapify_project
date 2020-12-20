@@ -30,7 +30,7 @@ class Search extends Component {
     const { updateCurrentSong, albums, artists } = this.props
     const { songs } = this.state
     return songs ? (
-      <div>
+      <div className="search-wrapper">
         <div className="search">
           <h2 className="search-icon"><BiSearch /></h2>
           <input type="text" onChange={this.handleChange} className="search-bar" placeholder='Search for a song'/>
@@ -47,7 +47,7 @@ class Search extends Component {
             </p>
           </div>
         </div>
-        <ul>
+        <ul className="result-wrapper">
           {songs.map((song, i )=> 
           <SearchSongIndexItem url={song.url} song={song} id={i}
                                 updateCurrentSong={updateCurrentSong}

@@ -297,3 +297,16 @@ for when there were 5 links in nav bar
   color: black;
   transform: scale(1.1) perspective(0.2px)
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #585858;
+  border: 1px solid #585858;
+}
