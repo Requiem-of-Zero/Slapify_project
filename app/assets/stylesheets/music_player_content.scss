@@ -4,3 +4,10 @@
   overflow-y: scroll;
   background: #121212;
 }
+
+.link-btn:hover {
+  background-color: #616467;
+  > a {
+    color: white;
+  }
+}
