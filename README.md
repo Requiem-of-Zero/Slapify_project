@@ -1,5 +1,5 @@
 # Slapify
-[Slapify](https://swong-slapify.herokuapp.com/?#/) is a [Spotify](https://open.spotify.com/) clone, where users are able to stream the latest music and get recommendations based on their music preference. User's are able create and delete playlists as well as adding and removing songs from their owned playlists. Users are able to like albums as well as other user's playlists on the application allowing a social aspect to their streaming platform.
+[Slapify](https://swong-slapify.herokuapp.com/?#/) is a [Spotify](https://open.spotify.com/) clone, where users are able to stream the latest music and get recommendations based on their music preference. Users are able to create and delete playlists as well as adding and removing songs from their owned playlists. Users are able to like albums as well as other user's playlists on the application allowing a social aspect to their streaming platform.
 
 Slapify's backend is built using the Ruby on Rails framework with a PostgreSQL database, and AWS S3 storage for album art and music audio files. The frontend of the website is built with React.js and CSS3, utilizing Redux as to manage the front-end state. jQuery is used as the promise based HTTP client to make AJAX calls on the site.
 
