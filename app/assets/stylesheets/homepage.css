@@ -20,6 +20,15 @@ nav {
   z-index: 2;
 }
 
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 1200px;
+  min-width: 200px;
+}
+
 .nav-links-wrapper {
   margin-right: 50px;
 }

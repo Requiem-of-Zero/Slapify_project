@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 class LoggedOutHomepage extends React.Component {
   render() {
     return(
-      <article>
+    <article>
       <div className="row-container">
         <div className="row-items-1 row-items">
           <div className="row-1 row">
@@ -49,7 +49,7 @@ class LoggedOutHomepage extends React.Component {
         </div>
       </div>
       <Footer/>
-      </article>
+    </article>
     )
   }
 }
