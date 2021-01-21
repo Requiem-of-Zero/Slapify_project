@@ -10,7 +10,7 @@
 
   .profile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
     margin-right: 50px;
     position: absolute;
@@ -37,6 +37,7 @@
 }
 
 .logout-btn {
+  position: relative;
   font-family: 'Montserrat',
   sans-serif;
   color: white;
@@ -44,10 +45,19 @@
   z-index: 1;
   opacity: 0.8;
   border-style: none;
+  transition: all 1s linear;
+  left: 15px;
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
 }
 
 .header-name:hover {
   background-color: rgb(73, 73, 73);
+}
+
+.header-name:active {
+  background-color: rgb(87, 85, 85);
 }
 
 .hidden {
