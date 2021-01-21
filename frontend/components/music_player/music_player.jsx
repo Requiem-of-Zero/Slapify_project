@@ -86,7 +86,6 @@ class MusicPlayer extends React.Component {
   toggleMute() {
     const audio = document.getElementById('audio');
     const volume = document.getElementById('vol');
-    console.log(audio.muted);
     if(audio.muted === true) {
       audio.muted = false;
       volume.value = 0.1;
