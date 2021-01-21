@@ -6,7 +6,7 @@ import LoggedInHomepage from './logged_in/logged_in_homepage';
 import NavBarContainer from '../../components/nav_bar/nav_bar_container';
 import Sidebar from '../sidebar/sidebar'
 
-const Homepage = ({ currentUser, logout, session, fetchCurrentUser }) => {
+const Homepage = ({ currentUser, logout }) => {
   const notLoggedIn = () => (
     <LoggedOutHomepage />
   );
