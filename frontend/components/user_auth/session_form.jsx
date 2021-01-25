@@ -28,14 +28,17 @@ class SessionForm extends React.Component {
   render() {
     const { formType, demoLogin, errors } = this.props;
     const form = formType === 'login' ? 'LOG IN' : 'SIGN UP';
+
     const demoUser = {
       email: 'demo@demouser.com',
       password: 'hunter12'
     }
+
     const appleUser = {
       email: 'apple@apple.com',
       password: 'hunter12'
     }
+    
     const googleUser = {
       email: 'google@gmail.com',
       password: 'hunter12'

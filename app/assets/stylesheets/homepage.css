@@ -312,10 +312,19 @@ for when there were 5 links in nav bar
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
+  background: rgb(10, 10, 10);
 }
 
 ::-webkit-scrollbar-thumb {
+  transition: background 2s ease-in;
   background: #585858;
   border: 1px solid #585858;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #c0c0c0;
 }
