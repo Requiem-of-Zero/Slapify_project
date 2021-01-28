@@ -11,7 +11,8 @@ class AlbumShow extends Component {
   }
 
   componentDidMount() {
-    this.props.getAlbum(this.props.match.params.albumId)
+    // console.log(this.props)
+    this.props.getAlbum(+this.props.match.params.albumId)
     this.props.getAllArtists()
   }
 
@@ -19,6 +20,7 @@ class AlbumShow extends Component {
     const { songs, updateCurrentSong, album, artists } = this.props;
     return this.props.album ? (
       <div>
+        {console.log(this.props)}
         <div className="album-show-wrapper">
           <div className="album-details">
             <img className="album" src={album.imgUrl}/>
@@ -26,7 +28,7 @@ class AlbumShow extends Component {
               <p>ALBUM</p>
               <h1>{album.albumName}</h1>
               <p><span className="album-artist">{(artists[album.artistId]).name}</span>
-                                                  {album.year}, {songs.length} songs </p>
+                                                  {album.year}, {Object.values(this.props.songs).length} songs </p>
             </div>
           </div>
           <div className="album-content">
@@ -42,9 +44,16 @@ class AlbumShow extends Component {
                 </div>
               </div>
               <ul className='album-show' >
-                {songs.map((song, i) => <SongIndexItem song={song} updateCurrentSong={updateCurrentSong} 
-                                                        key={song.id} id={i} 
-                                                        artists={artists} album={album}/>)}
+                {songs.map((song, i) => 
+                  <SongIndexItem 
+                    song={song} 
+                    updateCurrentSong={updateCurrentSong} 
+                    key={song.id}
+                    id={i} 
+                    artists={artists} 
+                    album={album}
+                  />
+                )}
               </ul>
             </div>
           </div>
