@@ -9,3 +9,16 @@ export const fetchAlbum = albumId => (
     url: `/api/albums/${albumId}`
   })
 );
+
+export const getUserAlbums = () => (
+  $.ajax({
+    url: 'api/albums',
+    data: { request_type: 'user'},
+  })
+)
+
+export const getAlbumSongs = albumId => (
+  $.ajax({
+    url: `/api/albums/${albumId}/tracks`,
+  })
+)

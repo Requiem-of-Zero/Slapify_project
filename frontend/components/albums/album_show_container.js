@@ -13,7 +13,7 @@ const mstp = (state, ownProps) => ({
 });
 
 const mdtp = dispatch => ({
-  getAlbum: payload => dispatch(getAlbum(payload)),
+  getAlbum: albumId => dispatch(getAlbum(albumId)),
   updateCurrentSong: song => dispatch(updateCurrentSong(song)),
   getAllArtists: () => dispatch(getAllArtists())
 });

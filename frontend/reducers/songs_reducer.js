@@ -7,8 +7,7 @@ const SongsReducer = (oldState={}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALBUM:
-      newState[action.album.id] = action.songs
-      return newState[action.album.id]
+      return action.payload.songs;
     case RECEIVE_SONG:
       newState[action.song.id] = action.song
       return newState

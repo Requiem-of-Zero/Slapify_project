@@ -1,12 +1,13 @@
 export const RECEIVE_CURRENT_SONG = 'RECEIVE_CURRENT_SONG';
 export const RECEIVE_QUEUE = 'RECEIVE_QUEUE';
-export const RECEIVE_PREVIOUS_SONG = 'RECEIVE_PREVIOUS_SONG';
-export const RECEIVE_NEXT_SONG = 'RECEIVE_NEXT_SONG';
 export const PAUSE_SONG = 'PAUSE_SONG';
 export const PLAY_SONG = 'PLAY_SONG';
-export const RECEIVE_SHUFFLE = 'RECEIVE_SHUFFLE';
+export const SHUFFLE_SONGS = 'SHUFFLE_SONGS';
+export const NEXT_SONG = 'NEXT_SONG';
+export const PREV_SONG = 'PREV_SONG';
+export const LOOP_SONG = 'LOOP_SONG';
 
-export const receiveCurrentSong = currentSong => ({
+export const receiveSong = currentSong => ({
   type: RECEIVE_CURRENT_SONG,
   currentSong
 });
@@ -16,28 +17,34 @@ export const receiveQueue = queue => ({
   queue
 });
 
-export const receivePreviousSong = songId => ({
-  type: RECEIVE_PREVIOUS_SONG,
-  songId
-})
-
-export const receiveNextSong = songId => ({
-  type: RECEIVE_NEXT_SONG,
-  songId
-});
-
 export const playSong = () => ({
-  type: PLAY_SONG
+  type: PLAY_SONG,
 })
 
 export const pauseSong = () => ({
-  type: PAUSE_SONG
+  type: PAUSE_SONG,
 })
 
-export const receiveShuffled = songs => ({
-  type: RECEIVE_SHUFFLE,
-  songs
+export const nextSong = () => ({
+  type: NEXT_SONG,
+})
+
+export const prevSong = () => ({
+  type: PREV_SONG,
+})
+
+export const loopSongs = () => ({
+  type: LOOP_SONG,
+})
+
+export const shuffleSongs = () => ({
+  type: SHUFFLE_SONGS,
 });
+
+export const pickSong = (queueLength, playedIdxs) => {
+  let newSong = Math.floor(Math.random() * Math.floor(queueLength));
+  playedIdxs.includes(newSong) ? pickSong(queueLength, playedIdx) : newSong
+}
 
 export const updateCurrentSong = song => dispatch => (
   dispatch(receiveCurrentSong(song))

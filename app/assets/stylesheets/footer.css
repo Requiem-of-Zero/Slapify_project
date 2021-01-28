@@ -1,6 +1,6 @@
 .footer {
   height: 200px;
-  background: black;
+  background-color: black;
   font-family: 'Montserrat',
   sans-serif;
 }
@@ -15,6 +15,10 @@
   bottom: 0;
 }
 
+.footer-logo {
+  margin-top: 20px;
+}
+
 .footer-wrapper {
   display: flex;
   justify-content: space-around;
@@ -27,16 +31,24 @@
   height: 800px;
 }
 
-.redirect-pages img {
-  padding: 20px;
-}
-
 .redirect-pages {
   z-index: 2;
 }
 
-.redirect-pages img:hover {
-  color: green;
+.redirect {
+  height: 30px;
+  width: auto;
+  margin-left: 10px;
+  color: white;
+  border: 1px solid #222326;
+  padding: 13px;
+  border-radius: 50%;
+  background-color: #222326;
+  margin-top: 20px;
+}
+
+.redirect:hover {
+  color: #1DB954;
 }
 
 .trademark {

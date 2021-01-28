@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AlbumIndexItem from './album_index_item'
 
 class AlbumIndex extends Component {
+
   componentDidMount() {
     this.props.getAllAlbums()
     this.props.getAllArtists()
@@ -10,19 +11,26 @@ class AlbumIndex extends Component {
   render() {
     const { albums, artists } = this.props;
     
-    if (!albums.length) return null;
-    return (
+    return albums && artists ? (
       <div>
         <h1 className='featured'>Featured</h1>
         <div className='albums-border'>
+
           <ul className='albums'>
-            {albums.map(album => <AlbumIndexItem album={album} key={album.id} 
-                                                  id={album.id} imgUrl={album.imgUrl}
-                                                  artists={artists}/> )}
+            {albums.map((album, idx) => 
+              <AlbumIndexItem 
+                album={album} 
+                key={album.id} 
+                albumId={album.id} 
+                id={idx} 
+                artist={album ? artists[album.artistId] : undefined } 
+              />
+            )}
           </ul>
+
         </div>
       </div>
-    )
+    ) : null;
   }
 }
 

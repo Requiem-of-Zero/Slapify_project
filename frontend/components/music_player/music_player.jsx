@@ -6,46 +6,67 @@ import { BsShuffle, BsVolumeMute} from 'react-icons/bs';
 import { FiVolume2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import { selectSong } from '../../util/song_api_util';
+
 
 class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'paused',
-      currentSong: this.props.song,
-      loop: '',
-      mute: '',
-      playIdx: 0,
+      duration: null,
+      currentTime: null,
+      remainingTime: null,
     }
-
-    this.toggleLoop = this.toggleLoop.bind(this);
-    this.toggleMute = this.toggleMute.bind(this);
-    this.playMusic = this.playMusic.bind(this);
-    this.convertTime = this.convertTime.bind(this);
-    this.updateTime = this.updateTime.bind(this);
   }
 
   componentDidMount() {
-    if(this.scrub && this.volume){
-      this.scrub.value = 0;
-      this.volume.value = 0.5;
-      this.scrub.style.background = 
-        'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
-        ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + 
-        ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-    }
-    this.props.getAllSongs();
-    this.props.getAllAlbums();
+    console.log(this.props.music)
   }
+  
 
   // componentDidUpdate() {
   //   this.props.getArtist(this.props.album.artistId)
   // }
 
-  // componentDidUpdate() {
-  //   const audio = document.getElementById('audio')
-  //   audio.paused ? audio.play() : audio.pause()
-  // }
+  componentDidUpdate(prevProps) {
+    clearInterval(this.timeSetter);
+    if(this.props.music.active) {
+      if(this.props.currentSong !== prevProps.currentSong){
+        this.audio.src = this.props.currentSong.url;
+      }
+
+      this.audio.onloadedmetadata = () => 
+        this.setState({ duration: this.audio.duration })
+    }
+
+    if(this.props.music.playing) {
+      this.audio.volume = this.volume.value;
+      this.audio.play();
+      this.handleInterval();
+      this.audio.onended = () => {
+        this.handleSeek("next");
+      };
+    } else {
+      this.audio.pause()
+    }
+  }
+
+  handleInterval(){
+    this.timeSetter = setInterval(() => {
+      this.setState({
+        currentTime: this.audio.currentTime,
+        remainingTime: this.state.duration - this.audio.currentTime,
+      })
+    }, 250)
+  }
+
+  bufferNext() {
+    const { music } = this.props;
+    if(music.startIdx + 1 < music.queue.length) {
+      new Audio(music.queue[music.startIdx + 1].url)
+    }
+  }
+
   
   handleScrub(e) {
     // debugger
@@ -54,6 +75,20 @@ class MusicPlayer extends React.Component {
       'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
       ((e.target.value/e.target.max) * 100) + '%, #4e4e4e ' + 
       ((e.target.value/e.target.max) * 100) + '%, #4e4e4e 100%)'
+  }
+
+  handleSeek(e) {
+    const { music } = this.props
+    if (this.state.currentTime > this.state.remainingTime){
+      selectSong(this.props.currentSong.id)
+    }
+
+    if (music.queue.length === 1 && music.loop) {
+      this.audio.currentTime = 0;
+    } else {
+      e === "next" ? this.props.nextSong() : this.props.prevSong()
+    }
+
   }
 
   handleVolume(e) {
@@ -72,21 +107,16 @@ class MusicPlayer extends React.Component {
   // }
 
   toggleLoop() {
-    const audio = document.getElementById('audio')
+    this.props.loopSongs()
+  }
 
-    if(audio.loop === true) {
-      audio.loop = false;
-      this.setState({loop: ''})
-    } else {
-      audio.loop = true;
-      this.setState({loop: 'loop'});
-    }
+  toggleShuffle() {
+    this.props.shuffleSongs()
   }
 
   toggleMute() {
     const audio = document.getElementById('audio');
     const volume = document.getElementById('vol');
-    console.log(audio.muted);
     if(audio.muted === true) {
       audio.muted = false;
       volume.value = 0.1;
@@ -111,24 +141,24 @@ class MusicPlayer extends React.Component {
   //   }
   // }
 
-  playMusic() {
-    let songState = this.state.status;
+  // playMusic() {
+  //   let songState = this.state.status;
 
-    const audio = document.getElementById('audio');
-    if(songState === 'playing') {
-      clearInterval(this.interval);
-      songState = 'paused'; 
-      audio.pause();
-    } else {
-      songState = 'playing'; 
-      audio.play();
-      this.interval = setInterval(() => {
-        this.scrub.value = this.audio.currentTime;
-        this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-      }, 1000);
-    };
-    this.setState({ status: songState });
-  };
+  //   const audio = document.getElementById('audio');
+  //   if(songState === 'playing') {
+  //     clearInterval(this.interval);
+  //     songState = 'paused'; 
+  //     audio.pause();
+  //   } else {
+  //     songState = 'playing'; 
+  //     audio.play();
+  //     this.interval = setInterval(() => {
+  //       this.scrub.value = this.audio.currentTime;
+  //       this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
+  //     }, 1000);
+  //   };
+  //   this.setState({ status: songState });
+  // };
 
   convertTime(time) {
     let minutes = Math.floor(time / 60);
@@ -156,40 +186,69 @@ class MusicPlayer extends React.Component {
 
   render() {
     // const { song, album, artist } = this.props;
-    const { song, album, artist } = this.props;
+    const { music, song, album, artist, currentSong, currentAlbum, currentArtist } = this.props;
 
-    return song ? (
+    let songUrl,
+        songName,
+        albumId,
+        albumName,
+        artistId,
+        artistName;
+
+    let shuffActive = "",
+        loopActive = "";
+    if(music.shuffle) shuffActive = " active";
+    if(music.loop) loopActive = " active"
+
+    if(currentSong) {
+      songUrl = currentSong.url;
+      songName = currentSong.songName;
+      albumId = currentAlbum.id;
+      albumName = currentAlbum.albumName;
+      artistId = currentArtist.id;
+      artistName = currentArtist.name;
+    }
+
+    return (
       <div className='music_player-wrapper'>
         <audio 
             ref={(audio) => {
                 this.audio = audio;
             }}
-          src={song.url}
+          src={songUrl}
             id="audio"
         />
         <div className="details-wrapper">
           <div className="cover">
-            { album ? <Link to={`/albums/${album.id}`}> <img src={album.imgUrl} className="current-cover"/> </Link> : null }
+            { currentAlbum ? <Link to={`/albums/${albumId}`}> <img src={currentAlbum.imgUrl} className="current-cover"/> </Link> : null }
           </div>
           <div className="track-details">
-            <p>{song.songName}</p>
+            <p>{songName}</p>
             {/* <p>{album.artist.name}</p> */}
           </div>
         </div>
         <div className="controls-seeker">
+
           <div className="control-btns">
-            <a className="toggle-btn ctrl-btns"><BsShuffle /></a>
-            <a className="ctrl-btns"><AiFillStepBackward /></a>
-            <a onClick={this.playMusic} className="play-btn">
-              {this.state.status === 'paused' ? <FaPlay /> : <FaPause />}</a>
-            <a className="ctrl-btns">
-              <AiFillStepForward />
-            </a>
-            <a className={`toggle-btn`} 
-                onClick={this.toggleLoop.bind(this)}>
-              {this.state.loop === 'loop' ? <span id="toggled-on"><TiArrowRepeat/></span> : <TiArrowRepeat />}
-            </a>
+            <BsShuffle 
+              className="toggle-btn ctrl-btns" 
+              onClick={() => this.toggleShuffle()}
+            />
+            <AiFillStepBackward 
+              className="ctrl-btns" 
+              onClick={() => this.handleSeek("prev")}
+            />
+            { music.playing ? <FaPause onClick={this.props.pauseSong} /> :  <FaPlay onClick={this.props.playSong} />}
+            <AiFillStepForward 
+              className="ctrl-btns" 
+              onClick={() => this.handleSeek("next")}
+            />
+            <TiArrowRepeat 
+              className={shuffActive} 
+              onClick={() => this.toggleLoop()} 
+            />
           </div>
+
           <div className="seeker bars">
             <p>{this.audio ? this.convertTime(this.audio.currentTime) : ""}</p>
             <input
@@ -224,7 +283,7 @@ class MusicPlayer extends React.Component {
           />
         </div>
       </div>
-    ) : null;
+    )
   }
 }
 
