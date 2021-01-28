@@ -10,16 +10,24 @@ const Homepage = ({ currentUser, logout }) => {
   const notLoggedIn = () => (
     <LoggedOutHomepage />
   );
+  
   const loggedIn = () => (
     <LoggedInHomepage currentUser={currentUser} logout={logout} />
   );
 
-  return (
+  return currentUser ? (
     <div>
       <NavBarContainer />
-      {currentUser ? loggedIn() : notLoggedIn()}
+      { loggedIn() }
     </div>
-  );
+  )
+  :
+  (
+    <div>
+      <NavBarContainer />
+      { notLoggedIn() }
+    </div>
+  )
 };
 
 export default Homepage;
