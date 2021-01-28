@@ -1,4 +1,5 @@
-import { RECEIVE_ALL_ALBUMS, RECEIVE_ALBUM } from '../actions/album_actions';
+import { RECEIVE_ALL_ALBUMS, RECEIVE_ALBUM, CLEAR_ALBUMS } from '../actions/album_actions';
+
 
 const AlbumsReducer = (oldState={}, action) => {
   Object.freeze(oldState);
@@ -8,9 +9,13 @@ const AlbumsReducer = (oldState={}, action) => {
     case RECEIVE_ALL_ALBUMS:
       return action.albums
     case RECEIVE_ALBUM:
-      newState[action.album.id] = action.album
-      newState[action.album.songs] = action.album.songs
-      return newState
+      newState[action.payload.album.id] = {
+                ...oldState[action.payload.album.id],
+                ...action.payload.album,
+            };
+            return newState;
+    case CLEAR_ALBUMS:
+      return {}
     default:
       return oldState
   }
