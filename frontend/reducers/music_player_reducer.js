@@ -57,7 +57,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
           return newState;
         }
       } else {
-        return newSTate
+        return newState
       }
 
     case NEXT_SONG:
@@ -102,7 +102,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
       return nextState
 
     case PLAY_SONG:
-      if(state.queue.length) {
+      if(oldState.queue.length) {
         newState.active = true;
         newState.currentSongId = newState.queue[newState.startIdx];
         newState.playing = true;
