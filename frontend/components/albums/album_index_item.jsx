@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TiSortNumericallyOutline } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
 
 class AlbumIndexItem extends Component {
@@ -7,17 +8,18 @@ class AlbumIndexItem extends Component {
   }
 
   render() {
-    const { album, id, artists } = this.props;
-    const artist = artists[album.artistId]
-    return (
+    const { album, albumId, artist } = this.props;
+    // const artist = artists[album.artistId]
+
+    return albumId !== undefined ? (
       <li className="album-wrapper">
-        <Link to={`/albums/${id}`}>
+        <Link to={`/albums/${albumId}`}>
           <img className="album-idx" src={album.imgUrl} />
           <h3 className="album-name">{album.albumName}</h3>
           <h2>{artist.name}</h2>
         </Link>
       </li>
-    )
+    ) : null;
   }
 }
 
