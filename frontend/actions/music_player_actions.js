@@ -40,16 +40,3 @@ export const loopSongs = () => ({
 export const shuffleSongs = () => ({
   type: SHUFFLE_SONGS,
 });
-
-export const pickSong = (queueLength, playedIdxs) => {
-  let newSong = Math.floor(Math.random() * Math.floor(queueLength));
-  playedIdxs.includes(newSong) ? pickSong(queueLength, playedIdx) : newSong
-}
-
-export const updateCurrentSong = song => dispatch => (
-  dispatch(receiveCurrentSong(song))
-);
-
-export const updateQueue = queue => dispatch => (
-  dispatch(receiveQueue(queue))
-);
