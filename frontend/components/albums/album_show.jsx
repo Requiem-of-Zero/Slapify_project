@@ -8,12 +8,25 @@ import { BiTime } from 'react-icons/bi';
 class AlbumShow extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedSongId: null,
+      hoveredSongId: null,
+    }
   }
 
   componentDidMount() {
     // console.log(this.props)
     this.props.getAlbum(+this.props.match.params.albumId)
     this.props.getAllArtists()
+  }
+
+  handlePlay() {
+    const { hoveredSongId } = this.state;
+    const { songs, receiveQueue } = this.props;
+
+    hoveredSongId ? 
+    receiveQueue(songs.filter(song => song.id >= hoveredSongId)) : 
+    receiveQueue(songs)
   }
 
   render() {
@@ -48,6 +61,8 @@ class AlbumShow extends Component {
                   <SongIndexItem 
                     song={song} 
                     updateCurrentSong={updateCurrentSong} 
+                    onMouseEnter={() => this.setState( { hoveredSongId: song.id})}
+                    handlePlay={() => this.handlePlay()}
                     key={song.id}
                     id={i} 
                     artists={artists} 

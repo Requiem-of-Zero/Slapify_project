@@ -1,27 +1,48 @@
 import React from 'react';
-import { FaPlay } from 'react-icons/fa';
+import { connect } from 'react-redux'
+import { FaPlay, FaPause } from 'react-icons/fa';
+import { playSong, pauseSong } from '../../actions/music_player_actions';
+
+const mstp = state => ({
+  currentSong: state.music.currentSong,
+  playing: state.music.playing
+});
+
+const mdtp = dispatch => ({
+  pause: () => dispatch(pauseSong()),
+  play: () => dispatch(playSong())
+})
 
 class SongIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hover: '',
+      hoveredSongId: null,
     }
   }
 
   render() {
-    const { song, id, songs } = this.props;
+    const { song, id, playing, handlePlay } = this.props;
     const { hover } = this.state;
+
+    const playBtn = playing 
+      ? <FaPause onClick={this.props.pause}/> 
+      : <FaPlay onClick={this.props.handlePlay} />
+
     return (
       <li className='indiv-songs'
-          onMouseEnter={() => this.setState({hover: 'hovering'})}
+          onMouseEnter={() => {
+            this.setState({hover: 'hovering', hoveredSongId: id})
+            console.log(this.state.hoveredSongId)
+          }}
           onMouseLeave={() => this.setState({hover: ''})}>
         
         <div className="song-details-wrapper" >
           <div className="song-info">
-            <a onClick={() => this.props.updateCurrentSong(song)} 
+            <a  
               className={hover} >
-              {this.state.hover === 'hovering' ? <FaPlay/> : id+1}
+              {this.state.hover === 'hovering' ? playBtn : id+1}
             </a>
             <div className="song-title">
               {song.songName}
@@ -36,4 +57,4 @@ class SongIndexItem extends React.Component {
   }
 }
 
-export default SongIndexItem;
+export default connect(mstp, mdtp)(SongIndexItem);
