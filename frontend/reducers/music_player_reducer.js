@@ -8,6 +8,7 @@ import
   NEXT_SONG,
   PREV_SONG,
   LOOP_SONG,
+  PLAY_INDIV_SONG,
   pickSong
 } 
 from '../actions/music_player_actions';
@@ -31,11 +32,8 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_QUEUE:
-      newState.active = true;
       newState.queue = action.queue;
-      newState.startIdx = 0;
       newState.currentSong = newState.queue[newState.startIdx];
-      newState.playing = true;
       return newState;
 
     case PREV_SONG:
@@ -117,18 +115,18 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
 
     case SHUFFLE_SONGS:
       newState.shuffle = !oldState.shuffle;
-      return newState
+      return newState;
 
-    // case RECEIVE_SHUFFLE:
-    //   const songs = Object.values(action.songs);
-
-    //   for(let i=0; i < songs.length - 1; i++) {
-    //     let randomNum = Math.floor(Math.random() * (i + 1));
-    //     [songs[i], songs[randomNum]] = [songs[randomNum], songs[i]];
-    //   }
-
-    //   songs.forEach( song => newState.shuffled.push(song.id));
-    //   return newState
+    case PLAY_INDIV_SONG:
+      if(oldState.queue.length){
+        newState.active = true;
+        newState.startIdx = action.songId
+        newState.currentSong = newState.queue[newState.startIdx];
+        newState.playing = true;
+        return newState;
+      } else {
+        return newState
+      }
     default:
       return oldState
   }

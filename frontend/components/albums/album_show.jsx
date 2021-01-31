@@ -20,7 +20,7 @@ class AlbumShow extends Component {
     this.props.getAllArtists()
   }
 
-  handlePlay() {
+  handleQueue() {
     const { hoveredSongId } = this.state;
     const { songs, receiveQueue } = this.props;
 
@@ -62,7 +62,7 @@ class AlbumShow extends Component {
                     song={song} 
                     updateCurrentSong={updateCurrentSong} 
                     onMouseEnter={() => this.setState( { hoveredSongId: song.id})}
-                    handlePlay={() => this.handlePlay()}
+                    handleQueue={() => this.handleQueue()}
                     key={song.id}
                     id={i} 
                     artists={artists} 
