@@ -9,7 +9,7 @@ const receiveAllAlbums = albums => ({
   albums
 })
 
-const receiveAlbum = (payload) => ({
+export const receiveAlbum = (payload) => ({
   type: RECEIVE_ALBUM,
   payload
 })

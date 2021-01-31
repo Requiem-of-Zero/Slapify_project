@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { playSong, pauseSong } from '../../actions/music_player_actions';
+import { playSong, pauseSong, playIndivSong } from '../../actions/music_player_actions';
 
 const mstp = state => ({
   currentSong: state.music.currentSong,
@@ -10,7 +10,8 @@ const mstp = state => ({
 
 const mdtp = dispatch => ({
   pause: () => dispatch(pauseSong()),
-  play: () => dispatch(playSong())
+  play: () => dispatch(playSong()),
+  playIndivSong: songId => dispatch(playIndivSong(songId))
 })
 
 class SongIndexItem extends React.Component {
@@ -22,13 +23,17 @@ class SongIndexItem extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.handleQueue()
+  }
+
   render() {
-    const { song, id, playing, handlePlay } = this.props;
-    const { hover } = this.state;
+    const { song, id, playing, playIndivSong } = this.props;
+    const { hover, hoveredSongId } = this.state;
 
     const playBtn = playing 
       ? <FaPause onClick={this.props.pause}/> 
-      : <FaPlay onClick={this.props.handlePlay} />
+      : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
 
     return (
       <li className='indiv-songs'
@@ -49,7 +54,7 @@ class SongIndexItem extends React.Component {
             </div>
           </div>
           <div className="song-duration">
-            <p>3:00</p>
+            <p>{song.duration}</p>
           </div>
         </div>
       </li>
