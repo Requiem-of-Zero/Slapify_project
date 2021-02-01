@@ -1,6 +1,5 @@
 import 
 { 
-  RECEIVE_CURRENT_SONG,
   RECEIVE_QUEUE,
   PAUSE_SONG,
   PLAY_SONG,
@@ -22,6 +21,7 @@ const initialState = {
   playing: false,
   loop: false,
   shuffle: false,
+  muted: false,
 };
 
 
@@ -33,7 +33,6 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
   switch (action.type) {
     case RECEIVE_QUEUE:
       newState.queue = action.queue;
-      newState.currentSong = newState.queue[newState.startIdx];
       return newState;
 
     case PREV_SONG:
@@ -43,9 +42,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
           let newPlayed = oldState.played
           let lastIdx = newPlayed.pop();
           newState.played = newPlayed;
-
           newState.startIdx = lastIdx;
-
           newState.currentSong = oldState.queue[newState.startIdx];
           return newState;
         } else {
@@ -65,7 +62,6 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
           let newPlayed = oldState.played;
           newPlayed.push(oldState.startIdx);
           newState.played = newPlayed;
-
           if(oldState.shuffle) {
             newState.startIdx = pickSong(
               oldState.queue.length,
@@ -74,15 +70,13 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
           } else {
             newState.startIdx += 1;
           }
-
           newState.currentSong = oldState.queue[newState.startIdx];
           return newState;
         } else {
           newState.startIdx = 0;
           newState.played = [];
-
           if(oldState.loop) {
-            newState.currentSong = state.queue[newState.startIdx];
+            newState.currentSong = oldState.queue[newState.startIdx];
             return newState
           } else {
             newState.active = false;

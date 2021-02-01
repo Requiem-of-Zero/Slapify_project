@@ -16,11 +16,14 @@ class MusicPlayer extends React.Component {
       duration: null,
       currentTime: null,
       remainingTime: null,
+      seekerVal: null,
+      mute: '',
     }
   }
 
   componentDidMount() {
-    console.log(this.props.music)
+    this.volume.value = 0.5;
+
   }
   
 
@@ -43,9 +46,11 @@ class MusicPlayer extends React.Component {
       this.audio.volume = this.volume.value;
       this.audio.play();
       this.handleInterval();
-      this.audio.onended = () => {
-        this.handleSeek("next");
-      };
+      if(this.props.queue[this.props.queue.length - 1].id !== this.props.currentSong.id){
+        this.audio.onended = () => {
+          this.handleSeek("next");
+        };
+      }
     } else {
       this.audio.pause()
     }
@@ -53,6 +58,12 @@ class MusicPlayer extends React.Component {
 
   handleInterval(){
     this.timeSetter = setInterval(() => {
+      this.scrub.value = this.state.currentTime;
+      this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' 
+        + ((this.scrub.value/this.scrub.max) * 100) 
+        + '%, #4e4e4e ' 
+        + ((this.scrub.value/this.scrub.max) * 100) 
+        + '%, #4e4e4e 100%)'
       this.setState({
         currentTime: this.audio.currentTime,
         remainingTime: this.state.duration - this.audio.currentTime,
@@ -68,10 +79,17 @@ class MusicPlayer extends React.Component {
   }
 
   
-  handleScrub(e) {
+  handleTick() {
     // debugger
-    this.audio.currentTime = e.target.value
-    e.target.style.background = 
+    this.interval = setInterval(() => {
+        this.scrub.value = this.state.currentTime;
+        this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
+      }, 1000);
+  }
+
+  handleScrub(e) {
+      this.audio.currentTime = e.target.value;
+      e.target.style.background = 
       'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
       ((e.target.value/e.target.max) * 100) + '%, #4e4e4e ' + 
       ((e.target.value/e.target.max) * 100) + '%, #4e4e4e 100%)'
@@ -93,18 +111,12 @@ class MusicPlayer extends React.Component {
 
   handleVolume(e) {
     // debugger
-    this.audio.volume = e.target.value
-
+    this.audio.volume = (e.target.value/2)
     e.target.style.background = 
       'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
       (e.target.value*100) + '%, #4e4e4e ' + (e.target.value*100) + 
       '%, #4e4e4e 100%)'
   }
-
-  // handleMetadata() {
-  //   const audio = document.getElementById('audio');
-  //   this.setState({ duration: audio.duration })
-  // }
 
   toggleLoop() {
     this.props.loopSongs()
@@ -118,48 +130,19 @@ class MusicPlayer extends React.Component {
     const audio = document.getElementById('audio');
     const volume = document.getElementById('vol');
     if(audio.muted === true) {
-      audio.muted = false;
-      volume.value = 0.1;
+      audio.muted = false
+      volume.value = 0.1
       volume.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + volume.value*100 + '%, #4e4e4e ' + volume.value*100 + '%, #4e4e4e 100%)'
-      this.setState({mute: ''});
+      this.setState({mute: ''})
     } else {
-      audio.muted = true;
-      volume.value = 0;
+      audio.muted = true
+      volume.value = 0
       volume.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + volume.value*100 + '%, #4e4e4e ' + volume.value*100 + '%, #4e4e4e 100%)'
-      this.setState({mute: 'muted'});
+      this.setState({mute: "mute"})
     }
   }
 
-  // handlePlay() {
-  //   const audio = document.getElementById('audio');
-  //   if(this.props.playing) {
-  //     this.props.pauseSong();
-  //     audio.pause();
-  //   } else {
-  //     this.props.playSong();
-  //     player.play();
-  //   }
-  // }
-
-  // playMusic() {
-  //   let songState = this.state.status;
-
-  //   const audio = document.getElementById('audio');
-  //   if(songState === 'playing') {
-  //     clearInterval(this.interval);
-  //     songState = 'paused'; 
-  //     audio.pause();
-  //   } else {
-  //     songState = 'playing'; 
-  //     audio.play();
-  //     this.interval = setInterval(() => {
-  //       this.scrub.value = this.audio.currentTime;
-  //       this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-  //     }, 1000);
-  //   };
-  //   this.setState({ status: songState });
-  // };
-
+  //converts time to minutes:seconds
   convertTime(time) {
     let minutes = Math.floor(time / 60);
     let seconds = Math.floor(time - (minutes * 60));
@@ -172,20 +155,7 @@ class MusicPlayer extends React.Component {
     return time;
   };
 
-  updateTime() {
-    const audio = document.getElementById('audio');
-    const seeker = document.getElementById('bars');
-
-    if(!audio.paused){
-      setInterval(() => {
-        seeker.value = audio.currentTime;
-        this.setState({ currentTime: audio.currentTime });
-      }, 50);
-    }
-  };
-
   render() {
-    // const { song, album, artist } = this.props;
     const { music, song, album, artist, currentSong, currentAlbum, currentArtist } = this.props;
 
     let songUrl,
@@ -224,7 +194,7 @@ class MusicPlayer extends React.Component {
           </div>
           <div className="track-details">
             <p>{songName}</p>
-            {/* <p>{album.artist.name}</p> */}
+            <p>{artistName}</p>
           </div>
         </div>
         <div className="controls-seeker">
@@ -250,24 +220,24 @@ class MusicPlayer extends React.Component {
           </div>
 
           <div className="seeker bars">
-            <p>{this.audio ? this.convertTime(this.audio.currentTime) : ""}</p>
+            <p>{currentSong ? this.convertTime(this.audio.currentTime) : null}</p>
             <input
                 ref={(scrub) => {
                     this.scrub = scrub;
                 }}
                 type="range"
                 min="0"
-                max={this.audio ? this.audio.duration : "100"}
+                max={this.state.duration}
                 onChange={this.handleScrub.bind(this)}
                 className='bars'
                 id='bars'
             />
-            <p>{this.audio ? this.convertTime(this.audio.duration) : ""}</p>
+            <p>{currentSong ? this.convertTime(this.audio.duration) : null}</p>
           </div>
         </div>
         <div className="volume-ctrl bars">
-          <a onClick={this.toggleMute} className="ctrl-btns">
-            {this.state.mute === 'muted' ? <BsVolumeMute/> : <FiVolume2/>}
+          <a onClick={() => this.toggleMute()} className="ctrl-btns">
+            {this.state.mute === 'mute' ? <BsVolumeMute/> : <FiVolume2/>}
           </a>
           <input
               ref={(volume) => {
@@ -281,6 +251,7 @@ class MusicPlayer extends React.Component {
               className="bars"
               id='vol'
           />
+          {console.log(this.state.mute)}
         </div>
       </div>
     )

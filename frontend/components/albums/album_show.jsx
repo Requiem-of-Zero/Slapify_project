@@ -24,13 +24,11 @@ class AlbumShow extends Component {
     const { hoveredSongId } = this.state;
     const { songs, receiveQueue } = this.props;
 
-    hoveredSongId ? 
-    receiveQueue(songs.filter(song => song.id >= hoveredSongId)) : 
-    receiveQueue(songs)
+    receiveQueue(songs.filter(song => song.id >= hoveredSongId))
   }
 
   render() {
-    const { songs, updateCurrentSong, album, artists } = this.props;
+    const { songs, album, artists } = this.props;
     return this.props.album ? (
       <div>
         {console.log(this.props)}
@@ -60,10 +58,10 @@ class AlbumShow extends Component {
                 {songs.map((song, i) => 
                   <SongIndexItem 
                     song={song} 
-                    updateCurrentSong={updateCurrentSong} 
                     onMouseEnter={() => this.setState( { hoveredSongId: song.id})}
                     handleQueue={() => this.handleQueue()}
                     key={song.id}
+                    songId={song.id}
                     id={i} 
                     artists={artists} 
                     album={album}

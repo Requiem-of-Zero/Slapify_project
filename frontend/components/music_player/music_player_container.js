@@ -7,6 +7,7 @@ import
   nextSong,
   prevSong,
   loopSongs,
+  muteSongs,
   shuffleSongs,
 } 
 
@@ -20,7 +21,6 @@ import { getAllSongs } from '../../actions/song_actions';
 const mstp = ({ music, entities, session}) => {
   // currentSong: state.entities.songs[state.ui.musicPlayer.currentSongId],
   // songs: state.entities.songs,
-  // playing: state.ui.musicPlayer.playing,
   // previousTrack: state.ui.musicPlayer.previousTrack,
   // queue: state.ui.musicPlayer.queue,
   // shuffled: state.ui.musicPlayer.shuffled,
@@ -35,6 +35,8 @@ const mstp = ({ music, entities, session}) => {
 
   return {
     music,
+    playing: music.playing,
+    queue: music.queue,
     currentSong,
     currentAlbum,
     currentArtist,

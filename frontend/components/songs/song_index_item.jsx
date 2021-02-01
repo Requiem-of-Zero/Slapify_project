@@ -20,26 +20,34 @@ class SongIndexItem extends React.Component {
     this.state = {
       hover: '',
       hoveredSongId: null,
+      key: null,
     }
   }
 
+  //Mounts the queue when the songs are being rendered, hacky way, but works
   componentDidMount() {
     this.props.handleQueue()
   }
 
   render() {
-    const { song, id, playing, playIndivSong } = this.props;
-    const { hover, hoveredSongId } = this.state;
+    const { song, id, songId, playing, currentSong, playIndivSong } = this.props;
+    const { hover, hoveredSongId, key } = this.state;
 
-    const playBtn = playing 
+    //Play and pause button logic for each song item in album
+    let playBtn = playing
       ? <FaPause onClick={this.props.pause}/> 
       : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
+
+    if(currentSong){
+      playBtn = currentSong.id === key && playing
+        ? <FaPause onClick={this.props.pause}/> 
+        : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
+    }
 
     return (
       <li className='indiv-songs'
           onMouseEnter={() => {
-            this.setState({hover: 'hovering', hoveredSongId: id})
-            console.log(this.state.hoveredSongId)
+            this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
           }}
           onMouseLeave={() => this.setState({hover: ''})}>
         
