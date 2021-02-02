@@ -179,9 +179,10 @@ class MusicPlayer extends React.Component {
         artistId,
         artistName;
     
-    let shuffleActive;
+    let shuffleActive, action
 
     music.shuffle ? shuffleActive = 'toggled-on' : shuffleActive = 'off';
+    music.playing ? action = this.props.pauseSong : action = this.props.playSong;
 
     if(currentSong) {
       songUrl = currentSong.url;
@@ -213,28 +214,29 @@ class MusicPlayer extends React.Component {
         <div className="controls-seeker">
 
           <div className="control-btns">
-            <BsShuffle 
-              id={shuffleActive}
-              onClick={() => this.toggleShuffle()}
-            />
-            <AiFillStepBackward 
-              className="ctrl-btns" 
-              onClick={() => this.handleSeek("prev")}
-            />
-              { music.playing ? <FaPause onClick={this.props.pauseSong} /> :  <FaPlay onClick={this.props.playSong} />}
-            <AiFillStepForward 
-              className="ctrl-btns" 
-              onClick={() => this.handleSeek("next")}
-            />
-            {this.state.loop === 'loop' 
-              ? <span id="toggled-on">
-                <TiArrowRepeat 
-                  onClick={() => this.toggleLoop()}
-                />
-                </span> 
-              : <TiArrowRepeat 
-                  onClick={() => this.toggleLoop()} id='off'
-                />}
+            <a id={shuffleActive}>
+              <BsShuffle onClick={() => this.toggleShuffle()}/>
+            </a>
+            <a className="ctrl-btns">
+              <AiFillStepBackward onClick={() => this.handleSeek("prev")}/>
+            </a>
+            <a className="play-btn" onClick={action}>
+              { music.playing ? <FaPause /> :  <FaPlay />}
+            </a>
+            <a className='ctrl-btns'>
+              <AiFillStepForward onClick={() => this.handleSeek("next")}/>
+            </a>
+            <a className='ctrl-btns'>
+              {this.state.loop === 'loop' 
+                ? <span id="toggled-on">
+                  <TiArrowRepeat 
+                    onClick={() => this.toggleLoop()}
+                  />
+                  </span> 
+                : <TiArrowRepeat 
+                    onClick={() => this.toggleLoop()} id='off'
+                  />}
+            </a>
           </div>
 
           <div className="seeker bars">
