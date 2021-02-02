@@ -20,6 +20,8 @@ class MusicPlayer extends React.Component {
       seekerVal: null,
       mute: '',
       loop: '',
+      trackColor: '#b3b3b3',
+      volumeColor: '#b3b3b3'
     }
   }
 
@@ -27,11 +29,6 @@ class MusicPlayer extends React.Component {
     this.volume.value = 0.5;
 
   }
-  
-
-  // componentDidUpdate() {
-  //   this.props.getArtist(this.props.album.artistId)
-  // }
 
   componentDidUpdate(prevProps) {
     clearInterval(this.timeSetter);
@@ -58,12 +55,26 @@ class MusicPlayer extends React.Component {
     }
   }
 
+  handleVolume(e, color) {
+    // debugger
+    this.audio.volume = (e.target.value/2)
+    e.target.style.background = 
+      `linear-gradient(to right, ${color} 0%, ${color} ` + 
+      (e.target.value*100) + '%, #4e4e4e ' + (e.target.value*100) + 
+      '%, #4e4e4e 100%)'
+  }
+
+  changeVolumeColor(e, color) {
+    e.target.style.background = 
+      `linear-gradient(to right, ${color} 0%, ${color} ` + 
+      (e.target.value*100) + '%, #4e4e4e ' + (e.target.value*100) + 
+      '%, #4e4e4e 100%)'
+  }
+
   handleInterval(){
     this.timeSetter = setInterval(() => {
       this.scrub.value = this.state.currentTime;
-      this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' 
-        + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' 
-        + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
+      this.changeTrackColor(this.state.trackColor)
       this.setState({
         currentTime: this.audio.currentTime,
         remainingTime: this.state.duration - this.audio.currentTime,
@@ -71,22 +82,17 @@ class MusicPlayer extends React.Component {
     }, 250)
   }
 
+  changeTrackColor(color='#b3b3b3'){
+    this.scrub.style.background = `linear-gradient(to right, ${color} 0%, ${color} ` 
+      + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' 
+      + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
+  }
+
   bufferNext() {
     const { music } = this.props;
     if(music.startIdx + 1 < music.queue.length) {
       new Audio(music.queue[music.startIdx + 1].url)
     }
-  }
-
-  
-  handleTick() {
-    // debugger
-    this.interval = setInterval(() => {
-        this.scrub.value = this.state.currentTime;
-        this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' 
-          + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' 
-          + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-      }, 1000);
   }
 
   handleScrub(e) {
@@ -109,15 +115,6 @@ class MusicPlayer extends React.Component {
       e === "next" ? this.props.nextSong() : this.props.prevSong()
     }
 
-  }
-
-  handleVolume(e) {
-    // debugger
-    this.audio.volume = (e.target.value/2)
-    e.target.style.background = 
-      'linear-gradient(to right, #1DB954 0%, #1DB954 ' + 
-      (e.target.value*100) + '%, #4e4e4e ' + (e.target.value*100) + 
-      '%, #4e4e4e 100%)'
   }
 
   toggleLoop() {
@@ -208,7 +205,7 @@ class MusicPlayer extends React.Component {
           </div>
           <div className="track-details">
             <p>{songName}</p>
-            <p>{artistName}</p>
+            <p className='current-artist'>{artistName}</p>
           </div>
         </div>
         <div className="controls-seeker">
@@ -248,6 +245,8 @@ class MusicPlayer extends React.Component {
                 type="range"
                 min="0"
                 max={this.state.duration}
+                onMouseEnter={() => this.setState({trackColor: '#1DB954'})}
+                onMouseLeave={() => this.setState({trackColor: '#b3b3b3'})}
                 onChange={this.handleScrub.bind(this)}
                 className='bars'
                 id='bars'
@@ -267,11 +266,12 @@ class MusicPlayer extends React.Component {
               min="0"
               max="1"
               step="0.02"
-              onChange={this.handleVolume.bind(this)}
+              onChange={e => this.handleVolume(e, '#1DB954')}
+              onMouseEnter={e => this.changeVolumeColor(e, '#1DB954')}
+              onMouseLeave={e => this.changeVolumeColor(e, '#b3b3b3')}
               className="bars"
               id='vol'
           />
-          {console.log(this.state.mute)}
         </div>
       </div>
     )

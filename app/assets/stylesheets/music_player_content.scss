@@ -1,8 +1,8 @@
 .album-container {
   margin-left: 250px;
-  height: 800px;
-  overflow-y: scroll;
   background: #121212;
+  height: auto;
+  min-height: 790px;
 }
 
 .link-btn:hover {

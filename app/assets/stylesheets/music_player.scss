@@ -4,9 +4,10 @@
   align-items: center;
   background-color: #282828;
   height: 90px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .controls-seeker {
@@ -154,10 +155,19 @@ input[type=range]::-webkit-slider-thumb {
 
 .track-details {
   margin-left: 10px;
+
+  > p {
+    margin-top: 10px;
+    cursor: default;
+  }
+
+  .current-artist {
+    color: #b3b3b3;
+  }
 }
 
 #bars {
-  background: linear-gradient(to right, #1DB954 0%, #1DB954 50%, #4e4e4e 50%, #4e4e4e 100%);
+  background: linear-gradient(to right, #b3b3b3 0%, #b3b3b3 50%, #4e4e4e 50%, #4e4e4e 100%);
   border: solid 1px #4e4e4e;
   outline: none;
   transition: background 450ms ease-in;
@@ -165,7 +175,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 #vol {
-  background: linear-gradient(to right, #1DB954 0%, #1DB954 50%, #4e4e4e 50%, #4e4e4e 100%);
+  background: linear-gradient(to right, #b3b3b3 0%, #b3b3b3 50%, #4e4e4e 50%, #4e4e4e 100%);
   border: solid 1px #4e4e4e;
   outline: none;
   width: 100px;
@@ -179,4 +189,8 @@ input[type=range]::-webkit-slider-thumb {
 
 #toggled-on {
   color:#1DB954;
+}
+
+#off:hover {
+  color: white;
 }

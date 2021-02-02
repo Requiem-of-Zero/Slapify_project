@@ -11,6 +11,12 @@
               0 32px 32px rgba(0, 0, 0, 0.11);
 }
 
+body {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .album-show-wrapper {
   height: 355px;
   background: #181818;
@@ -67,6 +73,13 @@
   padding-top: 1px;
 }
 
+.show-wrapper {
+  overflow-y: auto;
+  height: 100vh;
+  padding-bottom: 30px;
+  padding-top: 50px;
+}
+
 .album-wrapper {
   display: flex;
   flex-direction: column;
@@ -87,6 +100,7 @@
               0 8px 8px rgba(0, 0, 0, 0.11),
               0 16px 16px rgba(0, 0, 0, 0.11),
               0 32px 32px rgba(0, 0, 0, 0.11);
+  z-index: 1;
   > a {
     color: white;
   }
@@ -120,12 +134,13 @@
   min-width: 500px;
   flex-wrap: wrap;
   padding-bottom: 40px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .featured {
   font-family: 'Montserrat',
   sans-serif;
-  margin-top: 30px;
   text-align: center;
   color: rgb(255, 255, 255);
   font-size: 28px;
