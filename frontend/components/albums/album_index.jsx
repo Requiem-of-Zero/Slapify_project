@@ -12,7 +12,7 @@ class AlbumIndex extends Component {
     const { albums, artists } = this.props;
     
     return albums && artists ? (
-      <div>
+      <div className='album-idx-wrapper'>
         <h1 className='featured'>Featured</h1>
         <div className='albums-border'>
 

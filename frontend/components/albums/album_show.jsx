@@ -30,8 +30,7 @@ class AlbumShow extends Component {
   render() {
     const { songs, album, artists } = this.props;
     return this.props.album ? (
-      <div>
-        {console.log(this.props)}
+      <div className="show-wrapper">
         <div className="album-show-wrapper">
           <div className="album-details">
             <img className="album" src={album.imgUrl}/>

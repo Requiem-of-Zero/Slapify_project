@@ -14,7 +14,6 @@ class LoggedInHomepage extends React.Component {
   }
 
   render() {
-    const {currentUser, logout} = this.props;
 
     return(
       <div className="music-player">
@@ -25,7 +24,6 @@ class LoggedInHomepage extends React.Component {
             <Route path="/search" component={SearchContainer} />
             <AlbumIndexContainer/>
           </Switch>
-          {/* <SongIndexContainer /> */}
         </div>
         <MusicPlayerContainer />
       </div>
