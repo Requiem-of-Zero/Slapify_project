@@ -15,7 +15,6 @@ class AlbumIndex extends Component {
       <div className='album-idx-wrapper'>
         <h1 className='featured'>Featured</h1>
         <div className='albums-border'>
-
           <ul className='albums'>
             {albums.map((album, idx) => 
               <AlbumIndexItem 
