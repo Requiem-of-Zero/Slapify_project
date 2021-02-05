@@ -12,7 +12,7 @@ class SearchSongIndexItem extends React.Component {
   }
 
   render() {
-    const { song, id, imgUrl, albumName, albumId, artists, album } = this.props;
+    const { song, id, imgUrl, albumName, albumId, artists, album, receiveSong } = this.props;
     const { hover } = this.state;
 
     return (
@@ -24,7 +24,7 @@ class SearchSongIndexItem extends React.Component {
           <div className="search-details-wrapper" >
             <div className="song-info">
               <div className="song-desc">
-              <a
+              <a onClick={() => receiveSong(song)}
                 className={hover} >
                 {this.state.hover === 'hovering' ? <FaPlay/> : id+1}
               </a>
