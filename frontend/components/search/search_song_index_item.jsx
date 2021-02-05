@@ -24,7 +24,7 @@ class SearchSongIndexItem extends React.Component {
           <div className="search-details-wrapper" >
             <div className="song-info">
               <div className="song-desc">
-              <a onClick={() => this.props.updateCurrentSong(song)} 
+              <a
                 className={hover} >
                 {this.state.hover === 'hovering' ? <FaPlay/> : id+1}
               </a>
@@ -43,7 +43,7 @@ class SearchSongIndexItem extends React.Component {
               <p>{(artists[album.artistId]).name}</p>
             </div>
             <div className="song-duration">
-              <p>3:00</p>
+              <p>{song.duration}</p>
             </div>
           </div>
         </li>

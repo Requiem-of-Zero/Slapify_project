@@ -27,7 +27,7 @@ class Search extends Component {
   }
 
   render() {
-    const { updateCurrentSong, albums, artists } = this.props
+    const { albums, artists } = this.props
     const { songs } = this.state
     return songs ? (
       <div className="search-wrapper">
@@ -48,14 +48,18 @@ class Search extends Component {
           </div>
         </div>
         <ul className="result-wrapper">
-          {songs.map((song, i )=> 
-          <SearchSongIndexItem url={song.url} song={song} id={i}
-                                updateCurrentSong={updateCurrentSong}
-                                imgUrl={(albums[song.albumId]).imgUrl}
-                                albumName={(albums[song.albumId]).albumName}
-                                albumId={song.albumId}
-                                artists={artists}
-                                album={albums[song.albumId]}/>)}
+          {songs.map((song, i ) => 
+            <SearchSongIndexItem 
+              url={song.url} 
+              song={song} 
+              id={i}
+              imgUrl={(albums[song.albumId]).imgUrl}
+              albumName={(albums[song.albumId]).albumName}
+              albumId={song.albumId}
+              artists={artists}
+              album={albums[song.albumId]}
+              />
+            )}
         </ul>
       </div>
     ) : null;
