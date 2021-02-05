@@ -328,3 +328,8 @@ for when there were 5 links in nav bar
 ::-webkit-scrollbar-thumb:active {
   background: #c0c0c0;
 }
+
+article {
+  overflow-y: auto;
+  height: 100vh;
+}

@@ -1,5 +1,6 @@
 import 
 { 
+  RECEIVE_CURRENT_SONG,
   RECEIVE_QUEUE,
   PAUSE_SONG,
   PLAY_SONG,
@@ -47,7 +48,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
           return newState;
         } else {
           newState.active = false;
-          newState.currentTrack = null;
+          newState.currentSong = null;
           newState.playing = false;
           return newState;
         }
@@ -119,8 +120,16 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
         newState.playing = true;
         return newState;
       } else {
-        return newState
+        return newState;
       }
+
+    case RECEIVE_CURRENT_SONG:
+      newState.active = true;
+      newState.queue.push(action.currentSong)
+      newState.currentSong = newState.queue[newState.startIdx]
+      newState.playing = true;
+      return newState;
+
     default:
       return oldState
   }

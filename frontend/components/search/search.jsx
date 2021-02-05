@@ -19,6 +19,12 @@ class Search extends Component {
     this.props.getAllArtists()
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.songs !== prevProps.songs){
+      this.setState({ songs: this.props.songs})
+    }
+  }
+
   handleChange(e) {
     const newSongs = this.props.songs.filter(song => 
         song.songName.toLowerCase().includes(e.target.value.toLowerCase())
@@ -27,10 +33,11 @@ class Search extends Component {
   }
 
   render() {
-    const { updateCurrentSong, albums, artists } = this.props
+    const { albums, artists, receiveSong } = this.props
     const { songs } = this.state
     return songs ? (
       <div className="search-wrapper">
+        {console.log(songs)}
         <div className="search">
           <h2 className="search-icon"><BiSearch /></h2>
           <input type="text" onChange={this.handleChange} className="search-bar" placeholder='Search for a song'/>
@@ -48,14 +55,19 @@ class Search extends Component {
           </div>
         </div>
         <ul className="result-wrapper">
-          {songs.map((song, i )=> 
-          <SearchSongIndexItem url={song.url} song={song} id={i}
-                                updateCurrentSong={updateCurrentSong}
-                                imgUrl={(albums[song.albumId]).imgUrl}
-                                albumName={(albums[song.albumId]).albumName}
-                                albumId={song.albumId}
-                                artists={artists}
-                                album={albums[song.albumId]}/>)}
+          {songs.map((song, i ) => 
+            <SearchSongIndexItem 
+              url={song.url} 
+              song={song} 
+              id={i}
+              receiveSong={receiveSong}
+              imgUrl={(albums[song.albumId]).imgUrl}
+              albumName={(albums[song.albumId]).albumName}
+              albumId={song.albumId}
+              artists={artists}
+              album={albums[song.albumId]}
+              />
+            )}
         </ul>
       </div>
     ) : null;
