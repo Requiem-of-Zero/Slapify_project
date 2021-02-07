@@ -11,7 +11,8 @@
 }
 
 .controls-seeker {
-  width: 40%;
+  width: 700px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,6 +83,7 @@
   border: 1px solid #616467;
   border-radius: 50%;
   margin-bottom: 10px;
+  background-color: white;
 }
 
 .play-btn:hover {
