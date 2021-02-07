@@ -218,7 +218,7 @@ class MusicPlayer extends React.Component {
               <AiFillStepBackward onClick={() => this.handleSeek("prev")}/>
             </a>
             <a className="play-btn" onClick={action}>
-              { music.playing ? <FaPause /> :  <FaPlay />}
+              { music.playing ? <FaPause style={{color: '#000'}}/> :  <FaPlay style={{color: '#000'}} />}
             </a>
             <a className='ctrl-btns'>
               <AiFillStepForward onClick={() => this.handleSeek("next")}/>
