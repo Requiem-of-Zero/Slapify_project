@@ -1,7 +1,6 @@
 class Api::PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.where(user_id: current_user().id)
-    render :index
   end
 
   def create
@@ -26,7 +25,6 @@ class Api::PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id])
-    render :show
   end
 
   def destroy
