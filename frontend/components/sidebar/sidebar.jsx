@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CgHome } from 'react-icons/cg'
-import { BiSearch } from 'react-icons/bi'
+import { CgHome } from 'react-icons/cg';
+import { BiSearch } from 'react-icons/bi';
+import PlaylistIndexContainer from '../../components/playlists/playlist_index_container';
+import { connect } from 'react-redux';
 
 class Sidebar extends Component {
   render() {
@@ -19,6 +21,7 @@ class Sidebar extends Component {
               <BiSearch />
             </span> Search
           </Link>
+          < PlaylistIndexContainer />
         </div>
         <Link to={'/'}>
           <img src={window.revLogoURL} className="sidebar-logo"/>

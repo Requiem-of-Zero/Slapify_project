@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :songs, only: [:index, :show]
     end
 
-    resources :playlists, expect: [:new] do
+    resources :playlists, except: [:new] do
       post '/songs/:song_id', to: 'songs#create'
       delete '/songs/:song_id', to: 'songs#destroy'
     end
