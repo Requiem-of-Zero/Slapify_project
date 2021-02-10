@@ -33,14 +33,15 @@ export default class PlaylistIndex extends Component {
     return (
       <div className='playlists-wrapper'>
         <h3>PLAYLISTS</h3>
-        <div className="create-playlist" onClick={this.handleCreate}>
-          <GrFormAdd size={30} className='create-btn' />
-          <span>Create Playlist</span>
+        <div className="create-playlist create" onClick={this.handleCreate}>
+          <GrFormAdd size={30} className='create-btn create' />
+          <span className='create' >Create Playlist</span>
         </div>
         <div className="sidebar-line"></div>
         <ul className="playlist-index">
           { Object.values(playlists).map( playlist => 
             <PlaylistIndexItem 
+              className='indiv-playlists'
               playlist={playlist}
               deletePlaylist={deletePlaylist}
             />) 

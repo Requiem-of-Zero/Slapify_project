@@ -10,10 +10,10 @@ export default class PlaylistIndexItem extends Component {
     const { playlistName, id } = this.props.playlist
     return (
       <div>
-        <li>
+        <li className='indiv-playlists'>
           <ContextMenuTrigger id='playlist-edits'>
-            <Link to={`/playlists/${id}`}>
-              { playlistName }
+            <Link to={`/playlists/${id}`} className='indiv-playlists'>
+              <h6>{ playlistName }</h6>
             </Link>
           </ContextMenuTrigger>
 
