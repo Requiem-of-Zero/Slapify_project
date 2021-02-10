@@ -16,7 +16,7 @@ class AlbumIndexItem extends Component {
         <Link to={`/albums/${albumId}`}>
           <img className="album-idx" src={album.imgUrl} />
           <h3 className="album-name">{album.albumName}</h3>
-          <h2>{artist.name}</h2>
+          <h2 className="artist-name">{artist.name}</h2>
         </Link>
       </li>
     ) : null;

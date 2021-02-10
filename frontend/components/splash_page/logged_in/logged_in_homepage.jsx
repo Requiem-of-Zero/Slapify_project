@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom'
 import AlbumShowContainer from '../../albums/album_show_container';
 import Sidebar from '../../sidebar/sidebar';
 import SearchContainer from '../../search/search_container';
+import PlaylistShowContainer from '../../playlists/playlist_show_container';
 
 class LoggedInHomepage extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class LoggedInHomepage extends React.Component {
         <div className="album-container">
           <Switch>
             <Route path="/albums/:albumId" component={AlbumShowContainer}/>
+            <Route path="/playlists/:playlistId" component={PlaylistShowContainer} />
             <Route path="/search" component={SearchContainer} />
             <AlbumIndexContainer/>
           </Switch>

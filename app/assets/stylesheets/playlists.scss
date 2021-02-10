@@ -3,12 +3,50 @@
 }
 
 .create-playlist {
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
 
   span {
+    margin-left: 20px;
+  }
+}
+
+.playlist-index {
+  height: 50vh;
+  overflow-y: auto;
+}
+
+.playlists-wrapper > h3 {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.sidebar-line {
+  background-color: #282828;
+  border: none;
+  height: 1px;
+  min-height: 1px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  width: 85%;
+}
+
+//custom context menu
+
+.context-menu {
+  background-color: #282828;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 60px;
+  z-index: 10;
+  > div {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: -5px;
     margin-left: 20px;
   }
 }

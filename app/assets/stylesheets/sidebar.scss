@@ -52,8 +52,13 @@
 }
 
 .nav-icon {
-  font-size: 25px;
-  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+  > svg {
+    margin-right: 20px;
+  }
 }
 
 .home {

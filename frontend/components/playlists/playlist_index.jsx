@@ -7,7 +7,7 @@ export default class PlaylistIndex extends Component {
     super(props);
     this.state = {
       user_id: this.props.currentUser,
-      playlist_name: 'My Playlist'
+      playlist_name: 'My Playlist #1'
     }
 
     this.handleCreate = this.handleCreate.bind(this)
@@ -17,12 +17,18 @@ export default class PlaylistIndex extends Component {
     this.props.getUserPlaylists()
   }
 
+  componentDidUpdate(prevProps) {
+    if( prevProps.playlists !== this.props.playlists ) {
+      this.setState({ playlist_name: `My Playlist #${Object.values(this.props.playlists).length + 1}`})
+    }
+  }
+
   handleCreate() {
     this.props.createPlaylist(this.state)
   }
 
   render() {
-    const { playlists } = this.props
+    const { playlists, deletePlaylist } = this.props
     if(!playlists) return null;
     return (
       <div className='playlists-wrapper'>
@@ -31,10 +37,13 @@ export default class PlaylistIndex extends Component {
           <GrFormAdd size={30} className='create-btn' />
           <span>Create Playlist</span>
         </div>
-        <ul>
+        <div className="sidebar-line"></div>
+        <ul className="playlist-index">
           { Object.values(playlists).map( playlist => 
             <PlaylistIndexItem 
-              playlist={playlist}/>) 
+              playlist={playlist}
+              deletePlaylist={deletePlaylist}
+            />) 
           }
         </ul>
       </div>
