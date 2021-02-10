@@ -149,6 +149,8 @@ body {
 
 .album-name {
   margin-bottom: 10px;
+  max-width: 200px;
+  flex-wrap: wrap;
 }
 
 .album-idx-wrapper {
@@ -159,4 +161,8 @@ body {
 
 .album-show {
   padding-bottom: 60px;
+}
+
+.artist-name {
+  color: #b3b3b3;
 }
