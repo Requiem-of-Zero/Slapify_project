@@ -11,15 +11,13 @@ class Sidebar extends Component {
       <div className="sidebar">
         <div className="filler"></div>
         <div className="side-nav">
-          <Link to={'/'}>
-            <span className="nav-icon">
-              <CgHome />
-            </span> Home
+          <Link to={'/'} className="nav-icon">
+            <CgHome size={25}/>
+            <span> Home </span>
           </Link>
-          <Link to={'/search'}>
-            <span className="nav-icon">
-              <BiSearch />
-            </span> Search
+          <Link to={'/search'} className="nav-icon">
+            <BiSearch size={25}/>
+            <span>Search</span>
           </Link>
           < PlaylistIndexContainer />
         </div>
