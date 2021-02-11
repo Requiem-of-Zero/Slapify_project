@@ -6,7 +6,10 @@ import {
 } from '../../actions/playlist_actions';
 
 const mstp = (state, ownProps) => ({
-  currPlaylistId: +ownProps.match.params.playlistId
+  currPlaylistId: +ownProps.match.params.playlistId,
+  playlists: state.entities.playlists,
+  currentUser: state.entities.users[state.session.id],
+  playlistSongs: state.entities.songs
 })
 
 const mdtp = dispatch => ({
