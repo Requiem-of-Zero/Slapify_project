@@ -18,7 +18,12 @@
   padding-right: -20px;
 
   .song-duration {
+    display: flex;
     color: white;
+
+    .duration {
+      margin-left: 20px;
+    }
   }
 
   .hovering {
