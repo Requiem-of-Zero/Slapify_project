@@ -17,7 +17,7 @@ export default class PlaylistSongIndexItem extends Component {
   }
 
   render() {
-    const { song, id, songId, playing, currentSong,
+    const { song, id, songId, playing, currentSong, playlistId,
             playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists } = this.props;
     const { hover, hoveredSongId, key } = this.state;
 
@@ -53,6 +53,7 @@ export default class PlaylistSongIndexItem extends Component {
             {this.state.hover === 'hovering' ? 
               <PlaylistSongAdder
                 playlists={playlists} 
+                playlistId={playlistId}
                 songId={song.id} 
                 addSongToPlaylist={addSongToPlaylist}
                 removeSongFromPlaylist={removeSongFromPlaylist}
