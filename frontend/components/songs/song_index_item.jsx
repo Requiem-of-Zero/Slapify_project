@@ -2,8 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { playSong, pauseSong, playIndivSong } from '../../actions/music_player_actions';
+import PlaylistIndex from '../playlists/playlist_index_container';
+import Modal from 'react-modal';
+import PlaylistSongAdder from '../playlists/playlist_song_adder';
+import { addSongToPlaylist, removeSongFromPlaylist } from '../../actions/playlist_actions';
 
 const mstp = state => ({
+  playlists: Object.values(state.entities.playlists),
   currentSong: state.music.currentSong,
   playing: state.music.playing
 });
@@ -11,7 +16,11 @@ const mstp = state => ({
 const mdtp = dispatch => ({
   pause: () => dispatch(pauseSong()),
   play: () => dispatch(playSong()),
-  playIndivSong: songId => dispatch(playIndivSong(songId))
+  playIndivSong: songId => dispatch(playIndivSong(songId)),
+  addSongToPlaylist: (songId, playlistId) =>
+    dispatch(addSongToPlaylist(songId, playlistId)),
+  removeSongFromPlaylist: (songId, playlistId) => 
+    dispatch(removeSongFromPlaylist(songId, playlistId))
 })
 
 class SongIndexItem extends React.Component {
@@ -21,7 +30,10 @@ class SongIndexItem extends React.Component {
       hover: '',
       hoveredSongId: null,
       key: null,
+      isOpen: false,
     }
+
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
   //Mounts the queue when the songs are being rendered, hacky way, but works
@@ -29,8 +41,15 @@ class SongIndexItem extends React.Component {
     this.props.handleQueue()
   }
 
+  toggleModal(e) {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+
   render() {
-    const { song, id, songId, playing, currentSong, playIndivSong } = this.props;
+    const { song, id, songId, playing, currentSong,
+            playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists } = this.props;
     const { hover, hoveredSongId, key } = this.state;
 
     //Play and pause button logic for each song item in album
@@ -62,7 +81,15 @@ class SongIndexItem extends React.Component {
             </div>
           </div>
           <div className="song-duration">
-            <p>{song.duration}</p>
+            {this.state.hover === 'hovering' ? 
+              <PlaylistSongAdder
+                playlists={playlists} 
+                songId={song.id} 
+                addSongToPlaylist={addSongToPlaylist}
+                removeSongFromPlaylist={removeSongFromPlaylist}
+                location={location}
+              /> : null }
+            <p className='duration'>{song.duration}</p>
           </div>
         </div>
       </li>
