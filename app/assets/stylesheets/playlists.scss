@@ -32,8 +32,8 @@
 }
 
 .playlist-index {
-  height: 52vh;
-  overflow-y: auto;
+  height: 56vh;
+  overflow: scroll;
 }
 
 .playlists-wrapper > h3 {
@@ -43,6 +43,7 @@
 
 .sidebar-line {
   background-color: #282828;
+  border: none;
   border: none;
   height: 1px;
   min-height: 1px;
@@ -69,10 +70,39 @@
 }
 
 .indiv-playlists {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-weight: 300;
 }
 
 .indiv-playlists>h6:hover{
   color: white;
+}
+
+.playlist-details {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 120px;
+  margin-left: 75px;
+}
+
+.playlist-cover {
+  width: 225px;
+  height: 225px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11),
+  0 2px 2px rgba(0, 0, 0, 0.11),
+  0 4px 4px rgba(0, 0, 0, 0.11),
+  0 8px 8px rgba(0, 0, 0, 0.11),
+  0 16px 16px rgba(0, 0, 0, 0.11),
+  0 32px 32px rgba(0, 0, 0, 0.11);
+}
+
+.detail-content {
+  color: white;
+}
+
+.playlist-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

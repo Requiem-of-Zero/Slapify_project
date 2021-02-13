@@ -64,6 +64,7 @@ class AlbumShow extends Component {
                     id={i} 
                     artists={artists} 
                     album={album}
+                    location={'album'}
                   />
                 )}
               </ul>

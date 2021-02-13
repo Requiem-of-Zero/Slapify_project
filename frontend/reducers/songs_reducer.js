@@ -17,7 +17,7 @@ const SongsReducer = (oldState={}, action) => {
     case RECEIVE_ALL_SONGS:
       return action.songs;
     case RECEIVE_PLAYLIST_INFO:
-      return action.payload.tracks || {};
+      return action.payload.songs || {};
     case RECEIVE_PLAYLIST_SONG:
       return newState;
     case REMOVE_PLAYLIST_SONG:
