@@ -27,7 +27,7 @@ export default class PlaylistSongIndexItem extends Component {
       : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
 
     if(currentSong){
-      playBtn = currentSong.id === key && playing
+      playBtn = currentSong.id === key
         ? <FaPause onClick={this.props.pause}/> 
         : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
     }
@@ -38,7 +38,6 @@ export default class PlaylistSongIndexItem extends Component {
             this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
           }}
           onMouseLeave={() => this.setState({hover: ''})}>
-        
         <div className="song-details-wrapper" >
           <div className="song-info">
             <a  

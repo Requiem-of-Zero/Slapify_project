@@ -19,12 +19,18 @@ export default class PlaylistShow extends Component {
   componentDidMount(){
     this.props.getPlaylistInfo(this.props.match.params.playlistId)
   }
+  
+  componentDidUpdate(prevProps){
+    if(prevProps.match.params.playlistId !== this.props.match.params.playlistId){
+      this.props.getPlaylistInfo(this.props.match.params.playlistId)
+    }
+  }
 
   handleQueue() {
     const { hoveredSongId } = this.state;
     const { playlistSongs, receiveQueue } = this.props;
 
-    receiveQueue(Object.values(playlistSongs).filter(song => song.id >= hoveredSongId))
+    receiveQueue(playlistSongs.filter(song => song.id >= hoveredSongId))
   }
 
   render() {
@@ -45,9 +51,9 @@ export default class PlaylistShow extends Component {
           </div>
         </div>
         <div className="playlist-content">
-          {Object.values(playlistSongs).length === 0 
+          {playlistSongs.length === 0 
           ? <h3>No songs currently in playlist.</h3>
-          : Object.values(playlistSongs).map((song, i) => 
+          : playlistSongs.map((song, i) => 
             <PlaylistSongItem
               song={song}
               onMouseEnter={() => this.setState( { hoveredSongId: song.id})}

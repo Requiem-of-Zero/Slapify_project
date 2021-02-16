@@ -5,12 +5,12 @@ import {
   deletePlaylist, getPlaylistInfo, updatePlaylist, removeSongFromPlaylist
 } from '../../actions/playlist_actions';
 
-import { receiveQueue, playIndivSong } from '../../actions/music_player_actions';
+import { receiveQueue, playIndivSong, pauseSong } from '../../actions/music_player_actions';
 
 const mstp = (state, ownProps) => ({
   currPlaylist: state.entities.playlists[ownProps.match.params.playlistId],
   currentUser: state.entities.users[state.session.id],
-  playlistSongs: state.entities.songs
+  playlistSongs: Object.values(state.entities.songs)
 })
 
 const mdtp = dispatch => ({
@@ -19,7 +19,8 @@ const mdtp = dispatch => ({
   updatePlaylist: playlist => dispatch(updatePlaylist(playlist)),
   receiveQueue: queue => dispatch(receiveQueue(queue)),
   playIndivSong: songId => dispatch(playIndivSong(songId)),
-  removeSongFromPlaylist: (songId, playlistId) => dispatch(removeSongFromPlaylist(songId, playlistId))
+  removeSongFromPlaylist: (songId, playlistId) => dispatch(removeSongFromPlaylist(songId, playlistId)),
+  pause: () => dispatch(pauseSong())
 })
 
 export default connect(mstp, mdtp)(PlaylistShow)
