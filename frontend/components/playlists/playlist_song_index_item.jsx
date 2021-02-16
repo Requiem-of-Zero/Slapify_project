@@ -18,7 +18,8 @@ export default class PlaylistSongIndexItem extends Component {
 
   render() {
     const { song, id, songId, playing, currentSong, playlistId,
-            playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists } = this.props;
+            playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists,
+            albums, artists } = this.props;
     const { hover, hoveredSongId, key } = this.state;
 
     //Play and pause button logic for each song item in album
@@ -46,6 +47,7 @@ export default class PlaylistSongIndexItem extends Component {
             </a>
             <div className="song-title">
               {song.songName}
+              
             </div>
           </div>
           <div className="song-duration">

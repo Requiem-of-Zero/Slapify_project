@@ -10,7 +10,9 @@ import { receiveQueue, playIndivSong, pauseSong } from '../../actions/music_play
 const mstp = (state, ownProps) => ({
   currPlaylist: state.entities.playlists[ownProps.match.params.playlistId],
   currentUser: state.entities.users[state.session.id],
-  playlistSongs: Object.values(state.entities.songs)
+  playlistSongs: Object.values(state.entities.songs),
+  albums: state.entities.albums,
+  artists: state.entities.artists
 })
 
 const mdtp = dispatch => ({
