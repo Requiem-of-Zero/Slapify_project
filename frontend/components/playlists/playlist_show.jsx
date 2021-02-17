@@ -34,7 +34,7 @@ export default class PlaylistShow extends Component {
   }
 
   render() {
-    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist } = this.props
+    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists } = this.props
 
     return currPlaylist ? (
       <div className="playlist-show-wrapper">
@@ -65,7 +65,8 @@ export default class PlaylistShow extends Component {
               playIndivSong={playIndivSong}
               playlistId={+currPlaylist.id}
               removeSongFromPlaylist={removeSongFromPlaylist}
-          
+              artists={artists}
+              album={albums[song.albumId]}
             />
           )}
         </div>

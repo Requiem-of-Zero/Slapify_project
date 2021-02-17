@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import PlaylistSongAdder from './playlist_song_adder';
 
@@ -19,7 +20,7 @@ export default class PlaylistSongIndexItem extends Component {
   render() {
     const { song, id, songId, playing, currentSong, playlistId,
             playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists,
-            albums, artists } = this.props;
+            album, artists } = this.props;
     const { hover, hoveredSongId, key } = this.state;
 
     //Play and pause button logic for each song item in album
@@ -45,10 +46,16 @@ export default class PlaylistSongIndexItem extends Component {
               className={hover} >
               {this.state.hover === 'hovering' ? playBtn : id+1}
             </a>
+            <Link to={`/albums/${album.id}`}>
+              <img src={album.imgUrl} height='50' width='50'/>
+            </Link>
             <div className="song-title">
               {song.songName}
-              
+              {artists[album.artistId].name}
             </div>
+            <Link to={`/albums/${album.id}`} className="song-album">
+              {album.albumName}
+            </Link>
           </div>
           <div className="song-duration">
             {this.state.hover === 'hovering' ? 
