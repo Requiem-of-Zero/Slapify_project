@@ -41,21 +41,23 @@ export default class PlaylistSongIndexItem extends Component {
           }}
           onMouseLeave={() => this.setState({hover: ''})}>
         <div className="song-details-wrapper" >
-          <div className="song-info">
+          <div className="playlist-song-info">
             <a  
               className={hover} >
               {this.state.hover === 'hovering' ? playBtn : id+1}
             </a>
-            <Link to={`/albums/${album.id}`}>
+            <Link to={`/albums/${album.id}`} height='50' width='50'>
               <img src={album.imgUrl} height='50' width='50'/>
             </Link>
             <div className="song-title">
-              {song.songName}
-              {artists[album.artistId].name}
+              <h3>{song.songName}</h3>
+              <h3>{artists[album.artistId].name}</h3>
             </div>
-            <Link to={`/albums/${album.id}`} className="song-album">
-              {album.albumName}
-            </Link>
+            <div className="song-album">
+              <Link to={`/albums/${album.id}`} className="song-album">
+                {album.albumName}
+              </Link>
+            </div>
           </div>
           <div className="song-duration">
             {this.state.hover === 'hovering' ? 

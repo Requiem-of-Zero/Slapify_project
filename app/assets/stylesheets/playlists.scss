@@ -110,3 +110,33 @@
 .playlist-content {
   padding-bottom: 20px;
 }
+
+.song-title {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 20px;
+  
+  > h3 {
+    margin-bottom: 10px;
+  }
+
+  :last-child {
+    margin-bottom: -5px;
+    color: #b3b3b3;
+  }
+}
+
+
+.playlist-song-info {
+  display: flex;
+  align-items: center;
+  height: 54px;
+  color: #b3b3b3;
+  width: 90%;
+  
+  > a {
+    width: 50px;
+    color: #b3b3b3;
+  }
+}
