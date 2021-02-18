@@ -22,7 +22,7 @@ const mdtp = dispatch => ({
   receiveQueue: queue => dispatch(receiveQueue(queue)),
   playIndivSong: songId => dispatch(playIndivSong(songId)),
   removeSongFromPlaylist: (songId, playlistId) => dispatch(removeSongFromPlaylist(songId, playlistId)),
-  pause: () => dispatch(pauseSong())
+  pause: () => dispatch(pauseSong()),
 })
 
 export default connect(mstp, mdtp)(PlaylistShow)
