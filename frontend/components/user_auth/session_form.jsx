@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaFacebook } from 'react-icons/fa';
+import { AiFillApple } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 
@@ -56,16 +59,22 @@ class SessionForm extends React.Component {
           <form className='session-form'>
             <h3 id='form-greeting'>{`To continue, ${form.toLowerCase()} to Slapify.`}</h3>
             <button className='demo-btn btn' onClick={ () => demoLogin(demoUser) }>
-              <span className='icon-fb'></span>
-              CONTINUE WITH DEMO USER
+              <span className='icon-fb'>
+                <FaFacebook size={18} />
+                <p>CONTINUE WITH DEMO USER</p>
+              </span>
             </button>
             <button className='apple-btn btn' onClick={ () => demoLogin(appleUser) }>
-              <span className='icon-apple'></span>
-              CONTINUE WITH APPLE
+              <span className='icon-apple'>
+                <AiFillApple size={18} />
+                <p>CONTINUE WITH APPLE</p>
+              </span>
             </button>
             <button className='google-btn btn' onClick={ () => demoLogin(googleUser) }>
-              <span className='icon-google'></span>
-              CONTINUE WITH GOOGLE
+              <span className='icon-google'>
+                <FcGoogle size={18} />
+                <p>CONTINUE WITH GOOGLE</p>
+              </span>
             </button>
             <div className='divider'>
               <strong className='divider-title'>OR</strong>
