@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import SearchContainer from '../search/search_container';
 import PlaylistSongItem from './playlist_song_index_item';
+import { RIETextArea } from 'riek';
+import { BiTime } from 'react-icons/bi';
+import { FiEdit3, FiTrash2 } from 'react-icons/fi';
+import PlaylistEditModal from '../edit_modal/playlist_edit';
 
 export default class PlaylistShow extends Component {
   constructor(props) {
@@ -9,9 +13,11 @@ export default class PlaylistShow extends Component {
       hoveredSongId: null,
       selectedSongId: null,
     }
+    
+    this.handleSubmittedPlaylist = this.handleSubmittedPlaylist.bind(this)
   }
 
-  handleClick(){
+  handleDelete(){
     this.props.deletePlaylist(this.props.currPlaylist.id)
     this.props.history.push('/')
   }
@@ -33,8 +39,13 @@ export default class PlaylistShow extends Component {
     receiveQueue(playlistSongs.filter(song => song.id >= hoveredSongId))
   }
 
+  handleSubmittedPlaylist(playlist) {
+    this.props.updatePlaylist(playlist)
+  }
+
   render() {
     const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists } = this.props
+    const bullet = '\u2022';
 
     return currPlaylist ? (
       <div className="playlist-show-wrapper">
@@ -45,12 +56,43 @@ export default class PlaylistShow extends Component {
           />
           <div className="detail-content">
             <p>PLAYLIST</p>
+            <div className="playlist-name-edit-container">
+              {console.log(currPlaylist)}
+              <PlaylistEditModal playlist={currPlaylist}/>
+            </div>
             <h1>{currPlaylist.playlistName}</h1>
-            <p>{currentUser.email}</p>
-            <a onClick={() => this.handleClick()}>DELETE</a>
+            <div className="detail-lower">
+              <div className="playlist-info">
+                <p>{`${currentUser.email}`}</p>
+                <span>{bullet}</span>
+                <p>{`${playlistSongs.length} songs`}</p>
+              </div>
+              <FiTrash2 
+                className='pointer' 
+                onClick={() => this.handleDelete()}
+              >
+                DELETE
+              </FiTrash2>
+            </div>
           </div>
         </div>
         <div className="playlist-content">
+          {playlistSongs.length !== 0 
+          ? <div className="playlist-song-labels">
+            <div className="song-id">
+              <p>#</p>
+              <p>TITLE</p>
+            </div>
+            <div className="playlist-album">
+              <p>ALBUM</p>
+            </div>
+            <div className="duration-label">
+              <p>
+                <BiTime />
+              </p>
+            </div>
+          </div> 
+          : <div className="song-labels"></div>}
           {playlistSongs.length === 0 
           ? <h3>No songs currently in playlist.</h3>
           : playlistSongs.map((song, i) => 

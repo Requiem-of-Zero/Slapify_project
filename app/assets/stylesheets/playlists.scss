@@ -98,6 +98,12 @@
 
 .detail-content {
   color: white;
+  width: 60%;
+}
+
+.detail-lower {
+  display: flex;
+  justify-content: space-between;
 }
 
 .playlist-modal {
@@ -139,4 +145,55 @@
     width: 50px;
     color: #b3b3b3;
   }
+}
+
+.playlist-song-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+  margin-top: 30px;
+  position: sticky;
+
+  .song-id {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+    font-size: 13px;
+    margin-left: 38px;
+  }
+
+  div>p {
+    color: #b3b3b3;
+  }
+
+  .playlist-album {
+    font-family: 'Montserrat',
+    sans-serif;
+    font-size: 13px;
+  }
+
+}
+
+.playlist-show-wrapper {
+  font-family: 'Montserrat',
+  sans-serif;
+}
+
+
+.playlist-info {
+  display: flex;
+
+  :first-child {
+    margin-right: 5px;
+  }
+
+  :last-child {
+    margin-left: 5px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
 }

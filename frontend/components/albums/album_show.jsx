@@ -29,6 +29,8 @@ class AlbumShow extends Component {
 
   render() {
     const { songs, album, artists } = this.props;
+    const bullet = '\u2022';
+
     return this.props.album ? (
       <div className="show-wrapper">
         <div className="album-show-wrapper">
@@ -37,8 +39,12 @@ class AlbumShow extends Component {
             <div className="detail-content">
               <p>ALBUM</p>
               <h1>{album.albumName}</h1>
-              <p><span className="album-artist">{(artists[album.artistId]).name}</span>
-                                                  {album.year}, {Object.values(this.props.songs).length} songs </p>
+              <p>
+                <span className="album-artist">
+                  {(artists[album.artistId]).name}
+                </span>
+                {`${bullet} ${album.year} ${bullet}`} {Object.values(this.props.songs).length} songs 
+              </p>
             </div>
           </div>
           <div className="album-content">
