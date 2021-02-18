@@ -210,3 +210,33 @@ a {
   display: flex;
   align-items: center;
 }
+
+.icon-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-google > svg {
+  margin-right: 10px;
+}
+
+.icon-apple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-apple > svg {
+  margin-right: 10px;
+}
+
+.icon-fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-fb > svg {
+  margin-right: 10px;
+}
