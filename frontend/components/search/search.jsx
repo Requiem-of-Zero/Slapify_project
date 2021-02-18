@@ -25,6 +25,13 @@ class Search extends Component {
     }
   }
 
+  handleQueue() {
+    const { hoveredSongId, songs } = this.state;
+    const { receiveQueue } = this.props;
+
+    receiveQueue(songs)
+  }
+
   handleChange(e) {
     const newSongs = this.props.songs.filter(song => 
         song.songName.toLowerCase().includes(e.target.value.toLowerCase())
@@ -33,7 +40,7 @@ class Search extends Component {
   }
 
   render() {
-    const { albums, artists, receiveSong } = this.props
+    const { albums, artists, receiveSong, handleQueue } = this.props
     const { songs } = this.state
     return songs ? (
       <div className="search-wrapper">
@@ -58,7 +65,9 @@ class Search extends Component {
           {songs.map((song, i ) => 
             <SearchSongIndexItem 
               url={song.url} 
-              song={song} 
+              song={song}
+              key={song.id}
+              songId={song.id}
               id={i}
               receiveSong={receiveSong}
               imgUrl={(albums[song.albumId]).imgUrl}
@@ -66,6 +75,8 @@ class Search extends Component {
               albumId={song.albumId}
               artists={artists}
               album={albums[song.albumId]}
+              location='album'
+              handleQueue={() => this.handleQueue()}
               />
             )}
         </ul>
