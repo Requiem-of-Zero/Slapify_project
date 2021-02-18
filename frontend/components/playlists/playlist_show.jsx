@@ -13,8 +13,6 @@ export default class PlaylistShow extends Component {
       hoveredSongId: null,
       selectedSongId: null,
     }
-    
-    this.handleSubmittedPlaylist = this.handleSubmittedPlaylist.bind(this)
   }
 
   handleDelete(){
@@ -29,7 +27,7 @@ export default class PlaylistShow extends Component {
   componentDidUpdate(prevProps){
     if(prevProps.match.params.playlistId !== this.props.match.params.playlistId){
       this.props.getPlaylistInfo(this.props.match.params.playlistId)
-    }
+    } 
   }
 
   handleQueue() {
@@ -39,12 +37,8 @@ export default class PlaylistShow extends Component {
     receiveQueue(playlistSongs.filter(song => song.id >= hoveredSongId))
   }
 
-  handleSubmittedPlaylist(playlist) {
-    this.props.updatePlaylist(playlist)
-  }
-
   render() {
-    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists } = this.props
+    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists, updatePlaylist, pause } = this.props
     const bullet = '\u2022';
 
     return currPlaylist ? (
@@ -58,7 +52,10 @@ export default class PlaylistShow extends Component {
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">
               {console.log(currPlaylist)}
-              <PlaylistEditModal playlist={currPlaylist}/>
+              <PlaylistEditModal 
+                playlist={currPlaylist}
+                updatePlaylist={updatePlaylist}
+              />
             </div>
             <h1>{currPlaylist.playlistName}</h1>
             <div className="detail-lower">
@@ -109,6 +106,7 @@ export default class PlaylistShow extends Component {
               removeSongFromPlaylist={removeSongFromPlaylist}
               artists={artists}
               album={albums[song.albumId]}
+              pause={pause}
             />
           )}
         </div>

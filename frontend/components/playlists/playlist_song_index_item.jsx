@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import PlaylistSongAdder from './playlist_song_adder';
 
-export default class PlaylistSongIndexItem extends Component {
+const mstp = state => ({
+  playlists: Object.values(state.entities.playlists),
+  currentSong: state.music.currentSong,
+  playing: state.music.playing
+});
+
+
+class PlaylistSongIndexItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hover: '',
       hoveredSongId: null,
-      key: null,
+      key: null
     }
   }
 
@@ -24,12 +32,10 @@ export default class PlaylistSongIndexItem extends Component {
     const { hover, hoveredSongId, key } = this.state;
 
     //Play and pause button logic for each song item in album
-    let playBtn = playing
-      ? <FaPause onClick={this.props.pause}/> 
-      : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
+    let playBtn = <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
 
     if(currentSong){
-      playBtn = currentSong.id === key
+      playBtn = currentSong.id === key && playing
         ? <FaPause onClick={this.props.pause}/> 
         : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
     }
@@ -37,6 +43,7 @@ export default class PlaylistSongIndexItem extends Component {
     return (
       <li className='indiv-songs'
           onMouseEnter={() => {
+            console.log(key)
             this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
           }}
           onMouseLeave={() => this.setState({hover: ''})}>
@@ -76,3 +83,5 @@ export default class PlaylistSongIndexItem extends Component {
     )
   }
 }
+
+export default connect(mstp)(PlaylistSongIndexItem)

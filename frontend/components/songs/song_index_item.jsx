@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { playSong, pauseSong, playIndivSong } from '../../actions/music_player_actions';
 import PlaylistIndex from '../playlists/playlist_index_container';
-import Modal from 'react-modal';
 import PlaylistSongAdder from '../playlists/playlist_song_adder';
 import { addSongToPlaylist, removeSongFromPlaylist } from '../../actions/playlist_actions';
 

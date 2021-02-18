@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -12,44 +12,64 @@ const customStyles = {
   }
 };
 
-export default function PlaylistEditModal(props) {
-  var subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [playlistName, setPlaylistName] = React.useState('')
-  function openModal() {
-    setIsOpen(true);
+import React, { Component } from 'react'
+
+export default class PlaylistEditModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      playlistId: this.props.playlist.id,
+      playlistName: this.props.playlist.playlistName
+    }
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-  function closeModal(){
-    setIsOpen(false);
-  }
-
-  function handleChange() {
-    setPlaylistName(playlistName)
+  handleEnter(e) {
+    if(e.key === 'Enter') {
+      this.props.updatePlaylist({
+        id: this.state.playlistId,
+        playlistName: this.state.playlistName,
+      }),
+      this.setState({ isOpen: !this.state.isOpen})
+    }
   }
 
-  return (
-    <>
-      <button onClick={openModal}>Edit</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Edit"
-      >
-        
-        <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>Update Playlist:</div>
-        <form>
-          <input value={props.playlist.playlistName} onChange={handleChange}/>
-        </form>
-      </Modal>
-    </>
-  )
+  handleModal() {
+    this.setState({isOpen: !this.state.isOpen})
+  }
+
+  handleChange(type) {
+    return e => this.setState({ [type]: e.target.value})
+  }
+
+  render() {
+    return (
+      <>
+        <button onClick={() => this.handleModal()}>Edit</button>
+        <Modal
+          isOpen={this.state.isOpen}
+          onRequestClose={() => this.handleModal()}
+          style={customStyles}
+          contentLabel="Edit"
+          ariaHideApp={false}
+        >
+          
+          <h2>Hello</h2>
+          <button onClick={() => this.handleModal()}>close</button>
+          <div>Update Playlist:</div>
+          <form>
+            <input 
+              value={this.state.playlistName} 
+              onChange={this.handleChange('playlistName')}
+              onKeyPress={this.handleEnter.bind(this)}
+              autoComplete='off'
+            />
+          </form>
+          <button></button>
+        </Modal>
+      </>
+    )
+  }
 }
