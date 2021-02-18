@@ -51,7 +51,6 @@ export default class PlaylistShow extends Component {
           <div className="detail-content">
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">
-              {console.log(currPlaylist)}
               <PlaylistEditModal 
                 playlist={currPlaylist}
                 updatePlaylist={updatePlaylist}

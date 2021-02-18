@@ -43,11 +43,12 @@ class PlaylistSongIndexItem extends Component {
     return (
       <li className='indiv-songs'
           onMouseEnter={() => {
-            console.log(key)
             this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
           }}
           onMouseLeave={() => this.setState({hover: ''})}>
+
         <div className="song-details-wrapper" >
+
           <div className="playlist-song-info">
             <a  
               className={hover} >
@@ -66,6 +67,7 @@ class PlaylistSongIndexItem extends Component {
               </Link>
             </div>
           </div>
+
           <div className="song-duration">
             {this.state.hover === 'hovering' ? 
               <PlaylistSongAdder
@@ -78,6 +80,7 @@ class PlaylistSongIndexItem extends Component {
               /> : null }
             <p className='duration'>{song.duration}</p>
           </div>
+
         </div>
       </li>
     )
