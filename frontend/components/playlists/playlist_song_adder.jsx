@@ -14,7 +14,7 @@ export default class PlaylistSongAdder extends Component {
   }
 
   render() {
-    const { playlists, songId, playlistId, location } = this.props;
+    const { playlists, songId, playlistId, location, selected } = this.props;
 
     if(location === 'album') {
       const playlistsArr = playlists.map(playlist => (
@@ -46,7 +46,7 @@ export default class PlaylistSongAdder extends Component {
       )
     }
     return (
-      <ul className='song-menu'>
+      <ul className={`${selected}`}>
         {dropdown}
       </ul>
     )
