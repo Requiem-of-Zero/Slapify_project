@@ -44,7 +44,7 @@ export default class PlaylistShow extends Component {
   }
 
   render() {
-    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists } = this.props
+    const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists, updatePlaylist } = this.props
     const bullet = '\u2022';
 
     return currPlaylist ? (
@@ -58,7 +58,10 @@ export default class PlaylistShow extends Component {
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">
               {console.log(currPlaylist)}
-              <PlaylistEditModal playlist={currPlaylist}/>
+              <PlaylistEditModal 
+                playlist={currPlaylist}
+                updatePlaylist={updatePlaylist}
+              />
             </div>
             <h1>{currPlaylist.playlistName}</h1>
             <div className="detail-lower">
