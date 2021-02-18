@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { playSong, pauseSong, playIndivSong } from '../../actions/music_player_actions';
 import { addSongToPlaylist, removeSongFromPlaylist } from '../../actions/playlist_actions';
-import { BiTime } from 'react-icons/bi';
+import { BsThreeDots } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const mstp = state => ({
@@ -29,12 +29,21 @@ class SearchSongIndexItem extends React.Component {
     this.state = {
       hover: '',
       hoveredSongId: null,
-      key: null
+      key: null,
+      selected: 'hidden'
     }
+    this.toggleDropdown = this.toggleDropdown.bind(this)
   }
 
   componentDidMount() {
     this.props.handleQueue()
+  }
+
+  toggleDropdown(){
+    const { selected } = this.state;
+    selected === 'selected' 
+    ? this.setState({selected: 'hidden'}) 
+    : this.setState({selected: 'selected'})
   }
 
   render() {
@@ -42,7 +51,7 @@ class SearchSongIndexItem extends React.Component {
         album, receiveSong, addSongToPlaylist, playIndivSong, 
         removeSongFromPlaylist, location, playlists, playing, currentSong, songId } = this.props;
 
-    const { hover, hoveredSongId, key } = this.state;
+    const { hover, hoveredSongId, key, selected } = this.state;
 
     let playBtn = playing
       ? <FaPause onClick={this.props.pause}/> 
@@ -79,14 +88,17 @@ class SearchSongIndexItem extends React.Component {
               <p>{(artists[album.artistId]).name}</p>
             </div>
             <div className="song-duration">
-                {this.state.hover === 'hovering' ? 
+              <div className="dropdown">
+                <BsThreeDots onClick={this.toggleDropdown}/>
+              </div>
                 <PlaylistSongAdder
                   playlists={playlists} 
                   songId={song.id} 
                   addSongToPlaylist={addSongToPlaylist}
                   removeSongFromPlaylist={removeSongFromPlaylist}
                   location={location}
-                /> : null }
+                  selected={selected}
+                />
               <p>{song.duration}</p>
             </div>
           </div>
