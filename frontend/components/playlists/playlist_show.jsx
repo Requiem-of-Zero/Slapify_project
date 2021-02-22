@@ -44,10 +44,21 @@ export default class PlaylistShow extends Component {
     return currPlaylist ? (
       <div className="playlist-show-wrapper">
         <div className="playlist-details">
-          <img 
-            src="https://community.spotify.com/t5/image/serverpage/image-id/55829iC2AD64ADB887E2A5/image-size/large?v=1.0&px=999"
-            className='playlist-cover'
-          />
+          {Object.values(albums).length < 4 
+            ? <img 
+                src="https://community.spotify.com/t5/image/serverpage/image-id/55829iC2AD64ADB887E2A5/image-size/large?v=1.0&px=999"
+                className='playlist-cover'
+              />
+            : <ul 
+                className='cover-cluster'
+              >
+              <li
+                className='indiv-playlist-img'
+              >
+                {Object.values(albums).slice(0, 4).map(album => <img src={album.imgUrl} />)}
+              </li>
+            </ul>
+          }
           <div className="detail-content">
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">

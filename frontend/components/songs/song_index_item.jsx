@@ -30,6 +30,7 @@ class SongIndexItem extends React.Component {
       hoveredSongId: null,
       key: null,
       isOpen: false,
+      color: '',
     }
 
     this.toggleModal = this.toggleModal.bind(this)
@@ -52,14 +53,18 @@ class SongIndexItem extends React.Component {
     const { hover, hoveredSongId, key } = this.state;
 
     //Play and pause button logic for each song item in album
+    var color = '';
     let playBtn = playing
       ? <FaPause onClick={this.props.pause}/> 
       : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
 
     if(currentSong){
-      playBtn = currentSong.id === key && playing
+      currentSong.id === key && playing
         ? <FaPause onClick={this.props.pause}/> 
         : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
+      currentSong.id === key && playing 
+      ? color = 'green'
+      : color = ''
     }
 
     return (
