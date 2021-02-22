@@ -1,7 +1,7 @@
 import { RECEIVE_SONG, RECEIVE_ALL_SONGS } from '../actions/song_actions';
 import { RECEIVE_ALBUM } from '../actions/album_actions'
 import { 
-  RECEIVE_PLAYLIST_INFO, RECEIVE_PLAYLIST_SONG, REMOVE_PLAYLIST_SONG 
+  RECEIVE_PLAYLIST_INFO, RECEIVE_PLAYLIST_SONG, REMOVE_PLAYLIST_SONG, CLEAR_PLAYLIST_INFO
 } from '../actions/playlist_actions';
 
 const SongsReducer = (oldState={}, action) => {
@@ -23,6 +23,8 @@ const SongsReducer = (oldState={}, action) => {
     case REMOVE_PLAYLIST_SONG:
       delete newState[action.songId];
       return newState;
+    case CLEAR_PLAYLIST_INFO:
+      return {};
     default:
       return oldState;
   }

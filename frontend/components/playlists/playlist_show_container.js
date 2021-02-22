@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import PlaylistShow from './playlist_show';
 
 import { 
-  deletePlaylist, getPlaylistInfo, updatePlaylist, removeSongFromPlaylist
+  deletePlaylist, getPlaylistInfo, updatePlaylist, removeSongFromPlaylist, clearPlaylistInfo
 } from '../../actions/playlist_actions';
 
 import { receiveQueue, playIndivSong, pauseSong } from '../../actions/music_player_actions';
@@ -23,6 +23,7 @@ const mdtp = dispatch => ({
   playIndivSong: songId => dispatch(playIndivSong(songId)),
   removeSongFromPlaylist: (songId, playlistId) => dispatch(removeSongFromPlaylist(songId, playlistId)),
   pause: () => dispatch(pauseSong()),
+  clearPlaylistInfo: () => dispatch(clearPlaylistInfo()),
 })
 
 export default connect(mstp, mdtp)(PlaylistShow)

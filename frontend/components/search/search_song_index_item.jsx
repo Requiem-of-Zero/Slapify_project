@@ -87,10 +87,9 @@ class SearchSongIndexItem extends React.Component {
             <div className="song-artist">
               <p>{(artists[album.artistId]).name}</p>
             </div>
-            <div className="song-duration">
+            <div className="search-song-duration">
               <div className="dropdown">
-                <BsThreeDots onClick={this.toggleDropdown}/>
-              </div>
+                <BsThreeDots className='dropdown-dots' onClick={this.toggleDropdown}/>
                 <PlaylistSongAdder
                   playlists={playlists} 
                   songId={song.id} 
@@ -99,7 +98,8 @@ class SearchSongIndexItem extends React.Component {
                   location={location}
                   selected={selected}
                 />
-              <p>{song.duration}</p>
+              </div>
+              <p className='song-duration'>{song.duration}</p>
             </div>
           </div>
         </li>

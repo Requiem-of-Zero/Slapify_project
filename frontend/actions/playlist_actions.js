@@ -7,6 +7,7 @@ export const RECEIVE_PLAYLIST_INFO = 'RECEIVE_PLAYLIST_INFO';
 export const REMOVE_PLAYLIST = "REMOVE_PLAYLIST";
 export const RECEIVE_PLAYLIST_SONG = "RECEIVE_PLAYLIST_SONG";
 export const REMOVE_PLAYLIST_SONG = "REMOVE_PLAYLIST_SONG";
+export const CLEAR_PLAYLIST_INFO = "CLEAR_PLAYLIST_INFO";
 
 export const receiveUserPlaylists = playlists => ({
   type: RECEIVE_USER_PLAYLISTS,
@@ -43,6 +44,12 @@ export const removePlaylistSong = songId => ({
   songId
 });
 
+export const clearPlaylistInfo = () => {
+  return({
+    type: CLEAR_PLAYLIST_INFO,
+  })
+}
+
 //thunk actions
 
 export const createPlaylist = playlist => dispatch => (
@@ -52,7 +59,7 @@ export const createPlaylist = playlist => dispatch => (
 
 export const updatePlaylist = playlist => dispatch => (
   PlaylistsAPI.updatePlaylist(playlist)
-  .then(playlist => dispatch(updatePlaylistName(playlist)))
+  .then(playlist => console.log(playlist))
 );
 
 export const deletePlaylist = playlistId => dispatch => (
