@@ -312,7 +312,7 @@ for when there were 5 links in nav bar
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(10, 10, 10);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
