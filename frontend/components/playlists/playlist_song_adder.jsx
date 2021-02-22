@@ -14,14 +14,17 @@ export default class PlaylistSongAdder extends Component {
   }
 
   render() {
-    const { playlists, songId, playlistId, location, selected } = this.props;
+    const { playlists, songId, playlistId, location, selected, toggleDropdown } = this.props;
 
     if(location === 'album') {
       const playlistsArr = playlists.map(playlist => (
         <li 
           className='playlist-menu-item'
           key={playlist.id}
-          onClick={() => this.handleAdd(songId, playlist.id)}
+          onClick={() => {
+            this.handleAdd(songId, playlist.id)
+            toggleDropdown()
+          }}
         >
           {playlist.playlistName}
         </li>
