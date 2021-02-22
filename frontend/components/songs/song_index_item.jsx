@@ -5,6 +5,7 @@ import { playSong, pauseSong, playIndivSong } from '../../actions/music_player_a
 import PlaylistIndex from '../playlists/playlist_index_container';
 import PlaylistSongAdder from '../playlists/playlist_song_adder';
 import { addSongToPlaylist, removeSongFromPlaylist } from '../../actions/playlist_actions';
+import { BsThreeDots } from 'react-icons/bs';
 
 const mstp = state => ({
   playlists: Object.values(state.entities.playlists),
@@ -31,9 +32,11 @@ class SongIndexItem extends React.Component {
       key: null,
       isOpen: false,
       color: '',
+      selected: 'hidden',
     }
 
     this.toggleModal = this.toggleModal.bind(this)
+    this.toggleDropdown = this.toggleDropdown.bind(this)
   }
 
   //Mounts the queue when the songs are being rendered, hacky way, but works
@@ -47,10 +50,17 @@ class SongIndexItem extends React.Component {
     });
   }
 
+  toggleDropdown(){
+    const { selected } = this.state;
+    selected === 'selected' 
+    ? this.setState({selected: 'hidden'}) 
+    : this.setState({selected: 'selected'})
+  }
+
   render() {
     const { song, id, songId, playing, currentSong,
             playIndivSong, addSongToPlaylist, removeSongFromPlaylist, location, playlists } = this.props;
-    const { hover, hoveredSongId, key } = this.state;
+    const { hover, hoveredSongId, key, selected } = this.state;
 
     //Play and pause button logic for each song item in album
     var color = '';
@@ -84,15 +94,18 @@ class SongIndexItem extends React.Component {
               {song.songName}
             </div>
           </div>
-          <div className="song-duration">
-            {this.state.hover === 'hovering' ? 
-              <PlaylistSongAdder
-                playlists={playlists} 
-                songId={song.id} 
-                addSongToPlaylist={addSongToPlaylist}
-                removeSongFromPlaylist={removeSongFromPlaylist}
-                location={location}
-              /> : null }
+          <div className="album-song-duration">
+              <div className="dropdown">
+                <BsThreeDots className='dropdown-dots' onClick={this.toggleDropdown}/>
+                <PlaylistSongAdder
+                  playlists={playlists} 
+                  songId={song.id} 
+                  addSongToPlaylist={addSongToPlaylist}
+                  removeSongFromPlaylist={removeSongFromPlaylist}
+                  location={location}
+                  selected={selected}
+                />
+              </div>
             <p className='duration'>{song.duration}</p>
           </div>
         </div>

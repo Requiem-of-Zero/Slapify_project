@@ -68,8 +68,7 @@ class PlaylistSongIndexItem extends Component {
             </div>
           </div>
 
-          <div className="song-duration">
-            {this.state.hover === 'hovering' ? 
+          <div className="song-duration"> 
               <PlaylistSongAdder
                 playlists={playlists} 
                 playlistId={playlistId}
@@ -77,7 +76,7 @@ class PlaylistSongIndexItem extends Component {
                 addSongToPlaylist={addSongToPlaylist}
                 removeSongFromPlaylist={removeSongFromPlaylist}
                 location={location}
-              /> : null }
+              />
             <p className='duration'>{song.duration}</p>
           </div>
 

@@ -37,7 +37,7 @@ export default class PlaylistSongAdder extends Component {
       var dropdown = (
         <>
           <li 
-            className='song-menu-item'
+            className='remover pointer'
             onClick={() => this.handleRemove(songId, playlistId)}
           >
             Remove from Playlist
