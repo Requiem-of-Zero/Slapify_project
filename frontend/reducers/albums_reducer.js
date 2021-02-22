@@ -1,5 +1,5 @@
 import { RECEIVE_ALL_ALBUMS, RECEIVE_ALBUM } from '../actions/album_actions';
-import { RECEIVE_PLAYLIST_INFO } from '../actions/playlist_actions';
+import { RECEIVE_PLAYLIST_INFO, CLEAR_PLAYLIST_INFO } from '../actions/playlist_actions';
 
 
 const AlbumsReducer = (oldState={}, action) => {
@@ -17,6 +17,8 @@ const AlbumsReducer = (oldState={}, action) => {
             return newState;
     case RECEIVE_PLAYLIST_INFO:
       return { ...newState, ...action.payload.albums };
+    case CLEAR_PLAYLIST_INFO:
+      return {};
     default:
       return oldState
   }

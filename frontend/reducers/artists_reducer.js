@@ -1,5 +1,5 @@
 import { RECEIVE_ARTIST, RECEIVE_ALL_ARTISTS } from '../actions/artist_actions';
-import { RECEIVE_PLAYLIST_INFO } from '../actions/playlist_actions';
+import { RECEIVE_PLAYLIST_INFO, CLEAR_PLAYLIST_INFO } from '../actions/playlist_actions';
 
 const ArtistsReducer = ( oldState = {}, action ) => {
   Object.freeze(oldState);
@@ -13,6 +13,8 @@ const ArtistsReducer = ( oldState = {}, action ) => {
       return action.artists
     case RECEIVE_PLAYLIST_INFO:
       return { ...action.payload.artists, ...oldState }
+    case CLEAR_PLAYLIST_INFO:
+      return {};
     default:
       return oldState
   }
