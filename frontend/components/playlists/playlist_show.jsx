@@ -26,6 +26,7 @@ export default class PlaylistShow extends Component {
   
   componentDidUpdate(prevProps){
     if(prevProps.match.params.playlistId !== this.props.match.params.playlistId){
+      this.props.clearPlaylistInfo()
       this.props.getPlaylistInfo(this.props.match.params.playlistId)
     } 
   }
