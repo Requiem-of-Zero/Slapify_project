@@ -95,6 +95,7 @@ class SearchSongIndexItem extends React.Component {
                   songId={song.id} 
                   addSongToPlaylist={addSongToPlaylist}
                   removeSongFromPlaylist={removeSongFromPlaylist}
+                  toggleDropdown={() => this.toggleDropdown()}
                   location={location}
                   selected={selected}
                 />
