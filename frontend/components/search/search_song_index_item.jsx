@@ -80,7 +80,9 @@ class SearchSongIndexItem extends React.Component {
                   <Link to={`/albums/${song.albumId}`}>
                     {albumName}
                   </Link>
-                  <p>{song.songName}</p>
+                  {currentSong && (currentSong.id === key) 
+                    ? <h3 className='green'>{song.songName}</h3>
+                    : <h3>{song.songName}</h3>}
                 </div>
               </div>
             </div>
