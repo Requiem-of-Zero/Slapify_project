@@ -31,6 +31,7 @@
   color: white;
 }
 
+
 .playlist-index {
   height: 56vh;
   overflow: scroll;
@@ -218,21 +219,47 @@
   cursor: pointer;
 }
 
+.dropdown {
+  position: relative;
+
+  > .dropdown-dots {
+    margin-right: 10px;
+    z-index: 0
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
 .selected {
   display: block;
   position: absolute;
   width: 150px;
-  right: 50px;
-  top: 30px;
+  right: 5px;
+  top: 15px;
   background-color: #282828;
   border: 1px solid black;
   border-radius: 5px;
   color: #b3b3b3;
-  z-index: 2;
+  z-index: 1;
   overflow: hidden;
   animation-name: fade-in;
   animation-duration: 0.3s;
   padding: 10px;
+  user-select: none;
+
+  > ul {
+    height: 150px;
+    overflow-y: scroll;
+  }
 
   > li {
     border-bottom: 0.5px solid #b3b3b3;
