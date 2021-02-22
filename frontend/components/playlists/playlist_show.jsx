@@ -102,7 +102,7 @@ export default class PlaylistShow extends Component {
           </div> 
           : <div className="song-labels"></div>}
           {playlistSongs.length === 0 
-          ? <h3>No songs currently in playlist.</h3>
+          ? <h3 className='no-songs default'>No songs currently in playlist.</h3>
           : playlistSongs.map((song, i) => 
             <PlaylistSongItem
               song={song}

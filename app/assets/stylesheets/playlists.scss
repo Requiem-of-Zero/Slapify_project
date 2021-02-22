@@ -219,6 +219,10 @@
   cursor: pointer;
 }
 
+.default {
+  cursor: default;
+}
+
 .dropdown {
   position: relative;
 
@@ -277,4 +281,15 @@
 .selected>ul li:hover {
   background-color: #4b4949;
   border-radius: 5px;
+}
+
+.no-songs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 50vh;
+  margin-left: 75px;
+  font-size: 36px;
+  color: #b3b3b3;
 }
