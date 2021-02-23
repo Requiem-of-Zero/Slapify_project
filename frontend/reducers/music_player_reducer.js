@@ -9,6 +9,7 @@ import
   PREV_SONG,
   LOOP_SONG,
   PLAY_INDIV_SONG,
+  TOGGLE_SONG,
   pickSong
 } 
 from '../actions/music_player_actions';
@@ -130,6 +131,11 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
       newState.playing = true;
       return newState;
 
+    case TOGGLE_SONG:
+      newState.active = !newState.active
+      newState.playing = !newState.playing
+      return newState;
+      
     default:
       return oldState
   }
