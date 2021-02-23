@@ -9,6 +9,7 @@ import
   loopSongs,
   muteSongs,
   shuffleSongs,
+  togglePlayPause
 } 
 
 from '../../actions/music_player_actions';
@@ -56,6 +57,7 @@ const mdtp = dispatch => ({
   pauseSong: () => dispatch(pauseSong()),
   loopSongs: () => dispatch(loopSongs()),
   shuffleSongs: () => dispatch(shuffleSongs()),
+  togglePlayPause: () => dispatch(togglePlayPause()),
   // receiveQueue: queue => dispatch(receiveQueue(queue)),
   // receiveShuffled: songs => dispatch(receiveShuffled(songs)),
 });

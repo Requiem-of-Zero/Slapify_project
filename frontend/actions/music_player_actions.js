@@ -6,7 +6,8 @@ export const SHUFFLE_SONGS = 'SHUFFLE_SONGS';
 export const NEXT_SONG = 'NEXT_SONG';
 export const PREV_SONG = 'PREV_SONG';
 export const LOOP_SONG = 'LOOP_SONG';
-export const PLAY_INDIV_SONG = 'PLAY_INDIV_SONG'
+export const PLAY_INDIV_SONG = 'PLAY_INDIV_SONG';
+export const TOGGLE_SONG = 'TOGGLE_SONG';
 
 export const receiveSong = currentSong => ({
   type: RECEIVE_CURRENT_SONG,
@@ -45,6 +46,10 @@ export const shuffleSongs = () => ({
 export const playIndivSong = songId => ({
   type: PLAY_INDIV_SONG,
   songId
+})
+
+export const togglePlayPause =  () => ({
+  type: TOGGLE_SONG,
 })
 
 export const pickSong = (queueLength, playedIdx) => {

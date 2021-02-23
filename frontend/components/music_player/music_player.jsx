@@ -28,6 +28,16 @@ class MusicPlayer extends React.Component {
   componentDidMount() {
     this.volume.value = 0.5;
 
+    document.body.addEventListener("keydown", (e) => {
+            if (e.code === "Space" && e.target == document.body)
+                e.preventDefault();
+        });
+
+    document.body.addEventListener("keydown", (e) => {
+        if (e.code === "Space" && e.target == e.currentTarget) {
+            this.props.togglePlayPause();
+        }
+    });
   }
 
   componentDidUpdate(prevProps) {

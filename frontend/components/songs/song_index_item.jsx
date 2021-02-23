@@ -63,7 +63,6 @@ class SongIndexItem extends React.Component {
     const { hover, hoveredSongId, key, selected } = this.state;
 
     //Play and pause button logic for each song item in album
-    var color = '';
     let playBtn = playing
       ? <FaPause onClick={this.props.pause}/> 
       : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
@@ -72,26 +71,24 @@ class SongIndexItem extends React.Component {
       currentSong.id === key && playing
         ? <FaPause onClick={this.props.pause}/> 
         : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
-      currentSong.id === key && playing 
-      ? color = 'green'
-      : color = ''
     }
 
     return (
       <li className='indiv-songs'
-          onMouseEnter={() => {
-            this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
-          }}
-          onMouseLeave={() => this.setState({hover: ''})}>
-        
+          onMouseEnter={() => {this.setState({hover: 'hovering', hoveredSongId: id, key: songId})}}
+          onMouseLeave={() => this.setState({hover: ''})}
+          onDoubleClick={() => playIndivSong(hoveredSongId)}
+      >
         <div className="song-details-wrapper" >
           <div className="song-info">
             <a  
               className={hover} >
               {this.state.hover === 'hovering' ? playBtn : id+1}
             </a>
-            <div className="song-title">
-              {song.songName}
+            <div className="albums-song-title default">
+              {currentSong && (currentSong.id === key) 
+                ? <h3 className='green'>{song.songName}</h3>
+                : <h3>{song.songName}</h3>}
             </div>
           </div>
           <div className="album-song-duration">

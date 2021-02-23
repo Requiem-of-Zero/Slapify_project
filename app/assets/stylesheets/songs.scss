@@ -9,6 +9,11 @@
   margin: 0 auto;
   margin-top: 10px;
   list-style: none;
+  user-select: none;
+}
+
+.indiv-songs:active {
+  background-color: rgba(41, 39, 39, 0.2);
 }
 
 .indiv-songs:hover {
