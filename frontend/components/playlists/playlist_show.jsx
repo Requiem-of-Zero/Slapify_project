@@ -5,6 +5,7 @@ import { RIETextArea } from 'riek';
 import { BiTime } from 'react-icons/bi';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import PlaylistEditModal from '../edit_modal/playlist_edit';
+import { timeAdder } from '../../util/album_api_util';
 
 export default class PlaylistShow extends Component {
   constructor(props) {
@@ -74,6 +75,8 @@ export default class PlaylistShow extends Component {
                 <p>{`${currentUser.email}`}</p>
                 <span>{bullet}</span>
                 <p>{`${playlistSongs.length} songs`}</p>
+                <span>{bullet}</span>
+                <p>{timeAdder(playlistSongs.map(song => song.duration))}</p>
               </div>
               <FiTrash2 
                 className='pointer' 

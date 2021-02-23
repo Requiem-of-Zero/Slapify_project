@@ -3,6 +3,7 @@ import LoggedInNav from '../splash_page/logged_in/logged_in_nav_bar';
 import MusicPlayerContainer from '../music_player/music_player_container';
 import { logout } from '../../actions/session_actions';
 import SongIndexItem from '../songs/song_index_item';
+import { timeAdder } from '../../util/album_api_util';
 import { BiTime } from 'react-icons/bi';
 
 class AlbumShow extends Component {
@@ -44,6 +45,8 @@ class AlbumShow extends Component {
                   {(artists[album.artistId]).name}
                 </span>
                 {`${bullet} ${album.year} ${bullet}`} {Object.values(this.props.songs).length} songs 
+                <span>{bullet}</span>
+                <span>{timeAdder(songs.map(song => song.duration))}</span>
               </p>
             </div>
           </div>

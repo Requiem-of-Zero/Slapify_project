@@ -22,3 +22,25 @@ export const getAlbumSongs = albumId => (
     url: `/api/albums/${albumId}/tracks`,
   })
 )
+
+export const timeAdder = (times) => {
+    let counter = 0;
+
+    times.forEach((time) => {
+        const parts = time.split(":");
+        var min = parseInt(parts[0]);
+        var sec = parseInt(parts[1]);
+        counter += min * 60;
+        counter += sec;
+    });
+
+    const totalMin = Math.floor(counter / 60);
+
+    if (totalMin < 60) {
+        return `${totalMin} Minutes`;
+    } else if (totalMin == 60) {
+        return "1 Hour";
+    } else {
+        return `1 Hour ${totalMin - 60} Minutes`;
+    }
+};
