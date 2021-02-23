@@ -42,10 +42,10 @@ class PlaylistSongIndexItem extends Component {
 
     return (
       <li className='indiv-songs'
-          onMouseEnter={() => {
-            this.setState({hover: 'hovering', hoveredSongId: id, key: songId})
-          }}
-          onMouseLeave={() => this.setState({hover: ''})}>
+          onMouseEnter={() => { this.setState({hover: 'hovering', hoveredSongId: id, key: songId})}}
+          onMouseLeave={() => this.setState({hover: ''})}
+          onDoubleClick={() => playIndivSong(hoveredSongId)}
+      >
 
         <div className="song-details-wrapper" >
 

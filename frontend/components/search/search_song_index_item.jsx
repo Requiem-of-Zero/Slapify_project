@@ -67,7 +67,9 @@ class SearchSongIndexItem extends React.Component {
       <div>
         <li className='indiv-songs'
             onMouseEnter={() => this.setState({hover: 'hovering', hoveredSongId: id, key: songId})}
-            onMouseLeave={() => this.setState({hover: ''})}>
+            onMouseLeave={() => this.setState({hover: ''})}
+            onDoubleClick={() => playIndivSong(hoveredSongId)}
+        >
           
           <div className="search-details-wrapper" >
             <div className="song-info">
@@ -81,8 +83,8 @@ class SearchSongIndexItem extends React.Component {
                     {albumName}
                   </Link>
                   {currentSong && (currentSong.id === key) 
-                    ? <h3 className='green'>{song.songName}</h3>
-                    : <h3>{song.songName}</h3>}
+                    ? <h3 className='green default'>{song.songName}</h3>
+                    : <h3 className='default gray'>{song.songName}</h3>}
                 </div>
               </div>
             </div>
