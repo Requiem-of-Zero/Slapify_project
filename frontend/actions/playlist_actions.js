@@ -57,10 +57,12 @@ export const createPlaylist = playlist => dispatch => (
   .then(playlist => dispatch(receiveNewPlaylist(playlist)))
 );
 
-export const updatePlaylist = playlist => dispatch => (
-  PlaylistsAPI.updatePlaylist(playlist)
-  .then(playlist => console.log(playlist))
-);
+export const updatePlaylist = playlist => dispatch => {
+  return PlaylistsAPI.updatePlaylist(playlist)
+  .then(playlist => {
+    return dispatch(updatePlaylistName(playlist))
+  })
+};
 
 export const deletePlaylist = playlistId => dispatch => (
   PlaylistsAPI.removePlaylist(playlistId)

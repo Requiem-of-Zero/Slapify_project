@@ -68,7 +68,7 @@ class SongIndexItem extends React.Component {
       : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
 
     if(currentSong){
-      currentSong.id === key && playing
+      playBtn = currentSong.id === key && playing
         ? <FaPause onClick={this.props.pause}/> 
         : <FaPlay onClick={() => playIndivSong(hoveredSongId)} />
     }

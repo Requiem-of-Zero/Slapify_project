@@ -64,12 +64,12 @@ export default class PlaylistShow extends Component {
           <div className="detail-content">
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">
-              <PlaylistEditModal 
+            </div>
+              <PlaylistEditModal
+                albums={albums}
                 playlist={currPlaylist}
                 updatePlaylist={updatePlaylist}
               />
-            </div>
-            <h1>{currPlaylist.playlistName}</h1>
             <div className="detail-lower">
               <div className="playlist-info">
                 <p>{`${currentUser.email}`}</p>
