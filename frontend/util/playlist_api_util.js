@@ -10,7 +10,7 @@ export const updatePlaylist = playlist => (
   $.ajax({
     url: `/api/playlists/${playlist.id}`,
     method: "PATCH",
-    data: { playlistName: playlist.playlist_name }
+    data: { playlist }
   })
 );
 

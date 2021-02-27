@@ -1,0 +1,85 @@
+.modal-edit {
+  font-family: 'Montserrat',
+  sans-serif;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  margin-left: 20px;
+}
+
+.edit-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.edit-modal {
+  position: relative;
+  border-radius: 10px;
+
+  .modal-btn {
+    font-size: 70px;
+  }
+}
+
+.modal-close {
+  font-size: 26px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #b3b3b3;
+  padding: 5px;
+}
+
+.modal-close:hover {
+  background-color: #464343;
+  border-radius: 50%;
+}
+
+.name-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 56px;
+    border-radius: 4px;
+    position: relative;
+    transition: 0.3s all;
+
+    > .input {
+      margin-bottom: 20px;
+      margin-left: 20px;
+    }
+
+    >input:hover {
+      background-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+    }
+
+    > label  {
+      position: absolute;
+      top: -6px;
+      left: 10px;
+      color: #b3b3b3;
+      font-size: 11px;
+    }
+}
+
+.save-btn {
+  border-radius: 20px;
+  padding: 10px 25px 10px 25px;
+  margin-top: 20px;
+  font-weight: 700;
+  border: none;
+  letter-spacing: 2px;
+}
+
+.InputLabel.Mui-focused {
+  display: block;
+}
+
+.MuiOutlinedInput-input {
+  border: 1px solid #b3b3b3;
+}

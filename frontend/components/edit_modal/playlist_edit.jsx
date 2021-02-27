@@ -1,5 +1,8 @@
 // import React from 'react'
+import React, { Component } from 'react'
 import Modal from 'react-modal';
+import { VscClose } from 'react-icons/vsc'
+import { TextField, createMuiTheme, ThemeProvider } from '@material-ui/core'
 
 const customStyles = {
   content : {
@@ -8,11 +11,44 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    background            : '#282828',
+    borderRadius : '10px',
+    width: '30%',
+    height: '35%',
+    border: 'none',
+  },
+  overlay: {
+    background: 'rgba(0,0,0,.7)',
+    zIndex: '10'
   }
 };
 
-import React, { Component } from 'react'
+const theme = createMuiTheme({
+  overrides: {
+    MuiInputLabel: { // Name of the component ⚛️ / style sheet
+      root: {
+        "&$MuiOutlinedInput-notchedOutline": {
+      borderColor: "purple"
+    }, // Name of the rule
+        color: "#b3b3b3",
+        "&$focused": { // increase the specificity for the pseudo class
+          color: "#b3b3b3"
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      root: { // Name of the
+        color: "#fff",
+        background: '#333131',
+        "&$focused": { // increase the specificity for the pseudo class
+          background: '#2c2b2b'
+        }
+      }
+    }
+  }
+});
+
 
 export default class PlaylistEditModal extends Component {
   constructor(props) {
@@ -28,12 +64,21 @@ export default class PlaylistEditModal extends Component {
 
   handleEnter(e) {
     if(e.key === 'Enter') {
+      // debugger
       this.props.updatePlaylist({
         id: this.state.playlistId,
         playlistName: this.state.playlistName,
       }),
       this.setState({ isOpen: !this.state.isOpen})
     }
+  }
+
+  handleSubmit() {
+    this.props.updatePlaylist({
+      id: this.state.playlistId,
+      playlistName: this.state.playlistName,
+    }),
+    this.setState({ isOpen: !this.state.isOpen})
   }
 
   handleModal() {
@@ -45,9 +90,10 @@ export default class PlaylistEditModal extends Component {
   }
 
   render() {
+    const { albums, playlist } = this.props
     return (
-      <>
-        <button onClick={() => this.handleModal()}>Edit</button>
+      <div className='edit-modal'>
+        <h1 className='modal-btn pointer' onClick={() => this.handleModal()}>{playlist.playlistName}</h1>
         <Modal
           isOpen={this.state.isOpen}
           onRequestClose={() => this.handleModal()}
@@ -56,20 +102,49 @@ export default class PlaylistEditModal extends Component {
           ariaHideApp={false}
         >
           
-          <h2>Hello</h2>
-          <button onClick={() => this.handleModal()}>close</button>
-          <div>Update Playlist:</div>
-          <form>
-            <input 
-              value={this.state.playlistName} 
-              onChange={this.handleChange('playlistName')}
-              onKeyPress={this.handleEnter.bind(this)}
-              autoComplete='off'
-            />
-          </form>
-          <button></button>
+          <h2 className='modal-edit'>Edit details</h2>
+          <VscClose 
+            className='modal-close'
+            onClick={() => this.setState({ isOpen: !this.state.isOpen })}
+          />
+          <div className="edit-form">
+            {Object.values(albums).length < 4 
+              ? <img 
+                  src="https://community.spotify.com/t5/image/serverpage/image-id/55829iC2AD64ADB887E2A5/image-size/large?v=1.0&px=999"
+                  className='playlist-cover'
+                />
+              : <ul 
+                  className='cover-cluster'
+                >
+                <li
+                  className='indiv-playlist-img'
+                >
+                  {Object.values(albums).slice(0, 4).map(album => <img src={album.imgUrl} />)}
+                </li>
+              </ul>
+            }
+            <form>
+              <div className="name-input">
+                <ThemeProvider theme={theme}>
+                  <TextField
+                    className='textfield'
+                    fullWidth
+                    autoFocus
+                    label='Name'
+                    value={this.state.playlistName} 
+                    onChange={this.handleChange('playlistName')}
+                    onKeyPress={this.handleEnter.bind(this)}
+                    autoComplete='off'
+                    id="outlined"
+                    variant="outlined"
+                  />
+                </ThemeProvider>
+                <button className="save-btn pointer" onClick={this.handleSubmit.bind(this)}>SAVE</button>
+              </div>
+            </form>
+          </div>
         </Modal>
-      </>
+      </div>
     )
   }
 }

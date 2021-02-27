@@ -14,8 +14,8 @@ class Api::PlaylistsController < ApplicationController
 
   def update
     @playlist = Playlist.find(params[:id])
-    @playlist.playlist_name = @playlist.playlist_name
-
+    @playlist.playlist_name = params[:playlist][:playlistName]
+    # debugger
     if @playlist.save
       render '/api/playlists/_playlist'
     else

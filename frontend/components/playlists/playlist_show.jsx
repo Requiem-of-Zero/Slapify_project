@@ -5,6 +5,7 @@ import { RIETextArea } from 'riek';
 import { BiTime } from 'react-icons/bi';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import PlaylistEditModal from '../edit_modal/playlist_edit';
+import { timeAdder } from '../../util/album_api_util';
 
 export default class PlaylistShow extends Component {
   constructor(props) {
@@ -42,6 +43,14 @@ export default class PlaylistShow extends Component {
     const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists, updatePlaylist, pause } = this.props
     const bullet = '\u2022';
 
+    var hasSongs;
+
+    if(playlistSongs.length !== 0) {
+      hasSongs = ''
+    } else {
+      hasSongs = 'hidden'
+    }
+
     return currPlaylist ? (
       <div className="playlist-show-wrapper">
         <div className="playlist-details">
@@ -63,17 +72,19 @@ export default class PlaylistShow extends Component {
           <div className="detail-content">
             <p>PLAYLIST</p>
             <div className="playlist-name-edit-container">
-              <PlaylistEditModal 
+            </div>
+              <PlaylistEditModal
+                albums={albums}
                 playlist={currPlaylist}
                 updatePlaylist={updatePlaylist}
               />
-            </div>
-            <h1>{currPlaylist.playlistName}</h1>
             <div className="detail-lower">
               <div className="playlist-info">
                 <p>{`${currentUser.email}`}</p>
-                <span>{bullet}</span>
-                <p>{`${playlistSongs.length} songs`}</p>
+                <span className={hasSongs} >{bullet}</span>
+                <p className={hasSongs} >{`${playlistSongs.length} songs`}</p>
+                <span className={hasSongs} >{bullet}</span>
+                <p className={hasSongs} >{timeAdder(playlistSongs.map(song => song.duration))}</p>
               </div>
               <FiTrash2 
                 className='pointer' 

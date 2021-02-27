@@ -207,12 +207,16 @@
 .playlist-info {
   display: flex;
 
-  :first-child {
+  > span {
     margin-right: 5px;
   }
 
-  :last-child {
-    margin-left: 5px;
+  > p {
+    margin-right: 5px;
+  }
+
+  .user-email {
+    color: #b3b3b3;
   }
 }
 
