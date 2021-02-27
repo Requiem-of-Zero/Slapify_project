@@ -1,6 +1,8 @@
 // import React from 'react'
+import React, { Component } from 'react'
 import Modal from 'react-modal';
-import { TextField } from '@material-ui/core';
+import { VscClose } from 'react-icons/vsc'
+import { TextField, createMuiTheme, ThemeProvider } from '@material-ui/core'
 
 const customStyles = {
   content : {
@@ -22,7 +24,31 @@ const customStyles = {
   }
 };
 
-import React, { Component } from 'react'
+const theme = createMuiTheme({
+  overrides: {
+    MuiInputLabel: { // Name of the component ⚛️ / style sheet
+      root: {
+        "&$MuiOutlinedInput-notchedOutline": {
+      borderColor: "purple"
+    }, // Name of the rule
+        color: "#b3b3b3",
+        "&$focused": { // increase the specificity for the pseudo class
+          color: "#b3b3b3"
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      root: { // Name of the
+        color: "#fff",
+        background: '#333131',
+        "&$focused": { // increase the specificity for the pseudo class
+          background: '#2c2b2b'
+        }
+      }
+    }
+  }
+});
+
 
 export default class PlaylistEditModal extends Component {
   constructor(props) {
@@ -77,6 +103,10 @@ export default class PlaylistEditModal extends Component {
         >
           
           <h2 className='modal-edit'>Edit details</h2>
+          <VscClose 
+            className='modal-close'
+            onClick={() => this.setState({ isOpen: !this.state.isOpen })}
+          />
           <div className="edit-form">
             {Object.values(albums).length < 4 
               ? <img 
@@ -95,17 +125,21 @@ export default class PlaylistEditModal extends Component {
             }
             <form>
               <div className="name-input">
-                <TextField
-                  className='textfield'
-                  fullWidth
-                  autoFocus
-                  label='Name'
-                  value={this.state.playlistName} 
-                  onChange={this.handleChange('playlistName')}
-                  onKeyPress={this.handleEnter.bind(this)}
-                  autoComplete='off'
-                />
-                <button onClick={this.handleSubmit.bind(this)}>SAVE</button>
+                <ThemeProvider theme={theme}>
+                  <TextField
+                    className='textfield'
+                    fullWidth
+                    autoFocus
+                    label='Name'
+                    value={this.state.playlistName} 
+                    onChange={this.handleChange('playlistName')}
+                    onKeyPress={this.handleEnter.bind(this)}
+                    autoComplete='off'
+                    id="outlined"
+                    variant="outlined"
+                  />
+                </ThemeProvider>
+                <button className="save-btn pointer" onClick={this.handleSubmit.bind(this)}>SAVE</button>
               </div>
             </form>
           </div>

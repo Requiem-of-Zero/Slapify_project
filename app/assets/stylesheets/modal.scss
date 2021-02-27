@@ -6,20 +6,36 @@
   font-weight: 700;
   margin-bottom: 20px;
   position: relative;
+  margin-left: 20px;
 }
 
 .edit-form {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .edit-modal {
-
+  position: relative;
   border-radius: 10px;
 
   .modal-btn {
     font-size: 70px;
   }
+}
+
+.modal-close {
+  font-size: 26px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #b3b3b3;
+  padding: 5px;
+}
+
+.modal-close:hover {
+  background-color: #464343;
+  border-radius: 50%;
 }
 
 .name-input {
@@ -51,10 +67,19 @@
     }
 }
 
-.InputLabel {
-  display: none;
+.save-btn {
+  border-radius: 20px;
+  padding: 10px 25px 10px 25px;
+  margin-top: 20px;
+  font-weight: 700;
+  border: none;
+  letter-spacing: 2px;
 }
 
 .InputLabel.Mui-focused {
   display: block;
+}
+
+.MuiOutlinedInput-input {
+  border: 1px solid #b3b3b3;
 }
