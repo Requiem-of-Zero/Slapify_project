@@ -239,6 +239,10 @@
     margin-right: 10px;
     z-index: 0
   }
+
+  > .dropdown-dots:hover {
+    color: #fff;
+  }
 }
 
 @keyframes fade-in {
