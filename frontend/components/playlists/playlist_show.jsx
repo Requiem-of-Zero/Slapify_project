@@ -43,6 +43,14 @@ export default class PlaylistShow extends Component {
     const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists, updatePlaylist, pause } = this.props
     const bullet = '\u2022';
 
+    var hasSongs;
+
+    if(playlistSongs.length !== 0) {
+      hasSongs = ''
+    } else {
+      hasSongs = 'hidden'
+    }
+
     return currPlaylist ? (
       <div className="playlist-show-wrapper">
         <div className="playlist-details">
@@ -73,10 +81,10 @@ export default class PlaylistShow extends Component {
             <div className="detail-lower">
               <div className="playlist-info">
                 <p>{`${currentUser.email}`}</p>
-                <span>{bullet}</span>
-                <p>{`${playlistSongs.length} songs`}</p>
-                <span>{bullet}</span>
-                <p>{timeAdder(playlistSongs.map(song => song.duration))}</p>
+                <span className={hasSongs} >{bullet}</span>
+                <p className={hasSongs} >{`${playlistSongs.length} songs`}</p>
+                <span className={hasSongs} >{bullet}</span>
+                <p className={hasSongs} >{timeAdder(playlistSongs.map(song => song.duration))}</p>
               </div>
               <FiTrash2 
                 className='pointer' 
