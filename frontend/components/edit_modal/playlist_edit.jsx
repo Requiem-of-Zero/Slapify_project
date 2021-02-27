@@ -73,6 +73,15 @@ export default class PlaylistEditModal extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.playlist.id !== this.props.playlist.id){
+      this.setState({ 
+        playlistId: this.props.playlist.id, 
+        playlistName: this.props.playlist.playlistName
+      })
+    }
+  }
+
   handleSubmit() {
     this.props.updatePlaylist({
       id: this.state.playlistId,
