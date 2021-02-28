@@ -35,7 +35,7 @@ class MusicPlayer extends React.Component {
 
     document.body.addEventListener("keydown", (e) => {
         if (e.code === "Space" && e.target == e.currentTarget) {
-            this.props.togglePlayPause();
+            if(this.props.music.active) this.props.togglePlayPause();
         }
     });
   }
