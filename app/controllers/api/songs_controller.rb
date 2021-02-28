@@ -7,9 +7,8 @@ class Api::SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    new_play_count = @song.play_count + 1
 
-    if @song.update(play_count: new_play_count)
+    if @song.save
         render json: @track
     end
   end

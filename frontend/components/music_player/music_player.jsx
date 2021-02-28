@@ -25,7 +25,7 @@ class MusicPlayer extends React.Component {
   }
 
   componentDidMount() {
-    // this.volume.value = 0.5;
+    this.volume.value = 0.5;
 
     document.body.addEventListener("keydown", (e) => {
             if (e.code === "Space" && e.target == document.body)
