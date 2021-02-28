@@ -212,7 +212,7 @@ class MusicPlayer extends React.Component {
         />
         <div className="details-wrapper">
           <div className="cover">
-            { currentSong ? <Link to={`/albums/${albumId}`}> <img src={currentSong.albumUrl} className="current-cover"/> </Link> : null }
+            { currentSong ? <Link to={`/albums/${currentSong.albumId}`}> <img src={currentSong.albumUrl} className="current-cover"/> </Link> : null }
           </div>
           <div className="track-details">
             <p>{currentSong ? currentSong.songName : '' }</p>
