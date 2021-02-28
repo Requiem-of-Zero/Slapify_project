@@ -61,7 +61,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
       if(oldState.active) {
         newState.playing = true;
         if(oldState.played.length < oldState.queue.length - 1) {
-          let newPlayed = oldState.played;
+          var newPlayed = oldState.played;
           newPlayed.push(oldState.startIdx);
           newState.played = newPlayed;
           if(oldState.shuffle) {
@@ -125,7 +125,6 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
       }
 
     case RECEIVE_CURRENT_SONG:
-      newState.active = true;
       newState.queue.push(action.currentSong)
       newState.currentSong = newState.queue[newState.startIdx]
       newState.playing = true;
