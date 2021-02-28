@@ -12,6 +12,7 @@ const SongsReducer = (oldState={}, action) => {
     case RECEIVE_ALBUM:
       return action.payload.songs;
     case RECEIVE_SONG:
+      console.log(action.song)
       newState[action.song.id] = action.song;
       return newState;
     case RECEIVE_ALL_SONGS:

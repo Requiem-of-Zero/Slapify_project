@@ -1,5 +1,4 @@
 import React from 'react';
-import { IconContext } from 'react-icons'
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai';
 import { TiArrowRepeat} from 'react-icons/ti';
@@ -26,7 +25,7 @@ class MusicPlayer extends React.Component {
   }
 
   componentDidMount() {
-    this.volume.value = 0.5;
+    // this.volume.value = 0.5;
 
     document.body.addEventListener("keydown", (e) => {
             if (e.code === "Space" && e.target == document.body)
@@ -179,6 +178,8 @@ class MusicPlayer extends React.Component {
   render() {
     const { music, currentSong, currentAlbum, currentArtist } = this.props;
 
+    // if(!currentAlbum) return null;
+
     let songUrl,
         songName,
         albumId,
@@ -189,9 +190,9 @@ class MusicPlayer extends React.Component {
     let shuffleActive, action
 
     music.shuffle ? shuffleActive = 'toggled-on' : shuffleActive = 'off';
-    music.playing ? action = this.props.pauseSong : action = this.props.playSong;
+    // music.playing ? action = this.props.pauseSong : action = this.props.playSong;
 
-    if(currentSong) {
+    if(currentSong && currentArtist && currentAlbum) {
       songUrl = currentSong.url;
       songName = currentSong.songName;
       albumId = currentAlbum.id;
@@ -211,11 +212,11 @@ class MusicPlayer extends React.Component {
         />
         <div className="details-wrapper">
           <div className="cover">
-            { currentAlbum ? <Link to={`/albums/${albumId}`}> <img src={currentAlbum.imgUrl} className="current-cover"/> </Link> : null }
+            { currentSong ? <Link to={`/albums/${albumId}`}> <img src={currentSong.albumUrl} className="current-cover"/> </Link> : null }
           </div>
           <div className="track-details">
-            <p>{songName}</p>
-            <p className='current-artist'>{artistName}</p>
+            <p>{currentSong ? currentSong.songName : '' }</p>
+            <p className='current-artist'>{currentSong ?  currentSong.artistName : ''}</p>
           </div>
         </div>
         <div className="controls-seeker">
@@ -228,7 +229,12 @@ class MusicPlayer extends React.Component {
               <AiFillStepBackward onClick={() => this.handleSeek("prev")}/>
             </a>
             <a className="play-btn" onClick={action}>
-              { music.playing ? <FaPause style={{color: '#000'}}/> :  <FaPlay style={{color: '#000'}} />}
+              { music.playing 
+                ? <FaPause 
+                      onClick={() => this.props.togglePlayPause()} style={{color: '#000'}}/> 
+                :  <FaPlay 
+                      onClick={() => this.props.togglePlayPause()} style={{color: '#000'}} />
+              }
             </a>
             <a className='ctrl-btns'>
               <AiFillStepForward onClick={() => this.handleSeek("next")}/>
