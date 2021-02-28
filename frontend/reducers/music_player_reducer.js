@@ -132,8 +132,7 @@ const MusicPlayerReducer = (oldState = initialState, action) => {
       return newState;
 
     case TOGGLE_SONG:
-      newState.active = !newState.active
-      newState.playing = !newState.playing
+      newState.playing = !oldState.playing
       return newState;
       
     default:
