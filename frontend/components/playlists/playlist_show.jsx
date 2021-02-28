@@ -43,6 +43,10 @@ export default class PlaylistShow extends Component {
     const { currPlaylist, currentUser, playlistSongs, playIndivSong, removeSongFromPlaylist, albums, artists, updatePlaylist, pause } = this.props
     const bullet = '\u2022';
 
+    var pluralSong;
+
+    playlistSongs.length === 1 ? pluralSong = 'song' : pluralSong = 'songs';
+
     var hasSongs;
 
     if(playlistSongs.length !== 0) {
@@ -82,7 +86,7 @@ export default class PlaylistShow extends Component {
               <div className="playlist-info">
                 <p>{`${currentUser.email}`}</p>
                 <span className={hasSongs} >{bullet}</span>
-                <p className={hasSongs} >{`${playlistSongs.length} songs`}</p>
+                <p className={hasSongs} >{`${playlistSongs.length} ${pluralSong}`}</p>
                 <span className={hasSongs} >{bullet}</span>
                 <p className={hasSongs} >{timeAdder(playlistSongs.map(song => song.duration))}</p>
               </div>
