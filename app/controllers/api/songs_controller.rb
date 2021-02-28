@@ -5,6 +5,15 @@ class Api::SongsController < ApplicationController
     # render '/api/songs/index'
   end
 
+  def update
+    @song = Song.find(params[:id])
+    new_play_count = @song.play_count + 1
+
+    if @song.update(play_count: new_play_count)
+        render json: @track
+    end
+  end
+
   def create
     @playlist_song = PlaylistSong.new(playlist_id: params[:playlist_id], song_id: params[:song_id])
     if @playlist_song.save
