@@ -37,10 +37,10 @@ export const timeAdder = (times) => {
     const totalMin = Math.floor(counter / 60);
 
     if (totalMin < 60) {
-        return `${totalMin} Minutes`;
+        return `${totalMin} minutes`;
     } else if (totalMin == 60) {
-        return "1 Hour";
+        return "1 hr";
     } else {
-        return `1 Hour ${totalMin - 60} Minutes`;
+        return `1 hr ${totalMin - 60} minutes`;
     }
 };
