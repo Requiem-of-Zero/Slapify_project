@@ -191,6 +191,11 @@ class MusicPlayer extends React.Component {
 
     music.shuffle ? shuffleActive = 'toggled-on' : shuffleActive = 'off';
     // music.playing ? action = this.props.pauseSong : action = this.props.playSong;
+    if(!currentSong && !music.playing) {
+      action  = () => this.setState({ duration: null})
+    } else {
+      action = this.props.togglePlayPause
+    }
 
     if(currentSong && currentArtist && currentAlbum) {
       songUrl = currentSong.url;
@@ -230,10 +235,10 @@ class MusicPlayer extends React.Component {
             </a>
             <a className="play-btn" onClick={action}>
               { music.playing 
-                ? <FaPause 
-                      onClick={() => this.props.togglePlayPause()} style={{color: '#000'}}/> 
-                :  <FaPlay 
-                      onClick={() => this.props.togglePlayPause()} style={{color: '#000'}} />
+                ? <FaPause
+                    style={{color: '#000'}}/> 
+                :  <FaPlay
+                    style={{color: '#000'}}/>
               }
             </a>
             <a className='ctrl-btns'>
