@@ -22,7 +22,6 @@ const mstp = ({ music, entities, session}) => {
   if (music.currentSong)  {
     currentSong = music.currentSong;
     currentAlbum = Object.values(entities.albums).length > 0 ? entities.albums[currentSong.albumId] : {}
-    console.log(currentAlbum)
     currentArtist = currentAlbum ? entities.artists[currentAlbum.artistId] : {};
   }
 
