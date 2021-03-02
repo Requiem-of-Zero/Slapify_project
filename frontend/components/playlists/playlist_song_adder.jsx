@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TiDelete } from 'react-icons/ti';
 
 export default class PlaylistSongAdder extends Component {
   constructor(props) {
@@ -40,10 +41,10 @@ export default class PlaylistSongAdder extends Component {
       var dropdown = (
         <>
           <li 
-            className='remover pointer'
+            className='pointer'
             onClick={() => this.handleRemove(songId, playlistId)}
           >
-            Remove from Playlist
+            <TiDelete/>
           </li>
         </>
       )
