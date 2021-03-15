@@ -8,6 +8,7 @@ import AlbumShowContainer from '../../albums/album_show_container';
 import Sidebar from '../../sidebar/sidebar';
 import SearchContainer from '../../search/search_container';
 import PlaylistShowContainer from '../../playlists/playlist_show_container';
+import About from '../../about/about_me';
 
 class LoggedInHomepage extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class LoggedInHomepage extends React.Component {
           <Switch>
             <Route path="/albums/:albumId" component={AlbumShowContainer}/>
             <Route path="/playlists/:playlistId" component={PlaylistShowContainer} />
+            <Route path='/about' component={About} />
             <Route path="/search" component={SearchContainer} />
             <AlbumIndexContainer/>
           </Switch>
