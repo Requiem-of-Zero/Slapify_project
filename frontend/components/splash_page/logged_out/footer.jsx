@@ -5,9 +5,6 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineLinkedin } from 'react-icons/ai';
 
-
-
-
 class Footer extends React.Component {
   render() {
     return(

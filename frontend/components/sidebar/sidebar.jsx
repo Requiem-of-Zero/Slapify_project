@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { CgHome } from 'react-icons/cg';
 import { BiSearch } from 'react-icons/bi';
 import PlaylistIndexContainer from '../../components/playlists/playlist_index_container';
+import Menu from '../about/about_me'
+import { BsInfoSquareFill } from 'react-icons/bs';
 import { connect } from 'react-redux';
 
 class Sidebar extends Component {
@@ -13,11 +15,15 @@ class Sidebar extends Component {
         <div className="side-nav">
           <Link to={'/'} className="nav-icon">
             <CgHome size={25}/>
-            <span> Home </span>
+            <span>Home</span>
           </Link>
           <Link to={'/search'} className="nav-icon">
             <BiSearch size={25}/>
             <span>Search</span>
+          </Link>
+          <Link to={'/about'} className='nav-icon'>
+            <BsInfoSquareFill size={25}/>
+            <span>About Me</span>
           </Link>
           < PlaylistIndexContainer />
         </div>
