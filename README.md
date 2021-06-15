@@ -28,28 +28,75 @@ Slapify's backend is built using the Ruby on Rails framework with a PostgreSQL d
     * Alternate Solution: Using percentages based on the whole number values of the beginning to thumb and thumb to end to determine the correct percentages to change background-color values of the slider.
     
 * Implementation:
-  * Music player:
+  * Music queue system:
   ``` jsx
-    playMusic() {
-    let songState = this.state.status;
-
-    const audio = document.getElementById('audio');
-    if(songState === 'playing') {
-      clearInterval(this.interval);
-      songState = 'paused'; 
-      audio.pause();
-    } else {
-      songState = 'playing'; 
-      audio.play();
-      this.interval = setInterval(() => {
-        this.scrub.value = this.audio.currentTime;
-        this.scrub.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e ' + ((this.scrub.value/this.scrub.max) * 100) + '%, #4e4e4e 100%)'
-      }, 1000);
-    };
-    this.setState({ status: songState });
-  };
+    case PAUSE_SONG:
+      newState.playing = false;
+      return newState
+    case PLAY_SONG:
+      if(oldState.queue.length) {
+        newState.active = true;
+        newState.currentSong = newState.queue[newState.startIdx];
+        newState.playing = true;
+        return newState;
+      } else {
+        return newState
+      };
+    case NEXT_SONG:
+      if(oldState.active) {
+        newState.playing = true;
+        if(oldState.played.length < oldState.queue.length - 1) {
+          var newPlayed = oldState.played;
+          newPlayed.push(oldState.startIdx);
+          newState.played = newPlayed;
+          if(oldState.shuffle) {
+            newState.startIdx = pickSong(
+              oldState.queue.length,
+              newPlayed
+            )
+          } else {
+            newState.startIdx += 1;
+          }
+          newState.currentSong = oldState.queue[newState.startIdx];
+          return newState;
+        } else {
+          newState.startIdx = 0;
+          newState.played = [];
+          if(oldState.loop) {
+            newState.currentSong = oldState.queue[newState.startIdx];
+            return newState
+          } else {
+            newState.active = false;
+            newState.currentSong = null;
+            newState.playing = false;
+            return newState;
+          }
+        }
+      } else {
+        return newState;
+      };
+    case PREV_SONG:
+      if (oldState.active) {
+        newState.playing = true;
+        if(oldState.played.length > 0) {
+          let newPlayed = oldState.played
+          let lastIdx = newPlayed.pop();
+          newState.played = newPlayed;
+          newState.startIdx = lastIdx;
+          newState.currentSong = oldState.queue[newState.startIdx];
+          return newState;
+        } else {
+          newState.active = false;
+          newState.currentSong = null;
+          newState.playing = false;
+          return newState;
+        }
+      } else {
+        return newState;
+      };
    ```
-The music player gets the song from props through the application state (currentSong in application state) and that song is the url that will be used as the source for the audio tag.
+   
+The music player uses a current song, with a index to an array of queue of song objects. The music player checks if the current state of the app is active or playing to then send the request to play or pause the song url.
 
   * Volume and seeker sliders:
 ``` jsx
