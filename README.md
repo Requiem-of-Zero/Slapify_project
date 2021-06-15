@@ -95,7 +95,7 @@ Slapify's backend is built using the Ruby on Rails framework with a PostgreSQL d
         return newState;
       };
    ```
-   
+
 The music player uses a current song, with a index to an array of queue of song objects. The music player checks if the current state of the app is active or playing to then send the request to play or pause the song url.
 
   * Volume and seeker sliders:
@@ -147,7 +147,5 @@ Using HTML media's built in functions, we have access to the audio's duration an
   
   ## Future Features:
   
-  * Add playlists for users
   * Add a liked songs and liked albums for the user
-  * Add a queue to be able to play full albums
   * Add a user profile page
