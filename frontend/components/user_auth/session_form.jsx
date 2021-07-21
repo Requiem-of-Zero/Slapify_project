@@ -67,13 +67,13 @@ class SessionForm extends React.Component {
             <button className='apple-btn btn' onClick={ () => demoLogin(appleUser) }>
               <span className='icon-apple'>
                 <AiFillApple size={18} />
-                <p>CONTINUE WITH APPLE</p>
+                <p>CONTINUE WITH DEMO APPLE</p>
               </span>
             </button>
             <button className='google-btn btn' onClick={ () => demoLogin(googleUser) }>
               <span className='icon-google'>
                 <FcGoogle size={18} />
-                <p>CONTINUE WITH GOOGLE</p>
+                <p>CONTINUE WITH DEMO GOOGLE</p>
               </span>
             </button>
             <div className='divider'>
